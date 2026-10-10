@@ -1,0 +1,17 @@
+{
+  "name": "Al-Fahmu Learning Center",
+  "short_name": "Al-Fahmu",
+  "description": "Portal layanan digital Al-Fahmu untuk guru, murid, wali murid, dan manajemen.",
+  "lang": "id",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EFE3CB",
+  "theme_color": "#1E3653",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -238,6 +238,7 @@
     <button onclick="tutupApp()" title="Kembali ke portal">←</button>
     <div class="ik" id="appIkon"></div>
     <b id="appJudul">Aplikasi</b>
+    <button onclick="muatUlangApp()" title="Muat ulang">⟳</button>
     <a id="appLuar" href="#" target="_blank" rel="noopener" title="Buka di browser">↗</a>
   </div>
   <div class="appbody">
@@ -247,8 +248,7 @@
       <b>Bismillah, membuka aplikasi...</b>
       <p>Jika lama tidak terbuka, ketuk ↗ di kanan atas.</p>
     </div>
-    <iframe id="appFrame" title="Aplikasi Al-Fahmu" onload="var s=this.getAttribute('src');if(s&&s!=='about:blank'&&window.appSelesaiMuat)appSelesaiMuat()"
-            allow="camera; microphone; geolocation; clipboard-read; clipboard-write; fullscreen"></iframe>
+    <!-- bingkai aplikasi dibuat baru setiap kali dibuka (lihat fungsi buka) -->
   </div>
 </div>
 
@@ -494,36 +494,53 @@
   }
 
   /* ========== MEMBUKA APLIKASI DI DALAM PORTAL ========== */
-  let appTerbuka = false;
+  let appTerbuka = false, linkAktif = null;
+
+  /* Bingkai aplikasi selalu dibuat BARU dan dibuang saat ditutup.
+     (Mengosongkan bingkai lama ikut tercatat di riwayat tombol Back,
+      sehingga aplikasi dimuat ulang diam-diam saat tersembunyi → tampilan kosong.) */
+  function pasangFrame(url){
+    buangFrame();
+    document.getElementById('appMuat').classList.remove('hidden');
+    const f = document.createElement('iframe');
+    f.id = 'appFrame';
+    f.title = 'Aplikasi Al-Fahmu';
+    f.allow = 'camera; microphone; geolocation; clipboard-read; clipboard-write; fullscreen';
+    f.onload = () => setTimeout(() => document.getElementById('appMuat').classList.add('hidden'), 400);
+    f.src = url;
+    document.querySelector('.appbody').appendChild(f);
+  }
+
+  function buangFrame(){
+    const lama = document.getElementById('appFrame');
+    if (lama) lama.remove();
+  }
 
   function buka(link){
     if (link.mode === 'luar') { window.open(link.url, '_blank', 'noopener'); return; }
+    linkAktif = link;
     document.getElementById('appJudul').textContent = link.judul;
     document.getElementById('appIkon').innerHTML = ikonHTML(link.ikon);
     document.getElementById('appLuar').href = link.url;
-    document.getElementById('appMuat').classList.remove('hidden');
-    const f = document.getElementById('appFrame');
-    f.src = link.url;
-    document.getElementById('vApp').classList.remove('hidden');
+    document.getElementById('vApp').classList.remove('hidden');   // tampilkan dulu, baru dimuat
     document.body.style.overflow = 'hidden';
     if (!appTerbuka) { history.pushState({ app: 1 }, ''); appTerbuka = true; }
+    pasangFrame(link.url);
   }
+
+  function muatUlangApp(){ if (linkAktif) pasangFrame(linkAktif.url); }
 
   function tutupApp(dariHistory){
     if (!appTerbuka) return;
     appTerbuka = false;
+    buangFrame();                                                  // buang dulu agar riwayat Back bersih
     document.getElementById('vApp').classList.add('hidden');
-    document.getElementById('appFrame').src = 'about:blank';
     document.body.style.overflow = '';
     if (!dariHistory) history.back();
   }
 
   // tombol Back HP menutup aplikasi, bukan keluar dari portal
   window.addEventListener('popstate', () => tutupApp(true));
-
-  function appSelesaiMuat(){
-    setTimeout(() => document.getElementById('appMuat').classList.add('hidden'), 400);
-  }
 
   /* ========== KEYPAD PIN (otomatis masuk saat digit terakhir) ========== */
   let panjangPin = 4;

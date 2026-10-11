@@ -4,8 +4,8 @@
  * - Data dari Apps Script TIDAK disimpan di sini (selalu langsung ke server)
  * Naikkan VERSI bila mengganti logo/ikon.
  */
-const VERSI = 'alfahmu-v2';
-const FILE = ['./', 'index.html', 'manifest.webmanifest', 'logo.png', 'icon-192.png', 'icon-512.png', 'favicon.png', 'apple-touch-icon.png'];
+const VERSI = 'alfahmu-v3';
+const FILE = ['./', 'index.html', 'manifest.webmanifest', 'logo.png', 'bg.jpg', 'icon-192.png', 'icon-512.png', 'favicon.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSI).then(c => c.addAll(FILE)).then(() => self.skipWaiting()));

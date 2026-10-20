@@ -175,11 +175,182 @@
 
   footer{text-align:center;font-size:11px;color:var(--abu);margin-top:26px;line-height:1.6}
   footer .ar{font-family:'Amiri',serif;font-size:16px;color:var(--navy)}
+
+  /* =================== FITUR BARU: sholat, kiblat, info, admin =================== */
+  .bulan{display:none}
+  .f-admin-btn{position:absolute;top:12px;right:12px;z-index:3;display:flex;align-items:center;gap:6px;
+    background:rgba(30,54,83,.72);color:var(--kuning);border:1px solid rgba(245,220,124,.55);border-radius:999px;
+    padding:7px 12px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .f-admin-btn:active{transform:scale(.96)}
+
+  /* teks berjalan */
+  .f-ticker{display:flex;align-items:center;gap:10px;background:var(--navy);color:var(--putih);border-radius:14px;
+    padding:8px 10px;margin:0 0 14px;overflow:hidden;box-shadow:0 2px 8px rgba(30,54,83,.15)}
+  .f-ticker-lbl{flex-shrink:0;background:var(--kuning);color:var(--navy);font-size:10px;font-weight:700;
+    letter-spacing:1px;border-radius:6px;padding:3px 7px}
+  .f-ticker-track{flex:1;overflow:hidden;white-space:nowrap;position:relative;height:20px}
+  .f-ticker-track span{position:absolute;left:0;top:0;font-size:13px;line-height:20px;
+    animation:fJalan 20s linear infinite;padding-left:100%}
+  @keyframes fJalan{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+  /* kartu umum */
+  .f-kartu{background:rgba(255,255,255,.94);border-radius:20px;padding:14px;margin:0 0 16px;
+    box-shadow:0 2px 10px rgba(30,54,83,.10);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .f-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .f-head .f-ttl{flex:1;min-width:0}
+  .f-head small{display:block;font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+  .f-head b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .f-pill{border:none;border-radius:999px;background:var(--navy);color:var(--putih);font-family:inherit;font-size:12px;
+    font-weight:600;padding:8px 12px;cursor:pointer;white-space:nowrap}
+  .f-pill.alt{background:var(--cream);color:var(--navy)}
+
+  /* jadwal sholat */
+  .f-next{display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:var(--putih);border-radius:14px;padding:10px 14px;margin-bottom:10px}
+  .f-next span{font-size:12px;color:var(--kuning)}
+  .f-next b{display:block;font-size:16px}
+  .f-next .f-hit{font-variant-numeric:tabular-nums;font-size:22px;font-weight:700;letter-spacing:.5px}
+  .f-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .f-wkt{background:var(--cream);border-radius:12px;padding:7px 4px;text-align:center}
+  .f-wkt small{display:block;font-size:10.5px;color:var(--abu);font-weight:500}
+  .f-wkt b{display:block;font-size:14px;font-variant-numeric:tabular-nums}
+  .f-wkt.now{background:var(--kuning);box-shadow:inset 0 0 0 2px var(--gold)}
+  .f-wkt.now small{color:var(--navy)}
+  .f-lok{display:block;margin:10px auto 0;background:none;border:none;font-family:inherit;font-size:11.5px;color:var(--abu);
+    text-decoration:underline;cursor:pointer}
+
+  /* info & pengumuman */
+  .f-slider{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin:0 -2px;padding:2px 2px 4px;-webkit-overflow-scrolling:touch}
+  .f-slider::-webkit-scrollbar{display:none}
+  .f-slide{flex:0 0 100%;scroll-snap-align:center;background:var(--putih);border-radius:16px;overflow:hidden;cursor:pointer;
+    box-shadow:0 1px 6px rgba(30,54,83,.10);display:flex;flex-direction:column}
+  .f-img{aspect-ratio:16/9;background:center/cover no-repeat var(--cream);position:relative}
+  .f-img.kosong{display:flex;align-items:center;justify-content:center;font-size:44px}
+  .f-badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.4px;border-radius:999px;padding:3px 9px;
+    color:var(--putih);background:var(--navy)}
+  .f-img .f-badge{position:absolute;top:10px;left:10px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .f-body{padding:10px 14px 14px}
+  .f-body b{display:block;font-size:15px;line-height:1.35}
+  .f-body p{font-size:12.5px;color:var(--abu);line-height:1.5;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;
+    -webkit-box-orient:vertical;overflow:hidden}
+  .f-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+  .f-dots i{width:7px;height:7px;border-radius:999px;background:rgba(30,54,83,.25);transition:all .2s}
+  .f-dots i.on{width:20px;background:var(--gold)}
+  .j-pengumuman{background:#1E3653} .j-info{background:#0F766E} .j-agenda{background:#6D28D9}
+  .j-iklan{background:#C9A227;color:#1E3653} .j-prestasi{background:#15803D}
+  .g-pengumuman{background:linear-gradient(135deg,#1E3653,#2E4F78)} .g-info{background:linear-gradient(135deg,#0F766E,#14B8A6)}
+  .g-agenda{background:linear-gradient(135deg,#5B21B6,#8B5CF6)} .g-iklan{background:linear-gradient(135deg,#C9A227,#F5DC7C)}
+  .g-prestasi{background:linear-gradient(135deg,#166534,#22C55E)}
+
+  /* modal umum */
+  .f-modal{position:fixed;inset:0;z-index:60;background:rgba(15,27,43,.6);display:flex;align-items:center;justify-content:center;
+    padding:16px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+  .f-box{position:relative;width:100%;max-width:440px;max-height:90vh;overflow:auto;background:var(--putih);border-radius:22px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  .f-x{position:absolute;top:10px;right:10px;z-index:2;width:34px;height:34px;border-radius:50%;border:none;
+    background:rgba(255,255,255,.92);color:var(--navy);font-size:20px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .f-box .f-img{border-radius:0}
+  .f-box .f-body{padding:16px 18px 18px}
+  .f-box .f-body b{font-size:18px}
+  .f-box .f-isi{font-size:14px;color:#374151;line-height:1.65;margin-top:8px;word-wrap:break-word}
+  .f-box .f-isi a{color:var(--navy2)}
+  .f-tgl{font-size:11.5px;color:var(--abu);margin-top:6px}
+  .f-cta{display:block;text-align:center;background:var(--navy);color:var(--putih);text-decoration:none;border-radius:12px;
+    padding:12px;font-weight:600;margin-top:14px}
+  .f-lagi{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--abu);margin-top:12px}
+
+  /* kiblat */
+  .f-kompas{position:relative;width:250px;height:250px;margin:6px auto 4px}
+  .f-kompas svg{width:100%;height:100%;display:block}
+  #fRose{transition:transform .25s ease-out;transform-origin:50% 50%}
+  .f-kib-info{text-align:center}
+  .f-kib-info .f-derajat{font-size:34px;font-weight:700;line-height:1.1}
+  .f-kib-info small{display:block;font-size:12px;color:var(--abu)}
+  .f-kib-status{font-size:12.5px;text-align:center;background:var(--cream);border-radius:12px;padding:10px;margin-top:12px;line-height:1.5}
+  .f-kib-status.ok{background:#DCFCE7;color:#166534}
+  .f-box .f-body .f-kib-status b,.f-box .f-body .f-lagi b{display:inline;font-size:inherit}
+  .f-box .f-body .f-kib-info b{display:inline}
+
+  /* footer kontak */
+  .f-kontak{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .f-kontak a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:12px;font-weight:600;
+    color:var(--navy);background:rgba(255,255,255,.9);border:1px solid rgba(30,54,83,.12);border-radius:999px;padding:7px 12px}
+
+  /* ================= PANEL ADMIN ================= */
+  .f-adm{position:fixed;inset:0;z-index:70;background:#F4EEE1;display:flex;flex-direction:column}
+  .f-adm-bar{display:flex;align-items:center;gap:10px;background:var(--navy);color:var(--putih);
+    padding:calc(10px + env(safe-area-inset-top)) 12px 10px;border-bottom:3px solid var(--kuning);flex-shrink:0}
+  .f-adm-bar b{flex:1;font-size:16px}
+  .f-adm-bar small{display:block;font-size:11px;color:var(--kuning);font-weight:500}
+  .f-adm-bar button{border:none;background:rgba(255,255,255,.12);color:var(--putih);border-radius:10px;
+    padding:8px 12px;font-family:inherit;font-size:13px;cursor:pointer}
+  .f-adm-scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch}
+  .f-adm-in{max-width:620px;margin:0 auto;padding:14px 14px 40px}
+  .f-login{max-width:340px;margin:40px auto;text-align:center;background:var(--putih);border-radius:20px;padding:24px 20px;
+    box-shadow:0 4px 16px rgba(30,54,83,.12)}
+  .f-login .f-ikon{font-size:40px}
+  .f-login b{display:block;font-size:17px;margin:6px 0 2px}
+  .f-login small{display:block;color:var(--abu);font-size:12px;margin-bottom:14px}
+  .f-in,.f-sel,.f-ta{width:100%;font-family:inherit;font-size:14px;color:var(--navy);background:var(--putih);
+    border:1.5px solid #E5DCC6;border-radius:12px;padding:10px 12px}
+  .f-in:focus,.f-sel:focus,.f-ta:focus{outline:none;border-color:var(--gold)}
+  .f-ta{min-height:110px;resize:vertical;line-height:1.5}
+  .f-btn{border:none;border-radius:12px;background:var(--navy);color:var(--putih);font-family:inherit;font-weight:600;
+    font-size:14px;padding:11px 16px;cursor:pointer}
+  .f-btn.full{width:100%;margin-top:12px}
+  .f-btn.kuning{background:var(--kuning);color:var(--navy)}
+  .f-btn.putih{background:var(--putih);color:var(--navy);border:1.5px solid #E5DCC6}
+  .f-btn.merah{background:#FEE2E2;color:#B91C1C}
+  .f-btn:disabled{opacity:.55}
+  .f-err{color:#B91C1C;font-size:12.5px;min-height:18px;margin-top:8px}
+  .f-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 0 12px}
+  .f-tabs::-webkit-scrollbar{display:none}
+  .f-tabs button{flex-shrink:0;border:none;border-radius:999px;background:var(--putih);color:var(--navy);font-family:inherit;
+    font-weight:600;font-size:13px;padding:9px 14px;cursor:pointer;box-shadow:0 1px 3px rgba(30,54,83,.1)}
+  .f-tabs button.on{background:var(--navy);color:var(--kuning)}
+  .f-stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+  .f-stat div{background:var(--putih);border-radius:14px;padding:10px 6px;text-align:center}
+  .f-stat b{display:block;font-size:20px}
+  .f-stat small{font-size:10.5px;color:var(--abu)}
+  .f-row{display:flex;gap:10px;align-items:center;background:var(--putih);border-radius:16px;padding:10px;margin-bottom:8px;
+    box-shadow:0 1px 3px rgba(30,54,83,.06)}
+  .f-thumb{width:64px;height:64px;border-radius:12px;flex-shrink:0;background:center/cover no-repeat var(--cream);
+    display:flex;align-items:center;justify-content:center;font-size:26px}
+  .f-row .f-ttl{flex:1;min-width:0}
+  .f-row .f-ttl b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .f-row .f-ttl small{display:block;font-size:11.5px;color:var(--abu);margin-top:2px}
+  .f-st{display:inline-block;font-size:10px;font-weight:700;border-radius:6px;padding:2px 6px;margin-right:4px}
+  .st-aktif{background:#DCFCE7;color:#166534} .st-jadwal{background:#DBEAFE;color:#1E40AF}
+  .st-habis{background:#F3F4F6;color:#6B7280} .st-mati{background:#FEE2E2;color:#B91C1C}
+  .f-aksi{display:flex;flex-direction:column;gap:6px}
+  .f-aksi button{border:none;border-radius:10px;background:var(--cream);color:var(--navy);font-family:inherit;font-size:12px;
+    font-weight:600;padding:7px 10px;cursor:pointer}
+  .f-form{background:var(--putih);border-radius:18px;padding:16px;box-shadow:0 2px 8px rgba(30,54,83,.08)}
+  .f-form h3{font-size:16px;margin-bottom:12px}
+  .f-lbl{display:block;font-size:12px;font-weight:600;color:var(--navy);margin:12px 0 5px}
+  .f-lbl small{font-weight:400;color:var(--abu)}
+  .f-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .f-cek{display:flex;flex-wrap:wrap;gap:6px}
+  .f-cek label{display:flex;align-items:center;gap:5px;font-size:12.5px;background:var(--cream);border-radius:999px;padding:6px 10px;cursor:pointer}
+  .f-upl{display:flex;gap:10px;align-items:center}
+  .f-upl .f-thumb{width:96px;height:54px}
+  .f-hint{font-size:11.5px;color:var(--abu);margin-top:4px;line-height:1.45}
+  .f-prev{margin-top:16px;padding-top:14px;border-top:1px dashed #E5DCC6}
+  .f-prev>small{display:block;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.5px;margin-bottom:8px}
+  .f-link-row{background:var(--putih);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(30,54,83,.06)}
+  .f-link-row .f-2{margin-top:8px}
+  .f-sticky{position:sticky;bottom:0;background:linear-gradient(transparent,#F4EEE1 30%);padding:16px 0 4px;display:flex;gap:8px}
+  .f-sticky .f-btn{flex:1}
+  .f-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:90;background:var(--navy);color:var(--putih);
+    padding:10px 16px;border-radius:12px;font-size:13px;box-shadow:0 8px 20px rgba(0,0,0,.3);max-width:90%;text-align:center}
 </style>
 </head>
 <body>
 
 <header>
+  <button class="f-admin-btn" onclick="FITUR.bukaAdmin()" title="Panel Admin">&#128272; Admin</button>
   <svg class="bintang" viewBox="0 0 30 30"><g fill="#F5DC7C">
     <path d="M8 2l1.5 4.5L14 8l-4.5 1.5L8 14l-1.5-4.5L2 8l4.5-1.5z"/>
     <path d="M22 16l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" opacity=".7"/></g></svg>
@@ -217,6 +388,33 @@
 
   <!-- 1. PILIH PERAN -->
   <section id="vHome">
+    <!-- ===== FITUR BARU: teks berjalan, jadwal sholat, info & pengumuman ===== -->
+    <div class="f-ticker hidden" id="fTicker">
+      <span class="f-ticker-lbl">INFO</span>
+      <div class="f-ticker-track"><span id="fTickerTeks"></span></div>
+    </div>
+
+    <div class="f-kartu" id="fSholat">
+      <div class="f-head">
+        <div class="f-ttl"><small>&#128332; Jadwal Sholat Hari Ini</small><b id="fKota">Cibinong, Bogor</b></div>
+        <button class="f-pill" onclick="FITUR.bukaKiblat()">&#129517; Arah Kiblat</button>
+      </div>
+      <div class="f-next">
+        <div><span id="fNextLbl">Menuju</span><b id="fNextNama">-</b></div>
+        <div class="f-hit" id="fNextHit">--:--:--</div>
+      </div>
+      <div class="f-grid" id="fGrid"></div>
+      <button class="f-lok" id="fLokBtn" onclick="FITUR.pakaiLokasi()">&#128205; Sesuaikan dengan lokasi saya</button>
+    </div>
+
+    <div class="f-kartu hidden" id="fInfo">
+      <div class="f-head">
+        <div class="f-ttl"><small>&#128226; Info Al-Fahmu</small><b>Pengumuman &amp; Kabar Terbaru</b></div>
+      </div>
+      <div class="f-slider" id="fSlider"></div>
+      <div class="f-dots" id="fDots"></div>
+    </div>
+
     <div class="judul">Masuk sebagai:</div>
     <div class="grid" id="gridPeran"></div>
     <button class="pasang hidden" id="btnPasang" onclick="pasang()">
@@ -256,6 +454,7 @@
     <div class="ar">رَبِّ زِدْنِي عِلْمًا</div>
     "Ya Rabbku, tambahkanlah ilmu kepadaku" (QS. Thaha: 114)<br>
     Al-Fahmu Learning Center · Cibinong, Bogor
+    <div class="f-kontak" id="fKontak"></div>
   </footer>
 </div>
 
@@ -705,6 +904,779 @@
       tulis(K_SESI, SESI); renderPeran();
     }).catch(() => {});
   })();
+</script>
+
+<!-- ===== FITUR BARU: modal info / kiblat ===== -->
+<div class="f-modal hidden" id="fModal" onclick="if(event.target===this)FITUR.tutup()">
+  <div class="f-box">
+    <button class="f-x" onclick="FITUR.tutup()" aria-label="Tutup">&times;</button>
+    <div id="fModalIsi"></div>
+  </div>
+</div>
+
+<!-- ===== FITUR BARU: panel admin ===== -->
+<div class="f-adm hidden" id="fAdm">
+  <div class="f-adm-bar">
+    <b>Panel Admin<small>Al-Fahmu Learning Center</small></b>
+    <button class="hidden" id="fAdmOut" onclick="FITUR.keluarAdmin()">Keluar</button>
+    <button onclick="FITUR.tutupAdmin()" aria-label="Tutup">&times;</button>
+  </div>
+  <div class="f-adm-scroll">
+    <div class="f-adm-in">
+
+      <div class="f-login" id="fAdmLogin">
+        <div class="f-ikon">&#128272;</div>
+        <b>Masuk Admin</b>
+        <small>Kelola pengumuman, iklan, link aplikasi &amp; pengaturan</small>
+        <input class="f-in" id="fAdmPass" type="password" placeholder="Password admin" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter')FITUR.loginAdmin()">
+        <div class="f-err" id="fAdmErr"></div>
+        <button class="f-btn full" id="fAdmBtn" onclick="FITUR.loginAdmin()">Masuk</button>
+      </div>
+
+      <div class="hidden" id="fAdmMain">
+        <div class="f-tabs" id="fTabs">
+          <button data-tab="info" class="on" onclick="FITUR.tab('info')">&#128226; Pengumuman</button>
+          <button data-tab="link" onclick="FITUR.tab('link')">&#128279; Link Aplikasi</button>
+          <button data-tab="pin" onclick="FITUR.tab('pin')">&#128273; PIN</button>
+          <button data-tab="set" onclick="FITUR.tab('set')">&#9881;&#65039; Pengaturan</button>
+        </div>
+        <div id="fTabIsi"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+ *  FITUR BARU PORTAL AL-FAHMU (script terpisah: bila error, portal lama tetap jalan)
+ *  Jadwal sholat & kiblat (dihitung di HP, tanpa internet) - Info/pengumuman - Panel admin
+ * ===================================================================== */
+(function () {
+  'use strict';
+
+  var KABAH = { lat: 21.422487, lng: 39.826206 };
+  var LOK_AWAL = { kota: 'Cibinong, Bogor', lat: -6.4817, lng: 106.8540, tz: 7, sendiri: false };
+  var PERAN_F = ['Guru', 'Murid', 'Wali Murid', 'Manajemen'];
+  var JENIS = ['Pengumuman', 'Info', 'Agenda', 'Iklan', 'Prestasi'];
+  var IKON_J = { pengumuman: '&#128226;', info: '&#8505;&#65039;', agenda: '&#128197;',
+                 iklan: '&#127881;', prestasi: '&#127942;' };
+  var INFO = { pengumuman: [], pengaturan: {} };
+  var ADM = { token: '', data: null, tab: 'info', edit: null };
+  var lok = null, jadwal = null, jadwalTgl = '', slideIdx = 0, slideTimer = null;
+
+  function $(id) { return document.getElementById(id); }
+  function e(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function lsGet(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (x) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (x) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (x) {} }
+  function aman(url) { url = String(url || '').trim(); return /^(https?:\/\/|data:image\/)/i.test(url) ? url : ''; }
+  function toast(t) {
+    var d = document.createElement('div'); d.className = 'f-toast'; d.textContent = t;
+    document.body.appendChild(d); setTimeout(function () { d.remove(); }, 2600);
+  }
+
+  /* ---------------- koneksi server (diisi berbeda untuk Apps Script / GitHub) ---------------- */
+  function panggil(req) {
+    if (req.aksi === 'info') {
+      return fetch(API_URL + '?api=1&aksi=info&t=' + Date.now()).then(function (r) { return r.json(); });
+    }
+    return fetch(API_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(req)
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  }
+
+  /* =================== WAKTU SHOLAT (metode Kemenag RI) =================== */
+  var RAD = Math.PI / 180;
+  function sn(d) { return Math.sin(d * RAD); }
+  function cs(d) { return Math.cos(d * RAD); }
+  function tn(d) { return Math.tan(d * RAD); }
+  function asn(x) { return Math.asin(x) / RAD; }
+  function acs(x) { return Math.acos(x) / RAD; }
+  function at2(y, x) { return Math.atan2(y, x) / RAD; }
+  function fixA(a) { return a - 360 * Math.floor(a / 360); }
+  function fixH(h) { return h - 24 * Math.floor(h / 24); }
+
+  function julian(y, m, d) {
+    if (m <= 2) { y -= 1; m += 12; }
+    var A = Math.floor(y / 100), B = 2 - A + Math.floor(A / 4);
+    return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5;
+  }
+  function posisiMatahari(jd) {
+    var D = jd - 2451545.0;
+    var g = fixA(357.529 + 0.98560028 * D);
+    var q = fixA(280.459 + 0.98564736 * D);
+    var L = fixA(q + 1.915 * sn(g) + 0.020 * sn(2 * g));
+    var ek = 23.439 - 0.00000036 * D;
+    var RA = fixH(at2(cs(ek) * sn(L), cs(L)) / 15);
+    var eqt = q / 15 - RA;
+    if (eqt > 12) eqt -= 24;
+    if (eqt < -12) eqt += 24;
+    return { dekl: asn(sn(ek) * sn(L)), eqt: eqt };
+  }
+
+  function hitungJadwal(tgl, lat, lng, tz) {
+    var jd = julian(tgl.y, tgl.m, tgl.d) - lng / (15 * 24);
+    function tengah(t) { return fixH(12 - posisiMatahari(jd + t / 24).eqt); }
+    function sudut(a, t, pagi) {
+      var dk = posisiMatahari(jd + t / 24).dekl;
+      var x = (-sn(a) - sn(dk) * sn(lat)) / (cs(dk) * cs(lat));
+      var T = acs(Math.max(-1, Math.min(1, x))) / 15;
+      return tengah(t) + (pagi ? -T : T);
+    }
+    function ashar(t) {
+      var dk = posisiMatahari(jd + t / 24).dekl;
+      var a = -Math.atan(1 / (1 + tn(Math.abs(lat - dk)))) / RAD;
+      return sudut(a, t, false);
+    }
+    var geser = tz - lng / 15;
+    var w = {
+      subuh: sudut(20, 5, true) + geser,
+      terbit: sudut(0.833, 6, true) + geser,
+      dzuhur: tengah(12) + geser,
+      ashar: ashar(13) + geser,
+      maghrib: sudut(0.833, 18, false) + geser,
+      isya: sudut(18, 18, false) + geser
+    };
+    function mnt(h, tambah) { return Math.round(h * 60) + tambah; }   // ihtiyat Kemenag +2 menit
+    var subuh = mnt(w.subuh, 2);
+    return [
+      { k: 'imsak', n: 'Imsak', m: subuh - 10, wajib: false },
+      { k: 'subuh', n: 'Subuh', m: subuh, wajib: true },
+      { k: 'terbit', n: 'Terbit', m: mnt(w.terbit, -2), wajib: false },
+      { k: 'dzuhur', n: 'Dzuhur', m: mnt(w.dzuhur, 3), wajib: true },
+      { k: 'ashar', n: 'Ashar', m: mnt(w.ashar, 2), wajib: true },
+      { k: 'maghrib', n: 'Maghrib', m: mnt(w.maghrib, 2), wajib: true },
+      { k: 'isya', n: 'Isya', m: mnt(w.isya, 2), wajib: true }
+    ];
+  }
+
+  function jamMnt(m) { m = ((m % 1440) + 1440) % 1440; var h = Math.floor(m / 60), i = m % 60; return (h < 10 ? '0' : '') + h + ':' + (i < 10 ? '0' : '') + i; }
+  function sekarangLokal() {          // waktu di zona lokasi (WIB default)
+    var d = new Date(Date.now() + lok.tz * 3600000);
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(),
+             detik: d.getUTCHours() * 3600 + d.getUTCMinutes() * 60 + d.getUTCSeconds() };
+  }
+
+  function tentukanLokasi() {
+    var milik = lsGet('alfahmu_lokasi', null);
+    if (milik && isFinite(milik.lat)) return milik;
+    var p = INFO.pengaturan || {};
+    var lat = parseFloat(p.lat), lng = parseFloat(p.lng);
+    if (isFinite(lat) && isFinite(lng)) return { kota: p.kota || LOK_AWAL.kota, lat: lat, lng: lng, tz: 7, sendiri: false };
+    return LOK_AWAL;
+  }
+
+  function renderSholat(paksa) {
+    lok = lok || tentukanLokasi();
+    var now = sekarangLokal();
+    var kunci = now.y + '-' + now.m + '-' + now.d;
+    if (paksa || kunci !== jadwalTgl) {
+      jadwal = hitungJadwal(now, lok.lat, lok.lng, lok.tz);
+      jadwalTgl = kunci;
+      $('fKota').textContent = lok.kota + (lok.tz === 8 ? ' (WITA)' : lok.tz === 9 ? ' (WIT)' : ' (WIB)');
+      $('fLokBtn').innerHTML = lok.sendiri ? '&#128205; Pakai lokasi Al-Fahmu (Cibinong)' : '&#128205; Sesuaikan dengan lokasi saya';
+    }
+    var detikIni = now.detik, berikut = null, sedang = null;
+    jadwal.forEach(function (w) {
+      if (w.wajib && w.m * 60 > detikIni && !berikut) berikut = w;
+      if (w.wajib && w.m * 60 <= detikIni) sedang = w;
+    });
+    var sisa;
+    if (berikut) { sisa = berikut.m * 60 - detikIni; }
+    else { berikut = jadwal[1]; sisa = (1440 + berikut.m) * 60 - detikIni; }
+    $('fGrid').innerHTML = jadwal.map(function (w) {
+      return '<div class="f-wkt' + (w.k === berikut.k ? ' now' : '') + '"><small>' + w.n + '</small><b>' + jamMnt(w.m) + '</b></div>';
+    }).join('') + '<div class="f-wkt"><small>Hijriah</small><b style="font-size:11px;line-height:1.6">' +
+      e(($('tglH') && $('tglH').textContent || '').replace(' H', '')) + '</b></div>';
+    var h = Math.floor(sisa / 3600), mm = Math.floor(sisa % 3600 / 60), dd = sisa % 60;
+    $('fNextLbl').textContent = sisa <= 600 ? 'Sebentar lagi waktu' : 'Menuju waktu';
+    $('fNextNama').textContent = berikut.n;
+    $('fNextHit').textContent = (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm + ':' + (dd < 10 ? '0' : '') + dd;
+  }
+
+  function pakaiLokasi() {
+    if (lok && lok.sendiri) { lsDel('alfahmu_lokasi'); lok = null; renderSholat(true); toast('Kembali ke lokasi Al-Fahmu'); return; }
+    if (!navigator.geolocation) { toast('Lokasi tidak didukung di perangkat ini'); return; }
+    toast('Mencari lokasi Anda...');
+    navigator.geolocation.getCurrentPosition(function (p) {
+      var lng = p.coords.longitude;
+      var tz = lng >= 125 ? 9 : lng >= 112.5 ? 8 : 7;
+      lok = { kota: 'Lokasi saya', lat: p.coords.latitude, lng: lng, tz: tz, sendiri: true };
+      lsSet('alfahmu_lokasi', lok);
+      renderSholat(true);
+      toast('Jadwal disesuaikan dengan lokasi Anda');
+    }, function () {
+      toast('Izin lokasi ditolak / tidak tersedia. Jadwal tetap untuk ' + (lok ? lok.kota : 'Cibinong'));
+    }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 3600000 });
+  }
+
+  /* =================== ARAH KIBLAT =================== */
+  function arahKiblat(lat, lng) {
+    var f1 = lat * RAD, f2 = KABAH.lat * RAD, dl = (KABAH.lng - lng) * RAD;
+    var b = Math.atan2(Math.sin(dl), Math.cos(f1) * Math.tan(f2) - Math.sin(f1) * Math.cos(dl)) / RAD;
+    return (b + 360) % 360;
+  }
+  function jarakKm(lat, lng) {
+    var R = 6371, dLat = (KABAH.lat - lat) * RAD, dLng = (KABAH.lng - lng) * RAD;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat * RAD) * Math.cos(KABAH.lat * RAD) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+  }
+  var arahK = 0, kompasAktif = false;
+
+  function bukaKiblat() {
+    lok = lok || tentukanLokasi();
+    arahK = arahKiblat(lok.lat, lok.lng);
+    var tanda = '';
+    for (var i = 0; i < 360; i += 15) {
+      var panjang = i % 90 === 0 ? 14 : i % 45 === 0 ? 10 : 6;
+      tanda += '<line x1="125" y1="14" x2="125" y2="' + (14 + panjang) + '" stroke="#1E3653" stroke-width="' +
+        (i % 90 === 0 ? 3 : 1.5) + '" transform="rotate(' + i + ' 125 125)"/>';
+    }
+    var svg = '<svg viewBox="0 0 250 250"><circle cx="125" cy="125" r="120" fill="#FFFFFF" stroke="#F5DC7C" stroke-width="6"/>' +
+      '<g id="fRose">' + tanda +
+      '<text x="125" y="48" text-anchor="middle" font-size="18" font-weight="700" fill="#B91C1C">U</text>' +
+      '<text x="210" y="131" text-anchor="middle" font-size="15" font-weight="600" fill="#1E3653">T</text>' +
+      '<text x="125" y="214" text-anchor="middle" font-size="15" font-weight="600" fill="#1E3653">S</text>' +
+      '<text x="40" y="131" text-anchor="middle" font-size="15" font-weight="600" fill="#1E3653">B</text>' +
+      '<g transform="rotate(' + arahK.toFixed(1) + ' 125 125)">' +
+      '<line x1="125" y1="125" x2="125" y2="44" stroke="#C9A227" stroke-width="5" stroke-linecap="round"/>' +
+      '<rect x="111" y="22" width="28" height="26" rx="3" fill="#1E3653"/>' +
+      '<rect x="111" y="29" width="28" height="4" fill="#F5DC7C"/></g>' +
+      '<circle cx="125" cy="125" r="7" fill="#1E3653"/></g>' +
+      '<path d="M125 2 L118 16 L132 16 Z" fill="#B91C1C"/></svg>';
+    $('fModalIsi').innerHTML =
+      '<div class="f-body" style="padding-top:22px">' +
+      '<div class="f-kib-info"><small>&#129517; ARAH KIBLAT &middot; ' + e(lok.kota) + '</small>' +
+      '<div class="f-derajat">' + arahK.toFixed(1) + '&deg;</div>' +
+      '<small>dari arah Utara, searah jarum jam &middot; &plusmn;' + jarakKm(lok.lat, lok.lng).toLocaleString('id-ID') + ' km ke Ka\'bah</small></div>' +
+      '<div class="f-kompas">' + svg + '</div>' +
+      '<div class="f-kib-status" id="fKibStatus">Letakkan HP mendatar, lalu ketuk <b>Aktifkan Kompas</b>. ' +
+      'Hadapkan badan ke arah gambar <b>Ka\'bah</b>.</div>' +
+      '<button class="f-btn full" onclick="FITUR.kompas()">&#129517; Aktifkan Kompas</button>' +
+      '<button class="f-btn full putih" onclick="FITUR.pakaiLokasi();FITUR.tutup()">&#128205; ' +
+      (lok.sendiri ? 'Pakai lokasi Al-Fahmu' : 'Hitung dari lokasi saya') + '</button></div>';
+    bukaModal();
+  }
+
+  function kompas() {
+    var st = $('fKibStatus');
+    function putar(arahHP) {
+      var r = $('fRose'); if (!r) return;
+      r.style.transform = 'rotate(' + (-arahHP) + 'deg)';
+      var selisih = Math.abs(((arahK - arahHP + 540) % 360) - 180);
+      if (st) {
+        st.className = 'f-kib-status' + (selisih < 5 ? ' ok' : '');
+        st.innerHTML = selisih < 5 ? '&#9989; <b>Sudah menghadap kiblat</b>' :
+          'Putar badan perlahan sampai Ka\'bah tepat di atas (selisih ' + Math.round(selisih) + '&deg;)';
+      }
+    }
+    function dengar(ev) {
+      var arahHP = null;
+      if (typeof ev.webkitCompassHeading === 'number') arahHP = ev.webkitCompassHeading;
+      else if (ev.absolute && typeof ev.alpha === 'number') arahHP = 360 - ev.alpha;
+      if (arahHP !== null) putar(arahHP);
+    }
+    function mulai() {
+      if (kompasAktif) return;
+      kompasAktif = true;
+      if ('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', dengar);
+      else window.addEventListener('deviceorientation', dengar);
+      setTimeout(function () {
+        var r = $('fRose');
+        if (r && !r.style.transform && st) {
+          st.innerHTML = 'Sensor kompas tidak terbaca di sini. Gunakan aplikasi <b>Kompas</b> di HP, ' +
+            'lalu hadapkan ke <b>' + arahK.toFixed(0) + '&deg;</b>. Untuk kompas langsung, buka portal versi aplikasi (GitHub).';
+        }
+      }, 2500);
+    }
+    try {
+      if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission().then(function (s) {
+          if (s === 'granted') mulai(); else if (st) st.textContent = 'Izin kompas ditolak.';
+        }).catch(function () { if (st) st.textContent = 'Kompas tidak bisa diaktifkan di sini.'; });
+      } else { mulai(); }
+    } catch (x) { if (st) st.textContent = 'Kompas tidak tersedia di perangkat ini.'; }
+  }
+
+  /* =================== INFO / PENGUMUMAN =================== */
+  function peranMasuk() {
+    var out = [];
+    try { if (typeof SESI === 'object' && SESI) Object.keys(SESI).forEach(function (p) { out.push(p.toLowerCase()); }); } catch (x) {}
+    return out;
+  }
+  function untukSaya(p) {
+    var u = String(p.untuk || 'Semua').toLowerCase().split(',').map(function (s) { return s.trim(); });
+    if (u.indexOf('semua') >= 0 || !u[0]) return true;
+    var saya = peranMasuk();
+    return u.some(function (x) { return saya.indexOf(x) >= 0; });
+  }
+  function teksIsi(t) {
+    return e(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\n/g, '<br>');
+  }
+  function kelasJ(j) { return String(j || 'pengumuman').toLowerCase(); }
+  function tglIndo(s) {
+    if (!s) return '';
+    var b = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], p = s.split('-');
+    return p.length === 3 ? (+p[2]) + ' ' + b[+p[1] - 1] + ' ' + p[0] : s;
+  }
+  function gambarHTML(p, badge) {
+    var j = kelasJ(p.jenis), g = aman(p.gambar);
+    var b = badge ? '<span class="f-badge j-' + j + '">' + e(p.jenis) + '</span>' : '';
+    if (g) return '<div class="f-img" style="background-image:url(\'' + e(g) + '\')">' + b + '</div>';
+    return '<div class="f-img kosong g-' + j + '">' + (IKON_J[j] || IKON_J.info) + b + '</div>';
+  }
+  function slideHTML(p, i) {
+    return '<article class="f-slide" onclick="FITUR.detail(' + i + ')">' + gambarHTML(p, true) +
+      '<div class="f-body"><b>' + e(p.judul) + '</b>' + (p.isi ? '<p>' + e(p.isi) + '</p>' : '') + '</div></article>';
+  }
+  function daftarTampil(mode) {
+    return (INFO.pengumuman || []).filter(function (p) {
+      var t = String(p.tampil || 'slider');
+      return untukSaya(p) && (t === 'keduanya' || t === mode);
+    });
+  }
+
+  function renderInfo() {
+    var p = INFO.pengaturan || {};
+    var tk = String(p.teks_berjalan || '').trim();
+    if (tk) {
+      $('fTickerTeks').textContent = tk;
+      $('fTickerTeks').style.animationDuration = Math.max(12, tk.length / 6) + 's';
+      $('fTicker').classList.remove('hidden');
+    } else { $('fTicker').classList.add('hidden'); }
+
+    var list = daftarTampil('slider');
+    INFO._slider = list;
+    if (!list.length) { $('fInfo').classList.add('hidden'); return; }
+    $('fInfo').classList.remove('hidden');
+    $('fSlider').innerHTML = list.map(slideHTML).join('');
+    $('fDots').innerHTML = list.length > 1 ? list.map(function (x, i) { return '<i class="' + (i ? '' : 'on') + '"></i>'; }).join('') : '';
+    slideIdx = 0;
+    clearInterval(slideTimer);
+    if (list.length > 1) {
+      slideTimer = setInterval(function () {
+        if (document.hidden || !$('fModal').classList.contains('hidden')) return;
+        geserSlide((slideIdx + 1) % list.length);
+      }, 6000);
+    }
+    renderKontak();
+  }
+  function geserSlide(i) {
+    var s = $('fSlider'); if (!s || !s.children[i]) return;
+    s.scrollTo({ left: s.children[i].offsetLeft - s.offsetLeft, behavior: 'smooth' });
+  }
+  function pasangGeser() {
+    var s = $('fSlider'), t = null;
+    s.addEventListener('scroll', function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        var i = Math.round(s.scrollLeft / Math.max(1, s.clientWidth));
+        slideIdx = i;
+        Array.prototype.forEach.call($('fDots').children, function (d, k) { d.className = k === i ? 'on' : ''; });
+      }, 80);
+    });
+  }
+
+  function isiDetail(p, popup) {
+    var tgl = p.selesai ? 'Berlaku sampai ' + tglIndo(p.selesai) : (p.mulai ? 'Sejak ' + tglIndo(p.mulai) : '');
+    var cta = aman(p.link) ? '<a class="f-cta" href="' + e(p.link) + '" target="_blank" rel="noopener">' +
+      e(p.tombol || 'Selengkapnya') + ' &rarr;</a>' : '';
+    var lagi = popup ? '<label class="f-lagi"><input type="checkbox" id="fJanganLagi"> Jangan tampilkan lagi hari ini</label>' : '';
+    return gambarHTML(p, true) + '<div class="f-body"><b>' + e(p.judul) + '</b>' +
+      (tgl ? '<div class="f-tgl">' + tgl + '</div>' : '') +
+      (p.isi ? '<div class="f-isi">' + teksIsi(p.isi) + '</div>' : '') + cta + lagi + '</div>';
+  }
+  var popupAktif = null;
+  function detail(i) { var p = (INFO._slider || [])[i]; if (!p) return; popupAktif = null; $('fModalIsi').innerHTML = isiDetail(p, false); bukaModal(); }
+  function bukaModal() { $('fModal').classList.remove('hidden'); }
+  function tutup() {
+    if (popupAktif) {
+      var c = $('fJanganLagi');
+      var kunci = 'alfahmu_popup_' + popupAktif.id;
+      lsSet(kunci, c && c.checked ? (INFO.hariIni || 'x') : 'sesi');
+      popupAktif = null;
+      $('fModal').classList.add('hidden');
+      setTimeout(tampilkanPopup, 400);
+      return;
+    }
+    $('fModal').classList.add('hidden');
+  }
+  var popupSudah = {};
+  function tampilkanPopup() {
+    var list = daftarTampil('popup').filter(function (p) {
+      var v = lsGet('alfahmu_popup_' + p.id, '');
+      return !popupSudah[p.id] && v !== INFO.hariIni;
+    });
+    if (!list.length || !$('fModal').classList.contains('hidden')) return;
+    var p = list[0];
+    popupSudah[p.id] = true;
+    popupAktif = p;
+    $('fModalIsi').innerHTML = isiDetail(p, true);
+    bukaModal();
+  }
+
+  function renderKontak() {
+    var p = INFO.pengaturan || {}, h = '';
+    var wa = String(p.wa || '').replace(/\D/g, '').replace(/^0/, '62');
+    if (wa) h += '<a href="https://wa.me/' + wa + '" target="_blank" rel="noopener">&#128172; WhatsApp Admin</a>';
+    var ig = String(p.instagram || '').replace(/^@/, '').replace(/^https?:\/\/(www\.)?instagram\.com\//, '').replace(/\/.*$/, '');
+    if (ig) h += '<a href="https://instagram.com/' + e(ig) + '" target="_blank" rel="noopener">&#128247; @' + e(ig) + '</a>';
+    var k = $('fKontak');
+    if (k) k.innerHTML = h + (p.alamat ? '<div style="width:100%;font-size:11px">' + e(p.alamat) + '</div>' : '');
+  }
+
+  function muatInfo() {
+    var simpanan = lsGet('alfahmu_info', null);
+    if (simpanan) { INFO = simpanan; renderInfo(); }
+    panggil({ aksi: 'info' }).then(function (r) {
+      if (!r || !r.ok) return;
+      INFO = { pengumuman: r.pengumuman || [], pengaturan: r.pengaturan || {}, hariIni: r.hariIni };
+      lsSet('alfahmu_info', INFO);
+      if (!lsGet('alfahmu_lokasi', null)) { lok = null; renderSholat(true); }
+      renderInfo();
+      setTimeout(tampilkanPopup, 900);
+    }).catch(function () {});
+  }
+
+  /* =================== PANEL ADMIN =================== */
+  function bukaAdmin() {
+    $('fAdm').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    var t = lsGet('alfahmu_admin', null);
+    if (t && t.exp > Date.now()) { ADM.token = t.token; masukAdmin(); }
+    else { tampilLogin(); }
+  }
+  function tutupAdmin() {
+    $('fAdm').classList.add('hidden');
+    document.body.style.overflow = '';
+    muatInfo();
+  }
+  function tampilLogin(pesan) {
+    $('fAdmLogin').classList.remove('hidden');
+    $('fAdmMain').classList.add('hidden');
+    $('fAdmOut').classList.add('hidden');
+    $('fAdmErr').textContent = pesan || '';
+    setTimeout(function () { $('fAdmPass').focus(); }, 150);
+  }
+  function loginAdmin() {
+    var pass = $('fAdmPass').value;
+    if (!pass) { $('fAdmErr').textContent = 'Password belum diisi.'; return; }
+    $('fAdmBtn').disabled = true; $('fAdmErr').textContent = 'Memeriksa...';
+    panggil({ aksi: 'adminLogin', pass: pass }).then(function (r) {
+      $('fAdmBtn').disabled = false;
+      if (!r.ok) { $('fAdmErr').textContent = r.pesan || 'Gagal masuk.'; return; }
+      ADM.token = r.token;
+      lsSet('alfahmu_admin', { token: r.token, exp: Date.now() + (r.berlaku || 21600) * 1000 });
+      $('fAdmPass').value = '';
+      masukAdmin();
+    }).catch(function (x) { $('fAdmBtn').disabled = false; $('fAdmErr').textContent = 'Koneksi gagal: ' + (x && x.message || x); });
+  }
+  function keluarAdmin() {
+    panggil({ aksi: 'adminKeluar', token: ADM.token }).catch(function () {});
+    ADM.token = ''; lsDel('alfahmu_admin'); tampilLogin('Anda sudah keluar.');
+  }
+  function adm(req, ok, tombol) {
+    req.token = ADM.token;
+    if (tombol) tombol.disabled = true;
+    return panggil(req).then(function (r) {
+      if (tombol) tombol.disabled = false;
+      if (r && r.perluLogin) { lsDel('alfahmu_admin'); tampilLogin(r.pesan); return; }
+      if (!r || !r.ok) { toast(r && r.pesan || 'Gagal.'); return; }
+      if (r.data) ADM.data = r.data;
+      if (ok) ok(r);
+    }).catch(function (x) { if (tombol) tombol.disabled = false; toast('Koneksi gagal: ' + (x && x.message || x)); });
+  }
+  function masukAdmin() {
+    $('fAdmLogin').classList.add('hidden');
+    $('fAdmMain').classList.remove('hidden');
+    $('fAdmOut').classList.remove('hidden');
+    $('fTabIsi').innerHTML = '<p style="text-align:center;color:#6B7280;padding:30px">Memuat data...</p>';
+    adm({ aksi: 'adminData' }, function () { tab(ADM.tab); });
+  }
+  function tab(t) {
+    ADM.tab = t; ADM.edit = null;
+    Array.prototype.forEach.call($('fTabs').children, function (b) { b.className = b.getAttribute('data-tab') === t ? 'on' : ''; });
+    if (!ADM.data) return;
+    if (t === 'info') tabInfo();
+    if (t === 'link') tabLink();
+    if (t === 'pin') tabPin();
+    if (t === 'set') tabSet();
+  }
+
+  /* ---- tab pengumuman ---- */
+  function statusP(p) {
+    var h = ADM.data.hariIni;
+    if (!p.aktif) return ['mati', 'Nonaktif'];
+    if (p.mulai && p.mulai > h) return ['jadwal', 'Terjadwal'];
+    if (p.selesai && p.selesai < h) return ['habis', 'Berakhir'];
+    return ['aktif', 'Tayang'];
+  }
+  function tabInfo() {
+    var L = ADM.data.pengumuman || [], c = { aktif: 0, jadwal: 0, habis: 0, mati: 0 };
+    L.forEach(function (p) { c[statusP(p)[0]]++; });
+    var tampilNama = { slider: 'Slider', popup: 'Popup', keduanya: 'Slider + Popup' };
+    var h = '<div class="f-stat"><div><b>' + c.aktif + '</b><small>Tayang</small></div><div><b>' + c.jadwal +
+      '</b><small>Terjadwal</small></div><div><b>' + c.habis + '</b><small>Berakhir</small></div><div><b>' + c.mati +
+      '</b><small>Nonaktif</small></div></div>' +
+      '<button class="f-btn full kuning" style="margin:0 0 12px" onclick="FITUR.formInfo()">+ Buat Pengumuman / Iklan / Info</button>';
+    if (!L.length) h += '<p style="text-align:center;color:#6B7280;padding:20px">Belum ada pengumuman. Ketuk tombol di atas untuk membuat.</p>';
+    h += L.map(function (p, i) {
+      var s = statusP(p), g = aman(p.gambar);
+      return '<div class="f-row"><div class="f-thumb ' + (g ? '' : 'g-' + kelasJ(p.jenis)) + '"' +
+        (g ? ' style="background-image:url(\'' + e(g) + '\')"' : '') + '>' + (g ? '' : (IKON_J[kelasJ(p.jenis)] || '')) + '</div>' +
+        '<div class="f-ttl"><b>' + e(p.judul) + '</b><small><span class="f-st st-' + s[0] + '">' + s[1] + '</span>' +
+        e(p.jenis) + ' &middot; ' + (tampilNama[p.tampil] || 'Slider') + ' &middot; ' + e(p.untuk || 'Semua') + '</small>' +
+        '<small>' + (p.mulai || p.selesai ? e(tglIndo(p.mulai) || '...') + ' &ndash; ' + e(tglIndo(p.selesai) || 'seterusnya') : 'Tanpa batas waktu') + '</small></div>' +
+        '<div class="f-aksi"><button onclick="FITUR.formInfo(' + i + ')">Edit</button>' +
+        '<button onclick="FITUR.hapusInfo(' + i + ')">Hapus</button></div></div>';
+    }).join('');
+    $('fTabIsi').innerHTML = h;
+  }
+
+  function formInfo(i) {
+    var p = i == null ? { jenis: 'Pengumuman', untuk: 'Semua', tampil: 'slider', aktif: true, urutan: 10 }
+      : JSON.parse(JSON.stringify(ADM.data.pengumuman[i]));
+    ADM.edit = p;
+    var untuk = String(p.untuk || 'Semua').split(',').map(function (s) { return s.trim(); });
+    var opsi = function (arr, v) {
+      return arr.map(function (a) { var k = Array.isArray(a) ? a[0] : a, n = Array.isArray(a) ? a[1] : a; return '<option value="' + e(k) + '"' + (k === v ? ' selected' : '') + '>' + e(n) + '</option>'; }).join('');
+    };
+    $('fTabIsi').innerHTML =
+      '<div class="f-form"><h3>' + (p.id ? 'Edit' : 'Buat') + ' Pengumuman</h3>' +
+      '<div class="f-2"><div><label class="f-lbl">Jenis</label><select class="f-sel" id="fJ" onchange="FITUR.prev()">' +
+      opsi(JENIS, p.jenis) + '</select></div>' +
+      '<div><label class="f-lbl">Tampil sebagai</label><select class="f-sel" id="fT">' +
+      opsi([['slider', 'Slider di beranda'], ['popup', 'Popup saat dibuka'], ['keduanya', 'Slider + Popup']], p.tampil) + '</select></div></div>' +
+      '<label class="f-lbl">Judul</label><input class="f-in" id="fJd" maxlength="150" value="' + e(p.judul) + '" oninput="FITUR.prev()" placeholder="Contoh: Pendaftaran Santri Baru 2027">' +
+      '<label class="f-lbl">Isi <small>(boleh kosong bila cukup gambar)</small></label>' +
+      '<textarea class="f-ta" id="fIs" oninput="FITUR.prev()" placeholder="Tulis keterangan...">' + e(p.isi) + '</textarea>' +
+      '<label class="f-lbl">Gambar / Poster <small>(disarankan 16:9 atau 4:5)</small></label>' +
+      '<div class="f-upl"><div class="f-thumb" id="fGThumb"></div><div style="flex:1">' +
+      '<input type="file" id="fFile" accept="image/*" style="display:none" onchange="FITUR.upload(this)">' +
+      '<button class="f-btn putih" style="width:100%" onclick="document.getElementById(\'fFile\').click()">&#128247; Pilih &amp; Upload Gambar</button>' +
+      '<div class="f-hint" id="fUpSt">Gambar otomatis dikecilkan agar ringan.</div></div></div>' +
+      '<input class="f-in" id="fG" style="margin-top:8px" value="' + e(p.gambar) + '" oninput="FITUR.prev()" placeholder="...atau tempel link gambar (https://...)">' +
+      '<div class="f-2"><div><label class="f-lbl">Teks tombol <small>(opsional)</small></label>' +
+      '<input class="f-in" id="fTb" maxlength="40" value="' + e(p.tombol) + '" oninput="FITUR.prev()" placeholder="Daftar Sekarang"></div>' +
+      '<div><label class="f-lbl">Link tombol</label><input class="f-in" id="fLk" value="' + e(p.link) + '" oninput="FITUR.prev()" placeholder="https://wa.me/62..."></div></div>' +
+      '<label class="f-lbl">Ditampilkan untuk</label><div class="f-cek" id="fU">' +
+      ['Semua'].concat(PERAN_F).map(function (r) {
+        return '<label><input type="checkbox" value="' + r + '"' + (untuk.indexOf(r) >= 0 ? ' checked' : '') +
+          ' onchange="FITUR.cekUntuk(this)"> ' + r + '</label>';
+      }).join('') + '</div>' +
+      '<div class="f-hint">Selain "Semua", info hanya muncul di HP yang sudah masuk sebagai peran tersebut.</div>' +
+      '<div class="f-2"><div><label class="f-lbl">Mulai tayang</label><input class="f-in" type="date" id="fM" value="' + e(p.mulai) + '"></div>' +
+      '<div><label class="f-lbl">Selesai tayang</label><input class="f-in" type="date" id="fS" value="' + e(p.selesai) + '"></div></div>' +
+      '<div class="f-2"><div><label class="f-lbl">Urutan <small>(kecil = paling depan)</small></label>' +
+      '<input class="f-in" type="number" id="fUr" value="' + e(p.urutan) + '"></div>' +
+      '<div><label class="f-lbl">Status</label><select class="f-sel" id="fAk">' +
+      opsi([['1', 'Aktif (tayang)'], ['0', 'Nonaktif (disimpan saja)']], p.aktif === false ? '0' : '1') + '</select></div></div>' +
+      '<div class="f-prev"><small>PRATINJAU DI PORTAL</small><div id="fPrev"></div></div>' +
+      '<div class="f-sticky"><button class="f-btn putih" onclick="FITUR.tab(\'info\')">Batal</button>' +
+      '<button class="f-btn" id="fSimpanP" onclick="FITUR.simpanInfo(this)">Simpan</button></div></div>';
+    prev();
+    $('fAdm').querySelector('.f-adm-scroll').scrollTop = 0;
+  }
+  function cekUntuk(el) {
+    var semua = $('fU').querySelectorAll('input');
+    if (el.value === 'Semua' && el.checked) Array.prototype.forEach.call(semua, function (x) { if (x.value !== 'Semua') x.checked = false; });
+    if (el.value !== 'Semua' && el.checked) semua[0].checked = false;
+    if (!$('fU').querySelector('input:checked')) semua[0].checked = true;
+  }
+  function bacaForm() {
+    var u = Array.prototype.map.call($('fU').querySelectorAll('input:checked'), function (x) { return x.value; });
+    return {
+      id: ADM.edit && ADM.edit.id, jenis: $('fJ').value, tampil: $('fT').value, judul: $('fJd').value.trim(),
+      isi: $('fIs').value.trim(), gambar: $('fG').value.trim(), tombol: $('fTb').value.trim(), link: $('fLk').value.trim(),
+      untuk: u.join(', ') || 'Semua', mulai: $('fM').value, selesai: $('fS').value,
+      urutan: Number($('fUr').value) || 99, aktif: $('fAk').value === '1'
+    };
+  }
+  function prev() {
+    var p = bacaForm(), g = aman(p.gambar);
+    var th = $('fGThumb');
+    th.className = 'f-thumb ' + (g ? '' : 'g-' + kelasJ(p.jenis));
+    th.style.backgroundImage = g ? 'url(\'' + g.replace(/'/g, '%27') + '\')' : '';
+    th.innerHTML = g ? '' : (IKON_J[kelasJ(p.jenis)] || '');
+    if (!p.judul) p.judul = '(Judul pengumuman)';
+    $('fPrev').innerHTML = '<div class="f-slide" style="cursor:default">' + gambarHTML(p, true) +
+      '<div class="f-body"><b>' + e(p.judul) + '</b>' + (p.isi ? '<p>' + e(p.isi) + '</p>' : '') + '</div></div>';
+  }
+  function simpanInfo(btn) {
+    var p = bacaForm();
+    if (!p.judul) { toast('Judul wajib diisi'); $('fJd').focus(); return; }
+    if (p.link && !aman(p.link)) { toast('Link tombol harus diawali https://'); return; }
+    if (p.mulai && p.selesai && p.selesai < p.mulai) { toast('Tanggal selesai lebih awal dari tanggal mulai'); return; }
+    adm({ aksi: 'simpanPengumuman', data: p }, function () { toast('Tersimpan'); tab('info'); }, btn);
+  }
+  function hapusInfo(i) {
+    var p = ADM.data.pengumuman[i];
+    if (!p || !confirm('Hapus "' + p.judul + '"?')) return;
+    adm({ aksi: 'hapusPengumuman', id: p.id }, function () { toast('Dihapus'); tabInfo(); });
+  }
+
+  function upload(input) {
+    var f = input.files && input.files[0];
+    if (!f) return;
+    if (!/^image\//.test(f.type)) { toast('File harus gambar'); return; }
+    var st = $('fUpSt');
+    st.textContent = 'Mengecilkan gambar...';
+    var rd = new FileReader();
+    rd.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var maks = 1400, w = img.width, h = img.height;
+        if (w > maks || h > maks) { var r = Math.min(maks / w, maks / h); w = Math.round(w * r); h = Math.round(h * r); }
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        var ctx = c.getContext('2d'); ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, w, h); ctx.drawImage(img, 0, 0, w, h);
+        var data = c.toDataURL('image/jpeg', 0.85);
+        st.textContent = 'Mengupload ke Google Drive...';
+        adm({ aksi: 'uploadGambar', data: { base64: data.split(',')[1], mime: 'image/jpeg', nama: f.name } }, function (r) {
+          $('fG').value = r.url; st.textContent = 'Gambar berhasil diupload.'; prev();
+        }).then(function () { if (st.textContent.indexOf('Mengupload') === 0) st.textContent = 'Upload gagal, coba lagi.'; });
+      };
+      img.onerror = function () { st.textContent = 'Gambar tidak bisa dibaca.'; };
+      img.src = rd.result;
+    };
+    rd.readAsDataURL(f);
+    input.value = '';
+  }
+
+  /* ---- tab link aplikasi ---- */
+  var IKON_PILIH = ['guru', 'murid', 'wali', 'manajemen', 'quran', 'absensi', 'keuangan', 'jadwal', 'buku', 'info'];
+  function tabLink() {
+    var L = ADM.data.links || [];
+    var h = '<div class="f-hint" style="margin-bottom:10px">Atur aplikasi yang muncul di tiap peran. ' +
+      'Mode <b>dalam</b> = dibuka di dalam portal, <b>luar</b> = tab/jendela baru (wajib untuk link Claude/website lain).</div>' +
+      '<div id="fLinks">' + L.map(linkRow).join('') + '</div>' +
+      '<button class="f-btn full putih" onclick="FITUR.tambahLink()">+ Tambah Link</button>' +
+      '<div class="f-sticky"><button class="f-btn" onclick="FITUR.simpanLinks(this)">Simpan Semua Link</button></div>';
+    $('fTabIsi').innerHTML = h;
+  }
+  function linkRow(l) {
+    var per = String(l.peran || '').split(',').map(function (s) { return s.trim().toLowerCase(); });
+    var ik = IKON_PILIH.indexOf(String(l.ikon).toLowerCase()) >= 0 ? String(l.ikon).toLowerCase() : '';
+    return '<div class="f-link-row">' +
+      '<div class="f-2"><input class="f-in" data-f="judul" placeholder="Nama aplikasi" value="' + e(l.judul) + '">' +
+      '<input class="f-in" data-f="kategori" placeholder="Kategori (mis. Aplikasi)" value="' + e(l.kategori || 'Aplikasi') + '"></div>' +
+      '<input class="f-in" data-f="url" style="margin-top:8px" placeholder="https://..." value="' + e(l.url) + '">' +
+      '<div class="f-cek" style="margin-top:8px">' + ['Semua'].concat(PERAN_F).map(function (r) {
+        return '<label><input type="checkbox" data-r="' + r + '"' + (per.indexOf(r.toLowerCase()) >= 0 ? ' checked' : '') + '> ' + r + '</label>';
+      }).join('') + '</div>' +
+      '<div class="f-2"><select class="f-sel" data-f="ikon"><option value="' + e(ik ? '' : l.ikon) + '">' +
+      (ik || !l.ikon ? 'Ikon: otomatis' : 'Ikon: ' + e(l.ikon)) + '</option>' +
+      IKON_PILIH.map(function (k) { return '<option value="' + k + '"' + (k === ik ? ' selected' : '') + '>Ikon: ' + k + '</option>'; }).join('') +
+      '</select><select class="f-sel" data-f="mode"><option value="dalam"' + (l.mode !== 'luar' ? ' selected' : '') +
+      '>Buka di dalam portal</option><option value="luar"' + (l.mode === 'luar' ? ' selected' : '') + '>Buka di jendela baru</option></select></div>' +
+      '<div class="f-2"><input class="f-in" type="number" data-f="urutan" placeholder="Urutan" value="' + e(l.urutan) + '">' +
+      '<select class="f-sel" data-f="aktif"><option value="Ya">Aktif</option><option value="Tidak"' +
+      (String(l.aktif) === 'Tidak' ? ' selected' : '') + '>Nonaktif</option></select></div>' +
+      '<button class="f-btn merah full" style="margin-top:8px;padding:8px" onclick="this.parentNode.remove()">Hapus link ini</button></div>';
+  }
+  function tambahLink() {
+    var d = document.createElement('div');
+    d.innerHTML = linkRow({ kategori: 'Aplikasi', aktif: 'Ya', mode: 'luar', peran: 'Semua', urutan: 50 });
+    $('fLinks').appendChild(d.firstChild);
+    $('fLinks').lastChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function simpanLinks(btn) {
+    var rows = Array.prototype.map.call($('fLinks').children, function (el) {
+      var o = {};
+      Array.prototype.forEach.call(el.querySelectorAll('[data-f]'), function (x) { o[x.getAttribute('data-f')] = x.value.trim(); });
+      var r = Array.prototype.filter.call(el.querySelectorAll('[data-r]'), function (x) { return x.checked; })
+        .map(function (x) { return x.getAttribute('data-r'); });
+      o.peran = r.indexOf('Semua') >= 0 ? 'Semua' : (r.join(', ') || 'Semua');
+      return o;
+    });
+    var salah = rows.filter(function (o) { return (o.judul || o.url) && !(/^https?:\/\//i.test(o.url) && o.judul); });
+    if (salah.length) { toast('Setiap link wajib punya nama & URL berawalan https://'); return; }
+    adm({ aksi: 'simpanLinks', data: rows }, function () { toast('Link tersimpan'); tabLink(); }, btn);
+  }
+
+  /* ---- tab PIN ---- */
+  function tabPin() {
+    var P = ADM.data.pin || {};
+    $('fTabIsi').innerHTML = '<div class="f-form"><h3>PIN Masuk per Peran</h3>' +
+      '<div class="f-hint">Kosongkan bila peran tersebut tidak memakai PIN. Mengganti PIN membuat HP yang login dengan PIN lama ' +
+      'diminta PIN baru.</div>' + PERAN_F.map(function (r) {
+        return '<label class="f-lbl">' + r + '</label><input class="f-in" data-pin="' + r + '" inputmode="numeric" maxlength="8" value="' +
+          e(P[r]) + '" placeholder="Tanpa PIN">';
+      }).join('') + '<button class="f-btn full" onclick="FITUR.simpanPin(this)">Simpan PIN</button></div>';
+  }
+  function simpanPin(btn) {
+    var o = {};
+    Array.prototype.forEach.call($('fTabIsi').querySelectorAll('[data-pin]'), function (x) {
+      o[x.getAttribute('data-pin')] = x.value.replace(/\D/g, '');
+    });
+    adm({ aksi: 'simpanPin', data: o }, function () { toast('PIN tersimpan'); tabPin(); }, btn);
+  }
+
+  /* ---- tab pengaturan ---- */
+  function tabSet() {
+    var S = ADM.data.pengaturan || {};
+    function f(k, label, ph, hint) {
+      return '<label class="f-lbl">' + label + '</label><input class="f-in" data-s="' + k + '" value="' + e(S[k]) + '" placeholder="' + e(ph) + '">' +
+        (hint ? '<div class="f-hint">' + hint + '</div>' : '');
+    }
+    $('fTabIsi').innerHTML = '<div class="f-form"><h3>Pengaturan Portal</h3>' +
+      '<label class="f-lbl">Teks berjalan <small>(kosongkan untuk menyembunyikan)</small></label>' +
+      '<textarea class="f-ta" data-s="teks_berjalan" style="min-height:70px" placeholder="Contoh: Pendaftaran santri baru dibuka...">' +
+      e(S.teks_berjalan) + '</textarea>' +
+      f('kota', 'Nama lokasi jadwal sholat', 'Cibinong, Bogor') +
+      '<div class="f-2"><div>' + f('lat', 'Lintang (latitude)', '-6.4817') + '</div><div>' + f('lng', 'Bujur (longitude)', '106.8540') + '</div></div>' +
+      '<button class="f-btn putih full" style="margin-top:8px" onclick="FITUR.ambilKoordinat()">&#128205; Isi dari lokasi saya sekarang</button>' +
+      f('wa', 'Nomor WhatsApp admin', '0812xxxxxxx', 'Muncul sebagai tombol WhatsApp di bagian bawah portal.') +
+      f('instagram', 'Instagram', '@alfahmu.learningcenter') +
+      f('alamat', 'Alamat', 'Jl. ... Cibinong, Bogor') +
+      '<button class="f-btn full" onclick="FITUR.simpanSet(this)">Simpan Pengaturan</button></div>';
+  }
+  function ambilKoordinat() {
+    if (!navigator.geolocation) { toast('Lokasi tidak didukung'); return; }
+    navigator.geolocation.getCurrentPosition(function (p) {
+      $('fTabIsi').querySelector('[data-s="lat"]').value = p.coords.latitude.toFixed(5);
+      $('fTabIsi').querySelector('[data-s="lng"]').value = p.coords.longitude.toFixed(5);
+      toast('Koordinat terisi');
+    }, function () { toast('Izin lokasi ditolak / tidak tersedia'); });
+  }
+  function simpanSet(btn) {
+    var o = {};
+    Array.prototype.forEach.call($('fTabIsi').querySelectorAll('[data-s]'), function (x) { o[x.getAttribute('data-s')] = x.value.trim(); });
+    if ((o.lat && !isFinite(parseFloat(o.lat))) || (o.lng && !isFinite(parseFloat(o.lng)))) { toast('Koordinat harus angka'); return; }
+    adm({ aksi: 'simpanPengaturan', data: o }, function () { toast('Pengaturan tersimpan'); lsDel('alfahmu_info'); tabSet(); }, btn);
+  }
+
+  /* =================== MULAI =================== */
+  window.FITUR = {
+    bukaKiblat: bukaKiblat, kompas: kompas, pakaiLokasi: pakaiLokasi, detail: detail, tutup: tutup,
+    bukaAdmin: bukaAdmin, tutupAdmin: tutupAdmin, loginAdmin: loginAdmin, keluarAdmin: keluarAdmin, tab: tab,
+    formInfo: formInfo, cekUntuk: cekUntuk, prev: prev, simpanInfo: simpanInfo, hapusInfo: hapusInfo, upload: upload,
+    tambahLink: tambahLink, simpanLinks: simpanLinks, simpanPin: simpanPin, simpanSet: simpanSet, ambilKoordinat: ambilKoordinat
+  };
+  try {
+    pasangGeser();
+    renderSholat(true);
+    setInterval(function () { try { renderSholat(false); } catch (x) {} }, 1000);
+    muatInfo();
+    // saat kembali ke beranda (mis. setelah login peran), info khusus peran ikut diperbarui
+    if (window.MutationObserver && $('vHome')) {
+      new MutationObserver(function () {
+        if (!$('vHome').classList.contains('hidden')) { try { renderInfo(); } catch (x) {} }
+      }).observe($('vHome'), { attributes: true, attributeFilter: ['class'] });
+    }
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && !$('fModal').classList.contains('hidden')) tutup();
+    });
+  } catch (err) {
+    if (window.console) console.error('Fitur portal:', err);
+  }
+})();
 </script>
 </body>
 </html>

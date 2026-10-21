@@ -1920,8 +1920,29 @@
     if (typeof google !== 'undefined' && google.script) { el.classList.add('hidden'); return; }   // versi Apps Script: tidak bisa dipasang
     el.classList.remove('hidden');
   }
+  function cekTerpasang() {
+    try {
+      if (navigator.getInstalledRelatedApps) {
+        navigator.getInstalledRelatedApps().then(function (apps) {
+          if (apps && apps.length) { lsSet('alfahmu_terpasang', 1); tampilPasang(); }
+        }).catch(function () {});
+      }
+    } catch (x) {}
+  }
   function nantiPasang() { lsSet('alfahmu_pasang_nanti', Date.now() + 7 * 86400000); $('fPasang').classList.add('hidden'); }
-  function pasang() {
+  function pasang(sudahTunggu) {
+    if (!tawaranPasang && !sudahTunggu) {
+      var b = document.querySelector('.f-pasang-btn'); if (b) { b.disabled = true; b.textContent = '...'; }
+      var mulai = Date.now();
+      (function tunggu() {
+        if (tawaranPasang || Date.now() - mulai > 2000) {
+          if (b) { b.disabled = false; b.textContent = 'Pasang'; }
+          pasang(true); return;
+        }
+        setTimeout(tunggu, 150);
+      })();
+      return;
+    }
     if (tawaranPasang) {
       tawaranPasang.prompt();
       tawaranPasang.userChoice.then(function (r) { if (r && r.outcome === 'accepted') lsSet('alfahmu_terpasang', 1); tawaranPasang = null; tampilPasang(); });
@@ -1940,6 +1961,11 @@
       langkah = '<li>Buka portal ini di <b>Safari</b>.</li>' +
         '<li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas) di bawah layar.</li>' +
         '<li>Pilih <b>Tambahkan ke Layar Utama</b>, lalu ketuk <b>Tambah</b>.</li>';
+    } else if (!/Android|Mobile/i.test(ua)) {
+      langkah = '<li>Lihat ujung kanan <b>kolom alamat</b> Chrome/Edge, klik ikon <b>Instal</b> (gambar layar dengan panah). ' +
+        'Bila ada tulisan <b>Buka di aplikasi</b>, berarti aplikasi <b>sudah terpasang</b>.</li>' +
+        '<li>Bila ikon tidak ada: klik <b>&#8942;</b> &rarr; <b>Simpan dan bagikan</b> &rarr; <b>Instal halaman sebagai aplikasi</b>.</li>' +
+        '<li>Klik <b>Instal</b>. Aplikasi Al-Fahmu muncul di menu Start / desktop.</li>';
     } else {
       langkah = '<li>Ketuk tombol <b>&#8942;</b> (titik tiga) di pojok kanan atas Chrome.</li>' +
         '<li>Pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</li>' +
@@ -1984,6 +2010,7 @@
       });
     }
     tampilPasang();
+    cekTerpasang();
     renderJam();
     renderSholat(true);
     setInterval(function () { try { renderJam(); renderSholat(false); } catch (x) {} }, 1000);

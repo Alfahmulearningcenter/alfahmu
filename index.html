@@ -1890,12 +1890,18 @@
   };
   try {
     pasangGeser();
-    // Sahabat Al-Fahmu: buka di dalam portal bila tampilan aplikasi tersedia (versi GitHub)
+    // Sahabat Al-Fahmu: di dalam portal (GitHub), atau tab baru (versi Apps Script)
     if ($('fSahabat')) {
       $('fSahabat').addEventListener('click', function (ev) {
-        if (typeof buka !== 'function' || !$('vApp')) return;   // versi Apps Script: buka di tab baru
         ev.preventDefault();
-        buka({ judul: 'Sahabat Al-Fahmu', url: $('fSahabat').href, ikon: 'quran', mode: 'dalam' });
+        var url = $('fSahabat').href;
+        if (typeof buka === 'function' && $('vApp')) {     // versi GitHub: buka di dalam portal
+          buka({ judul: 'Sahabat Al-Fahmu', url: url, ikon: 'quran', mode: 'dalam' });
+          return;
+        }
+        var w = null;
+        try { w = window.open(url, '_blank'); if (w) w.opener = null; } catch (x) {}
+        if (!w) { try { window.top.location.href = url; } catch (x2) { location.href = url; } }
       });
     }
     renderJam();

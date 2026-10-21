@@ -908,7 +908,7 @@
     const f = document.createElement('iframe');
     f.id = 'appFrame';
     f.title = 'Aplikasi Al-Fahmu';
-    f.allow = 'camera; microphone; geolocation; clipboard-read; clipboard-write; fullscreen';
+    f.allow = 'camera; microphone; geolocation; accelerometer; gyroscope; magnetometer; clipboard-read; clipboard-write; fullscreen';
     f.onload = () => setTimeout(() => document.getElementById('appMuat').classList.add('hidden'), 400);
     f.src = url;
     document.querySelector('.appbody').appendChild(f);
@@ -1890,6 +1890,14 @@
   };
   try {
     pasangGeser();
+    // Sahabat Al-Fahmu: buka di dalam portal bila tampilan aplikasi tersedia (versi GitHub)
+    if ($('fSahabat')) {
+      $('fSahabat').addEventListener('click', function (ev) {
+        if (typeof buka !== 'function' || !$('vApp')) return;   // versi Apps Script: buka di tab baru
+        ev.preventDefault();
+        buka({ judul: 'Sahabat Al-Fahmu', url: $('fSahabat').href, ikon: 'quran', mode: 'dalam' });
+      });
+    }
     renderJam();
     renderSholat(true);
     setInterval(function () { try { renderJam(); renderSholat(false); } catch (x) {} }, 1000);

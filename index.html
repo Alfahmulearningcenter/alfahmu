@@ -461,6 +461,23 @@
   .f-daftar .f-row{cursor:pointer;box-shadow:none;border:1px solid #EFE6D2}
 
   .f-bubble.off{display:none !important}
+
+  /* kartu pintasan Sahabat Al-Fahmu */
+  .f-sahabat{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--putih);margin:0 0 24px;padding:14px 14px;
+    border-radius:20px;background:linear-gradient(135deg,#0F5C63 0%,#1E3653 100%);position:relative;overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,92,99,.28)}
+  .f-sahabat::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle,rgba(245,220,124,.25),transparent 70%)}
+  .f-sahabat:active{transform:scale(.98)}
+  .f-sah-ikon{width:52px;height:52px;flex-shrink:0;border-radius:16px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+  .f-sah-ikon svg{width:40px;height:40px}
+  .f-sah-txt{flex:1;min-width:0;position:relative;z-index:1}
+  .f-sah-txt small{display:block;font-size:10.5px;color:var(--kuning);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+  .f-sah-txt b{display:block;font-size:16px;line-height:1.3}
+  .f-sah-txt span{display:flex;gap:6px;margin-top:5px}
+  .f-sah-txt i{font-style:normal;font-size:11px;background:rgba(255,255,255,.14);border-radius:999px;padding:3px 9px}
+  .f-sah-go{position:relative;z-index:1;flex-shrink:0;background:var(--kuning);color:var(--navy);font-weight:700;font-size:13px;
+    border-radius:12px;padding:9px 12px}
 </style>
 </head>
 <body>
@@ -535,6 +552,18 @@
       <span class="f-ticker-lbl">&#128226;</span>
       <div class="f-ticker-track"><span id="fTickerTeks"></span></div>
     </button>
+    <!-- ===== pintasan aplikasi umum: Sahabat Al-Fahmu ===== -->
+    <a class="f-sahabat" id="fSahabat" target="_blank" rel="noopener"
+       href="https://script.google.com/macros/s/AKfycbxUtJeOlLSuFF3nCoIsmDCW7lJhaznR8QyfJdCGNNJhDG9phGKNFsLeEil0vybvg_U8/exec">
+      <div class="f-sah-ikon"><svg viewBox="0 0 48 48"><circle cx="21" cy="22" r="13" fill="#F5DC7C"/><circle cx="27" cy="18" r="11.5" fill="#0F5C63"/>
+        <path d="M34 28l1.4 3.4 3.6.3-2.8 2.3.9 3.5-3.1-1.9-3.1 1.9.9-3.5-2.8-2.3 3.6-.3z" fill="#F5DC7C"/></svg></div>
+      <div class="f-sah-txt">
+        <small>Gratis untuk umum</small>
+        <b>Sahabat Al-Fahmu</b>
+        <span><i>&#128214; Kamus</i><i>&#128332; Ibadah</i></span>
+      </div>
+      <div class="f-sah-go">Buka &rsaquo;</div>
+    </a>
     <div class="f-sec"><b>Masuk sebagai</b><small>Pilih peran Anda</small></div>
 
     <div class="judul">Masuk sebagai:</div>
@@ -1427,6 +1456,8 @@
     }
     renderKontak();
     renderBubble();
+    var ls = aman((INFO.pengaturan || {}).link_sahabat);
+    if (ls && $('fSahabat')) $('fSahabat').href = ls;
   }
   function geserSlide(i) {
     var s = $('fSlider'); if (!s || !s.children[i]) return;

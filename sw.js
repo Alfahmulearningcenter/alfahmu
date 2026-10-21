@@ -14,7 +14,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== VERSI).map(k => caches.delete(k))))
+      .then(keys => Promise.all(keys.filter(k => k.indexOf('alfahmu-') === 0 && k !== VERSI).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -22,6 +22,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin) return; // Apps Script & font: langsung ke internet
+  if (url.pathname.indexOf('/sahabat/') > -1) return; // folder Sahabat Al-Fahmu punya service worker sendiri
 
   // Halaman: internet dulu, cadangan dari simpanan
   if (e.request.mode === 'navigate') {

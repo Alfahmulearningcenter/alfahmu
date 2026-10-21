@@ -7,6 +7,7 @@
 <meta name="description" content="Portal layanan digital Al-Fahmu Learning Center untuk guru, murid, wali murid, dan manajemen.">
 <meta name="theme-color" content="#1E3653">
 <link rel="manifest" href="manifest.webmanifest">
+<script>window.__bip=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;});</script>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1907,7 +1908,7 @@
 
 
   /* =================== AJAKAN PASANG APLIKASI =================== */
-  var tawaranPasang = null;
+  var tawaranPasang = window.__bip || null;   // ditangkap lebih awal di <head>
   window.addEventListener('beforeinstallprompt', function (ev) { ev.preventDefault(); tawaranPasang = ev; tampilPasang(); });
   window.addEventListener('appinstalled', function () { lsSet('alfahmu_terpasang', 1); $('fPasang').classList.add('hidden'); toast('Aplikasi Al-Fahmu terpasang'); });
   function sudahTerpasang() {
@@ -1931,10 +1932,12 @@
   }
   function nantiPasang() { lsSet('alfahmu_pasang_nanti', Date.now() + 7 * 86400000); $('fPasang').classList.add('hidden'); }
   function pasang(sudahTunggu) {
+    if (!tawaranPasang && window.__bip) tawaranPasang = window.__bip;
     if (!tawaranPasang && !sudahTunggu) {
       var b = document.querySelector('.f-pasang-btn'); if (b) { b.disabled = true; b.textContent = '...'; }
       var mulai = Date.now();
       (function tunggu() {
+        if (!tawaranPasang && window.__bip) tawaranPasang = window.__bip;
         if (tawaranPasang || Date.now() - mulai > 2000) {
           if (b) { b.disabled = false; b.textContent = 'Pasang'; }
           pasang(true); return;
@@ -1945,7 +1948,7 @@
     }
     if (tawaranPasang) {
       tawaranPasang.prompt();
-      tawaranPasang.userChoice.then(function (r) { if (r && r.outcome === 'accepted') lsSet('alfahmu_terpasang', 1); tawaranPasang = null; tampilPasang(); });
+      tawaranPasang.userChoice.then(function (r) { if (r && r.outcome === 'accepted') lsSet('alfahmu_terpasang', 1); tawaranPasang = null; window.__bip = null; tampilPasang(); });
       return;
     }
     var ua = navigator.userAgent || '';

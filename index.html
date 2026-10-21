@@ -478,6 +478,24 @@
   .f-sah-txt i{font-style:normal;font-size:11px;background:rgba(255,255,255,.14);border-radius:999px;padding:3px 9px}
   .f-sah-go{position:relative;z-index:1;flex-shrink:0;background:var(--kuning);color:var(--navy);font-weight:700;font-size:13px;
     border-radius:12px;padding:9px 12px}
+
+  /* ajakan pasang aplikasi */
+  .pasang{display:none !important}
+  .f-pasang{display:flex;align-items:center;gap:12px;background:var(--putih);border:2px dashed var(--gold);border-radius:18px;
+    padding:12px 12px;margin:-8px 0 24px;position:relative}
+  .f-pasang img{width:44px;height:44px;border-radius:12px;flex-shrink:0;box-shadow:0 2px 6px rgba(30,54,83,.15)}
+  .f-pasang-txt{flex:1;min-width:0}
+  .f-pasang-txt b{display:block;font-size:14px}
+  .f-pasang-txt small{display:block;font-size:11.5px;color:var(--abu);margin-top:1px}
+  .f-pasang-btn{flex-shrink:0;border:none;border-radius:12px;background:var(--navy);color:var(--kuning);font-family:inherit;
+    font-weight:700;font-size:13px;padding:10px 14px;cursor:pointer}
+  .f-pasang-x{position:absolute;top:-10px;right:-8px;width:26px;height:26px;border-radius:50%;border:none;background:var(--cream);
+    color:var(--navy);font-size:15px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .f-langkah{counter-reset:l;list-style:none;margin:12px 0 0;padding:0}
+  .f-langkah li{counter-increment:l;position:relative;padding:8px 0 8px 40px;font-size:14px;line-height:1.5;color:#374151}
+  .f-langkah li::before{content:counter(l);position:absolute;left:0;top:7px;width:28px;height:28px;border-radius:50%;
+    background:var(--navy);color:var(--kuning);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .f-langkah b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -564,6 +582,13 @@
       </div>
       <div class="f-sah-go">Buka &rsaquo;</div>
     </a>
+    <!-- ===== ajakan pasang aplikasi (hanya bagi yang belum memasang) ===== -->
+    <div class="f-pasang hidden" id="fPasang">
+      <img src="icon-192.png" alt="">
+      <div class="f-pasang-txt"><b>Pasang Aplikasi Al-Fahmu</b><small>Buka lebih cepat langsung dari layar HP</small></div>
+      <button class="f-pasang-btn" onclick="FITUR.pasang()">Pasang</button>
+      <button class="f-pasang-x" onclick="FITUR.nantiPasang()" aria-label="Nanti saja">&times;</button>
+    </div>
     <div class="f-sec"><b>Masuk sebagai</b><small>Pilih peran Anda</small></div>
 
     <div class="judul">Masuk sebagai:</div>
@@ -1880,10 +1905,64 @@
     adm({ aksi: 'simpanPengaturan', data: o }, function () { toast('Pengaturan tersimpan'); lsDel('alfahmu_info'); tabSet(); }, btn);
   }
 
+
+  /* =================== AJAKAN PASANG APLIKASI =================== */
+  var tawaranPasang = null;
+  window.addEventListener('beforeinstallprompt', function (ev) { ev.preventDefault(); tawaranPasang = ev; tampilPasang(); });
+  window.addEventListener('appinstalled', function () { lsSet('alfahmu_terpasang', 1); $('fPasang').classList.add('hidden'); toast('Aplikasi Al-Fahmu terpasang'); });
+  function sudahTerpasang() {
+    try { if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) return true; } catch (x) {}
+    return !!lsGet('alfahmu_terpasang', 0);
+  }
+  function tampilPasang() {
+    var el = $('fPasang'); if (!el) return;
+    if (sudahTerpasang() || lsGet('alfahmu_pasang_nanti', 0) > Date.now()) { el.classList.add('hidden'); return; }
+    if (typeof google !== 'undefined' && google.script) { el.classList.add('hidden'); return; }   // versi Apps Script: tidak bisa dipasang
+    el.classList.remove('hidden');
+  }
+  function nantiPasang() { lsSet('alfahmu_pasang_nanti', Date.now() + 7 * 86400000); $('fPasang').classList.add('hidden'); }
+  function pasang() {
+    if (tawaranPasang) {
+      tawaranPasang.prompt();
+      tawaranPasang.userChoice.then(function (r) { if (r && r.outcome === 'accepted') lsSet('alfahmu_terpasang', 1); tawaranPasang = null; tampilPasang(); });
+      return;
+    }
+    var ua = navigator.userAgent || '';
+    var ios = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var dalamApp = /FBAN|FBAV|Instagram|Line\/|WhatsApp|; wv\)/i.test(ua);
+    var link = location.href.split('#')[0];
+    var langkah;
+    if (dalamApp) {
+      langkah = '<li>Ketuk tombol <b>&#8942;</b> atau <b>&middot;&middot;&middot;</b> di pojok kanan atas.</li>' +
+        '<li>Pilih <b>Buka di Chrome</b> / <b>Buka di browser</b>' + (ios ? ' (Safari)' : '') + '.</li>' +
+        '<li>Setelah terbuka, ketuk lagi tombol <b>Pasang</b> di portal.</li>';
+    } else if (ios) {
+      langkah = '<li>Buka portal ini di <b>Safari</b>.</li>' +
+        '<li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas) di bawah layar.</li>' +
+        '<li>Pilih <b>Tambahkan ke Layar Utama</b>, lalu ketuk <b>Tambah</b>.</li>';
+    } else {
+      langkah = '<li>Ketuk tombol <b>&#8942;</b> (titik tiga) di pojok kanan atas Chrome.</li>' +
+        '<li>Pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</li>' +
+        '<li>Ketuk <b>Instal</b>. Ikon Al-Fahmu akan muncul di layar HP.</li>';
+    }
+    $('fModalIsi').innerHTML = '<div class="f-daftar"><h3>&#128242; Pasang Aplikasi Al-Fahmu</h3>' +
+      '<div style="font-size:13px;color:#6B7280">Ikuti langkah berikut, cukup sekali saja:</div>' +
+      '<ol class="f-langkah">' + langkah + '</ol>' +
+      '<button class="f-btn full putih" onclick="FITUR.salinLink()">&#128203; Salin link portal</button>' +
+      '<div class="f-hint" style="text-align:center;margin-top:6px">' + e(link) + '</div></div>';
+    bukaModal();
+  }
+  function salinLink() {
+    var link = location.href.split('#')[0];
+    try { navigator.clipboard.writeText(link).then(function () { toast('Link tersalin'); }); }
+    catch (x) { prompt('Salin link ini:', link); }
+  }
+
   /* =================== MULAI =================== */
   window.FITUR = {
     bukaKiblat: bukaKiblat, kompas: kompas, pakaiLokasi: pakaiLokasi, detail: detail, tutup: tutup,
     detailId: detailId, bukaDaftar: bukaDaftar, bukaPeek: bukaPeek, tutupPeek: tutupPeek,
+    pasang: pasang, nantiPasang: nantiPasang, salinLink: salinLink,
     bukaAdmin: bukaAdmin, tutupAdmin: tutupAdmin, loginAdmin: loginAdmin, keluarAdmin: keluarAdmin, tab: tab,
     formInfo: formInfo, cekUntuk: cekUntuk, prev: prev, simpanInfo: simpanInfo, hapusInfo: hapusInfo, upload: upload,
     tambahLink: tambahLink, simpanLinks: simpanLinks, simpanPin: simpanPin, simpanSet: simpanSet, ambilKoordinat: ambilKoordinat
@@ -1904,6 +1983,7 @@
         if (!w) { try { window.top.location.href = url; } catch (x2) { location.href = url; } }
       });
     }
+    tampilPasang();
     renderJam();
     renderSholat(true);
     setInterval(function () { try { renderJam(); renderSholat(false); } catch (x) {} }, 1000);

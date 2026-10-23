@@ -7,6 +7,11 @@
 <meta name="description" content="Kamus Arab–Indonesia, kamus kaidah nahwu & sharaf, dzikir pagi-petang, kalender Hijriah, dan tes level bahasa Arab gratis dari Al-Fahmu Learning Center.">
 <meta name="theme-color" content="#1E3653">
 <link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sahabat">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>window.__bip=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;});</script>
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Sahabat Al-Fahmu">
@@ -238,6 +243,18 @@
   .latihan{background:#fff;border-radius:12px;padding:10px 12px;margin-bottom:6px;font-size:.9rem}
   .latihan summary{cursor:pointer;font-weight:600}
   .latihan p{margin-top:6px;color:var(--hijau);font-weight:600}
+  /* Pasang aplikasi */
+  .pasang{display:flex;align-items:center;gap:12px;background:var(--kartu);border:2px dashed var(--emas);border-radius:18px;padding:12px;margin-bottom:12px;position:relative}
+  .pasang img{width:46px;height:46px;border-radius:12px;flex-shrink:0;box-shadow:0 2px 6px rgba(30,54,83,.18)}
+  .pasang div{flex:1;min-width:0}
+  .pasang b{display:block;font-size:.92rem;color:var(--navy)}
+  .pasang small{display:block;font-size:.76rem;color:var(--abu)}
+  .pasang .tombol{width:auto;padding:10px 14px;font-size:.85rem}
+  .pasang-x{position:absolute;top:-10px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--cream);border:1px solid var(--garis);font-size:.9rem;color:var(--navy)}
+  .langkah-pasang{counter-reset:l;list-style:none;margin:10px 0 0}
+  .langkah-pasang li{counter-increment:l;position:relative;padding:7px 0 7px 38px;font-size:.88rem}
+  .langkah-pasang li::before{content:counter(l);position:absolute;left:0;top:6px;width:27px;height:27px;border-radius:50%;background:var(--navy);color:var(--kuning);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .bagi-app{display:inline-block;margin-top:8px;font-weight:700;color:var(--hijau)}
   #toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--teks);color:#fff;padding:10px 16px;border-radius:12px;font-size:.85rem;z-index:50;max-width:90%;text-align:center}
 </style>
 </head>
@@ -266,6 +283,13 @@
       </form>
       <div class="info" id="homeInfo"></div>
     </div>
+    <div class="pasang" id="pasangKartu" hidden>
+      <img src="icon-192.png" alt="">
+      <div><b>Pasang Aplikasi Sahabat</b><small>Buka kamus lebih cepat langsung dari layar HP</small></div>
+      <button class="tombol" onclick="pasangApp()">Pasang</button>
+      <button class="pasang-x" onclick="nantiPasang()" aria-label="Nanti saja">×</button>
+    </div>
+    <div class="kartu" id="pasangPetunjuk" hidden></div>
     <div class="menu">
       <button onclick="buka('kamus')"><div class="ikon" style="background:var(--navy-bg)">📖</div><div><b>Kamus Arab ⇄ Indonesia<span class="label-ai">AI</span></b><span>Arti, harakat, jamak, tashrif, dan contoh kalimat</span></div></button>
       <button onclick="buka('kaidah')"><div class="ikon" style="background:var(--emas-bg)">🧩</div><div><b>Kamus Kaidah Bahasa Arab<span class="label-ai">AI</span></b><span>Nahwu, sharaf, i'rab, dan imla dijelaskan sederhana</span></div></button>
@@ -372,7 +396,8 @@
 
 <footer>
   Sahabat Al-Fahmu • Belajar Bahasa Arab & Al-Qur'an<br>
-  <a id="footWA" href="#" target="_blank">Info kelas Al-Fahmu via WhatsApp</a>
+  <a id="footWA" href="#" target="_blank">Info kelas Al-Fahmu via WhatsApp</a><br>
+  <button class="bagi-app" onclick="bagikanApp()">📲 Bagikan aplikasi ke teman</button>
 </footer>
 
 <nav class="nav"><div class="nav-isi">
@@ -615,11 +640,12 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbxUtJeOlLSuFF3nCoIsmDCW
 
 const _P = new URLSearchParams(location.search);
 const DALAM_PORTAL = (function(){ try { return window.self !== window.top; } catch(e) { return true; } })();
+const MODE_APLIKASI = (function(){ try { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch(e) { return false; } })();
 const CFG = {
   NAMA_APP: 'Sahabat Al-Fahmu',
   WA_ADMIN: '6281213911301',
   HIJRI_OFFSET: 0,                          // -1 / 1 bila beda dengan kalender Kemenag
-  LINK_PORTAL: DALAM_PORTAL ? '' : '../',   // tombol "← Portal" (disembunyikan bila dibuka dari dalam portal)
+  LINK_PORTAL: (DALAM_PORTAL || MODE_APLIKASI) ? '' : '../',   // tombol "← Portal" (disembunyikan di dalam portal & di aplikasi terpasang)
   URL_APP: location.origin + location.pathname,
   Q: (_P.get('q') || '').slice(0, 200)
 };
@@ -1346,6 +1372,49 @@ try { window.speechSynthesis && window.speechSynthesis.getVoices(); } catch(e) {
   if (CFG.Q && START === 'kamus') cariKata(CFG.Q);
   if (CFG.Q && START === 'kaidah') tanyaKaidah(CFG.Q);
 })();
+
+/* ===================== PASANG SEBAGAI APLIKASI ===================== */
+const LINK_APP = location.origin + location.pathname;
+let tawaran = window.__bip || null;
+window.addEventListener('beforeinstallprompt', ev => { ev.preventDefault(); tawaran = ev; tampilPasang(); });
+window.addEventListener('appinstalled', () => { Simpan.set('terpasang', 1); tampilPasang(); toast('Alhamdulillah, aplikasi Sahabat terpasang 🎉'); });
+
+function tampilPasang(){
+  const el = $('#pasangKartu'); if (!el) return;
+  const sembunyi = MODE_APLIKASI || DALAM_PORTAL || Simpan.get('terpasang', 0) || Simpan.get('pasang_nanti', 0) > Date.now();
+  el.hidden = !!sembunyi;
+}
+function nantiPasang(){ Simpan.set('pasang_nanti', Date.now() + 7 * 864e5); $('#pasangKartu').hidden = true; $('#pasangPetunjuk').hidden = true; }
+
+function pasangApp(){
+  if (!tawaran && window.__bip) tawaran = window.__bip;
+  if (tawaran) {
+    tawaran.prompt();
+    tawaran.userChoice.then(r => { if (r && r.outcome === 'accepted') Simpan.set('terpasang', 1); tawaran = null; window.__bip = null; tampilPasang(); });
+    return;
+  }
+  const ua = navigator.userAgent || '';
+  const ios = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const dalamApp = /FBAN|FBAV|Instagram|Line\/|WhatsApp|; wv\)/i.test(ua);
+  let l;
+  if (dalamApp) l = '<li>Ketuk <b>⋮</b> atau <b>···</b> di pojok kanan atas.</li><li>Pilih <b>Buka di Chrome</b> / <b>Buka di browser</b>' + (ios ? ' (Safari)' : '') + '.</li><li>Setelah terbuka, ketuk lagi tombol <b>Pasang</b>.</li>';
+  else if (ios) l = '<li>Buka link ini di <b>Safari</b>.</li><li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas).</li><li>Pilih <b>Tambahkan ke Layar Utama</b>, lalu <b>Tambah</b>.</li>';
+  else if (!/Android|Mobile/i.test(ua)) l = '<li>Klik ikon <b>Instal</b> di ujung kanan kolom alamat Chrome/Edge.</li><li>Bila tidak ada: klik <b>⋮</b> → <b>Simpan dan bagikan</b> → <b>Instal halaman sebagai aplikasi</b>.</li>';
+  else l = '<li>Ketuk <b>⋮</b> (titik tiga) di pojok kanan atas Chrome.</li><li>Pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</li><li>Ketuk <b>Instal</b>. Ikon <b>Sahabat</b> muncul di layar HP.</li>';
+  const p = $('#pasangPetunjuk');
+  p.innerHTML = '<b style="color:var(--navy)">📲 Cara memasang (cukup sekali)</b><ol class="langkah-pasang">' + l + '</ol>' +
+    '<button class="tombol garis kecil" style="margin-top:8px" onclick="salinLinkApp()">📋 Salin link aplikasi</button>';
+  p.hidden = false; p.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function salinLinkApp(){
+  try { navigator.clipboard.writeText(LINK_APP).then(() => toast('Link tersalin')); } catch (e) { toast(LINK_APP); }
+}
+function bagikanApp(){
+  const teks = 'Assalamu\'alaikum 😊\nAda aplikasi gratis dari Al-Fahmu: *Sahabat Al-Fahmu*\n📖 Kamus Arab–Indonesia\n🧩 Kaidah nahwu & sharaf\n📿 Dzikir pagi-petang & doa harian\n🌙 Kalender Hijriah & puasa sunnah\n📝 Tes level bahasa Arab\n\nBuka & pasang di HP 👉 ' + LINK_APP;
+  if (navigator.share) { navigator.share({ title: 'Sahabat Al-Fahmu', text: teks }).catch(() => {}); return; }
+  bagikanWA(teks);
+}
+tampilPasang();
 
 /* Bisa dipasang di HP (PWA) */
 if ('serviceWorker' in navigator && location.protocol === 'https:') {

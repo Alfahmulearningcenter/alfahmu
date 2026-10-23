@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sahabat Al-Fahmu · Kamus & Kaidah Bahasa Arab</title>
+<meta name="description" content="Kamus Arab–Indonesia, kamus kaidah nahwu & sharaf, dzikir pagi-petang, kalender Hijriah, dan tes level bahasa Arab gratis dari Al-Fahmu Learning Center.">
+<meta name="theme-color" content="#1E3653">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Sahabat Al-Fahmu">
+<meta property="og:description" content="Kamus Arab–Indonesia & kaidah bahasa Arab gratis dari Al-Fahmu.">
+<meta property="og:image" content="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1E3653; --navy2:#2B4A6F; --cream:#EFE3CB; --kuning:#F5DC7C; --emas:#C9A227;
+    --kartu:#FFFBF2; --teks:#1E2A38; --abu:#6B7280; --garis:#E3D6BA;
+    --hijau:#2F855A; --hijau-bg:#E3F4EA; --merah:#C53030; --merah-bg:#FDE8E8;
+    --emas-bg:#FBF1CF; --navy-bg:#DDE6F1;
+    --ar:1.6rem;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--cream);color:var(--teks);line-height:1.55;padding-bottom:84px}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  input{font:inherit}
+  [hidden]{display:none!important}
+
+  /* Header */
+  .atas{background:var(--navy);color:#fff;padding:14px 16px 18px;position:relative;overflow:hidden}
+  .atas::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(245,220,124,.12)}
+  .atas-isi{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+  .logo{width:42px;height:42px;border-radius:12px;background:var(--kuning);color:var(--navy);display:grid;place-items:center;font-family:'Amiri',serif;font-weight:700;font-size:1.5rem;flex-shrink:0}
+  .atas h1{font-size:1.05rem;font-weight:800;letter-spacing:.2px}
+  .atas small{display:block;color:var(--kuning);font-size:.75rem;font-weight:600}
+  .portal{margin-left:auto;color:#fff;text-decoration:none;font-size:.8rem;font-weight:700;border:1px solid rgba(255,255,255,.35);padding:6px 10px;border-radius:999px}
+
+  main{max-width:560px;margin:0 auto;padding:16px}
+  h2{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+  .sub{color:var(--abu);font-size:.88rem;margin-bottom:14px}
+  .kartu{background:var(--kartu);border:1px solid var(--garis);border-radius:18px;padding:16px;margin-bottom:12px}
+  .ar{font-family:'Amiri',serif;direction:rtl;text-align:right;font-size:var(--ar);line-height:2.15;color:var(--navy);white-space:pre-line}
+  .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--navy-bg);color:var(--navy)}
+  .tombol{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--navy);color:#fff;font-weight:700;padding:12px 18px;border-radius:14px;width:100%;font-size:.95rem}
+  .tombol.kuning{background:var(--kuning);color:var(--navy)}
+  .tombol.garis{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+  .tombol:disabled{opacity:.55}
+  .baris{display:flex;gap:8px}
+  .baris > *{flex:1}
+
+  /* Beranda */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:0}
+  .hero .tgl{font-size:.85rem;opacity:.85}
+  .hero .hijri{font-size:1.25rem;font-weight:800;color:var(--kuning);margin:2px 0 10px}
+  .hero .info{background:rgba(255,255,255,.1);border-radius:12px;padding:10px 12px;font-size:.88rem}
+  .menu{display:grid;gap:12px}
+  .menu button{display:flex;gap:14px;align-items:center;text-align:left;background:var(--kartu);border:1px solid var(--garis);border-radius:18px;padding:16px;width:100%}
+  .menu .ikon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.6rem;flex-shrink:0}
+  .menu b{display:block;color:var(--navy);font-size:1rem}
+  .menu span{font-size:.84rem;color:var(--abu)}
+
+  /* Tab */
+  .tab{display:flex;background:#fff;border:1px solid var(--garis);border-radius:14px;padding:4px;margin-bottom:12px}
+  .tab button{flex:1;padding:9px 6px;border-radius:10px;font-weight:700;font-size:.88rem;color:var(--abu)}
+  .tab button.aktif{background:var(--navy);color:#fff}
+  .alat{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:.85rem;flex-wrap:wrap}
+  .alat .kecil{background:#fff;border:1px solid var(--garis);border-radius:10px;padding:6px 12px;font-weight:700;color:var(--navy)}
+  .alat label{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .cari{width:100%;padding:12px 14px;border:1px solid var(--garis);border-radius:14px;background:#fff;margin-bottom:12px}
+
+  /* Dzikir */
+  .progres{position:sticky;top:0;z-index:5;background:var(--cream);padding:6px 0 10px}
+  .progres .bar{height:10px;background:#fff;border-radius:999px;overflow:hidden;border:1px solid var(--garis)}
+  .progres .isi{height:100%;background:linear-gradient(90deg,var(--emas),var(--kuning));width:0;transition:width .3s}
+  .progres p{font-size:.82rem;color:var(--abu);margin-top:4px;display:flex;justify-content:space-between}
+  .dz-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  .dz-head h3{font-size:.95rem;color:var(--navy)}
+  .arti{font-size:.9rem;margin-top:8px;white-space:pre-line}
+  .sumber{font-size:.78rem;color:var(--abu);margin-top:8px;font-style:italic}
+  .dz-aksi{display:flex;gap:8px;margin-top:12px}
+  .hitung{flex:1;background:var(--navy);color:#fff;font-weight:800;padding:14px;border-radius:14px;font-size:1rem;transition:transform .08s}
+  .hitung:active{transform:scale(.97)}
+  .bagi{background:#fff;border:1px solid var(--garis);border-radius:14px;padding:0 14px;font-weight:700;font-size:.85rem;color:var(--hijau)}
+  .dz.selesai{border-color:var(--hijau);background:var(--hijau-bg)}
+  .dz.selesai .hitung{background:var(--hijau)}
+  .dz.selesai .ar,.dz.selesai .arti{opacity:.6}
+  .selamat{text-align:center;background:var(--emas-bg);border-color:var(--emas)}
+  .selamat b{color:var(--navy);display:block;font-size:1.05rem;margin-bottom:6px}
+
+  /* Kalender */
+  .kal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .kal-nav button{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--garis);font-size:1.1rem;font-weight:800;color:var(--navy)}
+  .kal-nav div{text-align:center}
+  .kal-nav b{display:block;color:var(--navy)}
+  .kal-nav small{color:var(--abu);font-size:.78rem}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .grid .nh{text-align:center;font-size:.7rem;font-weight:700;color:var(--abu);padding:4px 0}
+  .sel{aspect-ratio:1/1.1;border-radius:10px;background:#fff;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.92rem;font-weight:700;position:relative;padding:2px}
+  .sel small{font-size:.62rem;font-weight:600;color:var(--abu)}
+  .sel.kosong{background:transparent}
+  .sel.sunnah{background:var(--hijau-bg)}
+  .sel.utama{background:var(--emas-bg);border-color:var(--emas)}
+  .sel.wajib{background:var(--navy-bg)}
+  .sel.haram{background:var(--merah-bg);color:var(--merah)}
+  .sel.hariini{outline:2.5px solid var(--navy);outline-offset:-2px}
+  .sel.dipilih{background:var(--navy)!important;color:#fff}
+  .sel.dipilih small{color:var(--kuning)}
+  .legenda{display:flex;flex-wrap:wrap;gap:10px;font-size:.74rem;color:var(--abu);margin-top:10px}
+  .legenda i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+  .tag{display:block;padding:10px 12px;border-radius:12px;margin-top:8px;font-size:.86rem}
+  .tag b{display:block}
+  .tag.sunnah{background:var(--hijau-bg);color:#1F5E3E}
+  .tag.utama{background:var(--emas-bg);color:#7A5B00}
+  .tag.wajib{background:var(--navy-bg);color:var(--navy)}
+  .tag.haram{background:var(--merah-bg);color:var(--merah)}
+  .tag.info{background:#fff;color:var(--teks);border:1px solid var(--garis)}
+  .daftar{list-style:none}
+  .daftar li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px dashed var(--garis);font-size:.88rem}
+  .daftar li:last-child{border-bottom:0}
+  .daftar .kanan{text-align:right;color:var(--abu);font-size:.8rem;flex-shrink:0}
+  .catatan{font-size:.78rem;color:var(--abu);margin-top:8px}
+
+  /* Tes */
+  .langkah{height:8px;background:#fff;border-radius:999px;overflow:hidden;border:1px solid var(--garis);margin:8px 0 14px}
+  .langkah div{height:100%;background:var(--navy);transition:width .3s}
+  .soal-q{font-weight:700;font-size:1rem;margin:10px 0}
+  .soal-ar{background:#fff;border-radius:14px;padding:10px 14px;margin-bottom:10px;text-align:center}
+  .soal-ar .ar{text-align:center;font-size:calc(var(--ar) + .2rem)}
+  .opsi{display:grid;gap:8px}
+  .opsi button{background:#fff;border:1.5px solid var(--garis);border-radius:14px;padding:12px 14px;text-align:left;font-weight:600;min-height:52px}
+  .opsi button.ar-opsi{font-family:'Amiri',serif;direction:rtl;text-align:right;font-size:1.35rem;font-weight:400;line-height:1.7;padding:6px 14px}
+  .opsi button.dipilih{border-color:var(--navy);background:var(--navy-bg)}
+  .skor{width:120px;height:120px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;background:conic-gradient(var(--emas) var(--p),#fff 0);position:relative}
+  .skor::before{content:"";position:absolute;inset:10px;border-radius:50%;background:var(--kartu)}
+  .skor b{position:relative;font-size:1.6rem;color:var(--navy)}
+  .level-nama{text-align:center;font-size:1.4rem;font-weight:800;color:var(--navy)}
+  .rek{background:var(--emas-bg);border:1px solid var(--emas);border-radius:14px;padding:12px;margin:12px 0;font-size:.9rem}
+  .rek b{color:var(--navy)}
+  .tingkat-bar{margin:6px 0;font-size:.82rem}
+  .tingkat-bar .bar{height:8px;background:#fff;border-radius:999px;overflow:hidden;border:1px solid var(--garis);margin-top:3px}
+  .tingkat-bar .bar div{height:100%;background:var(--hijau)}
+  .form label{display:block;font-size:.82rem;font-weight:700;margin:10px 0 4px}
+  .form input{width:100%;padding:12px 14px;border:1px solid var(--garis);border-radius:12px;background:#fff}
+  .pesan{font-size:.84rem;margin-top:8px}
+  .pesan.salah{color:var(--merah)}
+  .pesan.ok{color:var(--hijau)}
+  .bahas{border-top:1px dashed var(--garis);padding:12px 0}
+  .bahas:first-child{border-top:0}
+  .benar{color:var(--hijau);font-weight:700}
+  .keliru{color:var(--merah);font-weight:700}
+
+  /* Bawah */
+  footer{max-width:560px;margin:4px auto 0;padding:0 16px 16px;text-align:center;font-size:.78rem;color:var(--abu)}
+  footer a{color:var(--navy);font-weight:700}
+  .nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--garis);display:flex;justify-content:center;z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+  .nav-isi{display:flex;width:100%;max-width:560px}
+  .nav button{flex:1;padding:8px 4px 10px;font-size:.7rem;font-weight:700;color:var(--abu);display:flex;flex-direction:column;align-items:center;gap:2px}
+  .nav button span{font-size:1.25rem}
+  .nav button.aktif{color:var(--navy)}
+  .nav button.aktif span{transform:translateY(-1px)}
+
+  /* ===== Kamus & Kaidah ===== */
+  .cari-hero{display:flex;gap:6px;background:#fff;border-radius:14px;padding:5px;margin-bottom:10px}
+  .cari-hero input{flex:1;min-width:0;border:0;outline:0;padding:10px;font-size:1rem;color:var(--teks);background:transparent}
+  .cari-hero button{background:var(--kuning);border-radius:10px;padding:0 16px;font-size:1.1rem}
+  .cari-box{display:flex;gap:8px;margin-bottom:4px}
+  .cari-box input{flex:1;min-width:0;padding:13px 14px;border:1.5px solid var(--garis);border-radius:14px;background:#fff;font-size:1.05rem;color:var(--teks)}
+  .cari-box input:focus{outline:none;border-color:var(--navy)}
+  .cari-box .tombol{width:auto;padding:0 18px}
+  .arah{font-size:.78rem;color:var(--abu);min-height:1.3em;margin-bottom:8px;font-weight:600}
+  .label-ai{font-size:.62rem;background:var(--kuning);color:var(--navy);padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:2px;font-weight:800}
+  .lainnya{font-size:.8rem;font-weight:800;color:var(--abu);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.5px}
+  .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .mini button{background:var(--kartu);border:1px solid var(--garis);border-radius:16px;padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.78rem;font-weight:700;color:var(--navy)}
+  .mini button span{font-size:1.5rem}
+  .h3{color:var(--navy);font-size:.95rem;margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .chip{background:#fff;border:1px solid var(--garis);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600;color:var(--navy);text-align:left}
+  .ar-chip,.ar-in{font-family:'Amiri',serif;font-size:1.2rem;font-weight:400;line-height:1.35}
+  .lbl{font-size:.75rem;color:var(--abu);font-weight:700;margin-right:2px}
+  .link-kecil{font-size:.82rem;font-weight:700;color:var(--navy);text-decoration:underline;margin-top:10px;display:inline-block}
+  .hasil-atas{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .lencana{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px}
+  .lencana.ok{background:var(--hijau-bg);color:#1F5E3E}
+  .lencana.ai{background:var(--emas-bg);color:#7A5B00}
+  .entri-atas{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .arab-besar{font-size:calc(var(--ar) + .9rem);line-height:1.7;flex:1}
+  .bunyi{width:42px;height:42px;border-radius:50%;background:var(--navy-bg);font-size:1.05rem;flex-shrink:0}
+  .bunyi.kecil{width:30px;height:30px;font-size:.75rem;vertical-align:middle;margin-right:6px}
+  .entri-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:2px 0 6px}
+  .akar{font-size:.8rem;color:var(--abu)}
+  .akar span{font-family:'Amiri',serif;font-size:1.1rem}
+  .arti-utama{font-size:1.1rem;font-weight:800;margin-bottom:10px}
+  .bentuk{display:grid;grid-template-columns:max-content 1fr;gap:6px 12px;background:#fff;border-radius:12px;padding:10px 12px;font-size:.88rem;margin-bottom:10px;align-items:center}
+  .bentuk dt{color:var(--abu);font-weight:600}
+  .bentuk dd{font-weight:600}
+  .ar-dd{font-family:'Amiri',serif;font-size:1.35rem;font-weight:400!important;color:var(--navy);direction:rtl;text-align:right}
+  .ar-dd span{cursor:pointer;border-bottom:1px dashed var(--emas)}
+  h4{font-size:.85rem;color:var(--navy);margin:12px 0 6px}
+  .ck{background:#fff;border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .ck .ar{font-size:calc(var(--ar) - .1rem);line-height:1.9}
+  .ck p:not(.ar){font-size:.86rem}
+  .ck .ket{color:var(--abu);font-size:.82rem;margin-top:4px;border-top:1px dashed var(--garis);padding-top:4px}
+  .catatan-ai{font-size:.88rem;background:var(--emas-bg);border-color:var(--emas)}
+  .aksi{margin:4px 0 6px}
+  .lapor{text-align:center}
+  .lapor textarea{width:100%;min-height:70px;border:1px solid var(--garis);border-radius:12px;padding:10px;font:inherit;font-size:.9rem;margin:8px 0}
+  .tombol.kecil{padding:9px 12px;font-size:.85rem}
+  .cta{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:0;margin-top:12px}
+  .cta p{font-size:.88rem;margin:4px 0 12px;opacity:.9}
+  .cta b{color:var(--kuning)}
+  .galat{background:var(--merah-bg);border-color:#F5A3A3;color:var(--merah);font-weight:600;font-size:.9rem}
+  .muat .sk{height:14px;border-radius:8px;background:linear-gradient(90deg,#efe6d2,#fff,#efe6d2);background-size:200% 100%;animation:kilau 1.2s infinite linear;margin:10px 0}
+  .muat .w60{width:55%;height:30px;margin-left:auto}.muat .w90{width:90%}.muat .w40{width:40%}
+  @keyframes kilau{to{background-position:-200% 0}}
+  .grup summary{font-weight:800;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .grup summary::-webkit-details-marker{display:none}
+  .grup summary small{font-weight:600;color:var(--abu);font-size:.75rem}
+  .topik{display:grid;margin-top:8px}
+  .topik button{text-align:left;padding:11px 2px;border-bottom:1px dashed var(--garis);font-size:.9rem;display:flex;justify-content:space-between;gap:8px}
+  .topik button:last-child{border-bottom:0}
+  .topik span{color:var(--emas);font-weight:800}
+  .kd-judul{font-size:1.15rem;color:var(--navy);line-height:1.35}
+  .kd-ar{text-align:right;font-size:calc(var(--ar) + .2rem);line-height:1.8}
+  .ringkas{background:var(--emas-bg);border-radius:12px;padding:10px 12px;font-size:.92rem;margin:8px 0}
+  .poin{padding-left:20px;font-size:.92rem}
+  .poin li{margin:6px 0}
+  .tabel-wrap{overflow-x:auto;margin:8px 0;border-radius:12px}
+  table{border-collapse:collapse;width:100%;font-size:.84rem;background:#fff}
+  th{background:var(--navy);color:#fff;padding:7px;font-weight:700;text-align:center}
+  td{border:1px solid var(--garis);padding:6px 8px;text-align:center}
+  .ar-td{font-family:'Amiri',serif;font-size:1.25rem}
+  .peringatan{background:var(--merah-bg);border-radius:12px;padding:10px 12px;font-size:.86rem;margin:10px 0;color:#7B1F1F}
+  .peringatan ul{padding-left:18px;margin-top:4px}
+  .latihan{background:#fff;border-radius:12px;padding:10px 12px;margin-bottom:6px;font-size:.9rem}
+  .latihan summary{cursor:pointer;font-weight:600}
+  .latihan p{margin-top:6px;color:var(--hijau);font-weight:600}
+  #toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--teks);color:#fff;padding:10px 16px;border-radius:12px;font-size:.85rem;z-index:50;max-width:90%;text-align:center}
+</style>
+</head>
+<body>
+
+<header class="atas">
+  <div class="atas-isi">
+    <div class="logo">ف</div>
+    <div>
+      <h1 id="namaApp">Sahabat Al-Fahmu</h1>
+      <small>Teman Belajar Bahasa Arab & Ibadah</small>
+    </div>
+    <a id="linkPortal" class="portal" hidden>← Portal</a>
+  </div>
+</header>
+
+<main>
+  <!-- ================= BERANDA ================= -->
+  <section id="home">
+    <div class="kartu hero">
+      <p class="tgl" id="homeTgl"></p>
+      <p class="hijri" id="homeHijri"></p>
+      <form class="cari-hero" onsubmit="event.preventDefault(); dariHome()">
+        <input id="homeCari" maxlength="200" placeholder="Cari kata: كِتَاب / belajar…" autocomplete="off" enterkeyhint="search" aria-label="Cari kata atau kaidah">
+        <button aria-label="Cari">🔍</button>
+      </form>
+      <div class="info" id="homeInfo"></div>
+    </div>
+    <div class="menu">
+      <button onclick="buka('kamus')"><div class="ikon" style="background:var(--navy-bg)">📖</div><div><b>Kamus Arab ⇄ Indonesia<span class="label-ai">AI</span></b><span>Arti, harakat, jamak, tashrif, dan contoh kalimat</span></div></button>
+      <button onclick="buka('kaidah')"><div class="ikon" style="background:var(--emas-bg)">🧩</div><div><b>Kamus Kaidah Bahasa Arab<span class="label-ai">AI</span></b><span>Nahwu, sharaf, i'rab, dan imla dijelaskan sederhana</span></div></button>
+    </div>
+    <p class="lainnya">Fitur lainnya</p>
+    <div class="mini">
+      <button onclick="buka('tes')"><span>📝</span>Tes Level Arab</button>
+      <button onclick="buka('dzikir')"><span>📿</span>Dzikir & Doa</button>
+      <button onclick="buka('kalender')"><span>🌙</span>Kalender Hijriah</button>
+    </div>
+  </section>
+
+  <!-- ================= KAMUS ================= -->
+  <section id="kamus" hidden>
+    <h2>Kamus Arab ⇄ Indonesia</h2>
+    <p class="sub">Ketik kata Arab atau Indonesia. Arah terjemahan dideteksi otomatis.</p>
+    <form class="cari-box" onsubmit="event.preventDefault(); cariKata($('#kmInput').value)">
+      <input id="kmInput" maxlength="40" placeholder="كَتَبَ  /  menulis" autocomplete="off" enterkeyhint="search" oninput="arahLabel()" aria-label="Kata yang dicari">
+      <button class="tombol">Cari</button>
+    </form>
+    <p class="arah" id="kmArah"></p>
+    <div id="kmBantu"></div>
+    <div id="kmHasil"></div>
+  </section>
+
+  <!-- ================= KAIDAH ================= -->
+  <section id="kaidah" hidden>
+    <h2>Kamus Kaidah Bahasa Arab</h2>
+    <p class="sub">Tanya kaidah nahwu & sharaf, minta i'rab kalimat, atau pilih topik.</p>
+    <form class="cari-box" onsubmit="event.preventDefault(); tanyaKaidah($('#kdInput').value)">
+      <input id="kdInput" maxlength="200" placeholder="Contoh: kapan isim dibaca jar?" autocomplete="off" enterkeyhint="search" aria-label="Pertanyaan kaidah">
+      <button class="tombol">Tanya</button>
+    </form>
+    <p class="arah"></p>
+    <div id="kdBantu"></div>
+    <div id="kdHasil"></div>
+  </section>
+
+  <!-- ================= DZIKIR ================= -->
+  <section id="dzikir" hidden>
+    <h2>Dzikir & Doa Harian</h2>
+    <p class="sub">Ketuk tombol untuk menghitung bacaan.</p>
+    <div class="tab" id="dzTab">
+      <button data-m="pagi" onclick="gantiMode('pagi')">☀️ Pagi</button>
+      <button data-m="petang" onclick="gantiMode('petang')">🌇 Petang</button>
+      <button data-m="doa" onclick="gantiMode('doa')">🤲 Doa Harian</button>
+    </div>
+    <div class="alat">
+      <button class="kecil" onclick="ubahFont(-0.15)">A−</button>
+      <button class="kecil" onclick="ubahFont(0.15)">A+</button>
+      <label><input type="checkbox" id="dzArti" onchange="toggleArti(this.checked)"> Tampilkan arti</label>
+    </div>
+    <input id="doaCari" class="cari" placeholder="Cari doa… (makan, tidur, masjid)" oninput="renderDoa()" hidden>
+    <div class="progres" id="dzProgres">
+      <div class="bar"><div class="isi" id="dzBar"></div></div>
+      <p><span id="dzTeks"></span><button id="dzReset" onclick="resetDzikir()" style="color:var(--merah);font-weight:700;font-size:.8rem">Ulangi</button></p>
+    </div>
+    <div id="dzList"></div>
+  </section>
+
+  <!-- ================= KALENDER ================= -->
+  <section id="kalender" hidden>
+    <h2>Kalender Hijriah</h2>
+    <p class="sub">Tanggal Hijriah dan pengingat puasa sunnah.</p>
+    <div class="kartu hero">
+      <p class="tgl" id="kalTgl"></p>
+      <p class="hijri" id="kalHijri"></p>
+      <div id="kalHariIni"></div>
+    </div>
+    <div class="kartu">
+      <h3 style="color:var(--navy);font-size:.95rem;margin-bottom:6px">⏳ Puasa Sunnah Terdekat</h3>
+      <ul class="daftar" id="kalDekat"></ul>
+    </div>
+    <div class="kartu">
+      <div class="kal-nav">
+        <button onclick="geserBulan(-1)" aria-label="Bulan sebelumnya">‹</button>
+        <div><b id="kalJudul"></b><small id="kalJudulH"></small></div>
+        <button onclick="geserBulan(1)" aria-label="Bulan berikutnya">›</button>
+      </div>
+      <div class="grid" id="kalGrid"></div>
+      <div class="legenda">
+        <span><i style="background:var(--hijau-bg);border:1px solid #9FD3B5"></i>Sunnah</span>
+        <span><i style="background:var(--emas-bg);border:1px solid var(--emas)"></i>Sangat dianjurkan</span>
+        <span><i style="background:var(--navy-bg)"></i>Ramadhan</span>
+        <span><i style="background:var(--merah-bg);border:1px solid #F5A3A3"></i>Haram puasa</span>
+      </div>
+      <div id="kalDetail"></div>
+    </div>
+    <div class="kartu">
+      <h3 style="color:var(--navy);font-size:.95rem;margin-bottom:6px">📌 Bulan Ini</h3>
+      <ul class="daftar" id="kalBulanIni"></ul>
+      <p class="catatan">Setiap Senin & Kamis disunnahkan berpuasa (ditandai hijau di kalender).</p>
+    </div>
+    <p class="catatan" style="text-align:center">Tanggal Hijriah adalah perkiraan berdasarkan perhitungan. Untuk awal Ramadhan, Syawal, dan Dzulhijjah, ikuti keputusan pemerintah.</p>
+  </section>
+
+  <!-- ================= TES ================= -->
+  <section id="tes" hidden>
+    <h2>Tes Level Bahasa Arab</h2>
+    <p class="sub">Gratis, tanpa daftar dulu. Kerjakan sendiri tanpa melihat kamus ya.</p>
+    <div id="tesIsi"></div>
+  </section>
+</main>
+
+<footer>
+  Sahabat Al-Fahmu • Belajar Bahasa Arab & Al-Qur'an<br>
+  <a id="footWA" href="#" target="_blank">Info kelas Al-Fahmu via WhatsApp</a>
+</footer>
+
+<nav class="nav"><div class="nav-isi">
+  <button data-go="home" onclick="buka('home')"><span>🏠</span>Beranda</button>
+  <button data-go="kamus" onclick="buka('kamus')"><span>📖</span>Kamus</button>
+  <button data-go="kaidah" onclick="buka('kaidah')"><span>🧩</span>Kaidah</button>
+  <button data-go="dzikir" onclick="buka('dzikir')"><span>📿</span>Dzikir</button>
+  <button data-go="kalender" onclick="buka('kalender')"><span>🌙</span>Kalender</button>
+</div></nav>
+<div id="toast" hidden></div>
+
+<script>
+/* =========================================================
+   DATA SAHABAT AL-FAHMU
+   Silakan edit teks di sini (dzikir, doa, soal, nama kelas).
+   waktu: "both" = pagi & petang, "pagi" saja, "petang" saja
+   Jika teks beda antara pagi/petang, isi {pagi:"...", petang:"..."}
+   ========================================================= */
+
+const DZIKIR = [
+  {
+    id: "kursi", judul: "Ayat Kursi", ulang: 1, waktu: "both",
+    arab: "أَعُوذُ بِاللّٰهِ مِنَ الشَّيْطَانِ الرَّجِيمِ\nاللّٰهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ، لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ، لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ، وَلَا يَئُودُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+    arti: "Allah, tidak ada ilah yang berhak disembah selain Dia, Yang Mahahidup, Yang terus-menerus mengurus makhluk-Nya. Dia tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang di hadapan dan di belakang mereka, dan mereka tidak mengetahui sedikit pun dari ilmu-Nya kecuali apa yang Dia kehendaki. Kursi-Nya meliputi langit dan bumi, dan Dia tidak merasa berat memelihara keduanya. Dia Mahatinggi lagi Mahabesar.",
+    sumber: "QS. Al-Baqarah: 255", ket: "Dijaga dari gangguan setan (HR. Al-Hakim)"
+  },
+  {
+    id: "qul", judul: "Al-Ikhlas, Al-Falaq, An-Nas", ulang: 3, waktu: "both",
+    arab: "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ\nقُلْ هُوَ اللّٰهُ أَحَدٌ ﴿١﴾ اللّٰهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ ﴿٤﴾\n\nبِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِنْ شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾\n\nبِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلٰهِ النَّاسِ ﴿٣﴾ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾",
+    arti: "Al-Ikhlas: Katakanlah, Dialah Allah Yang Maha Esa. Allah tempat bergantung segala sesuatu. Dia tidak beranak dan tidak diperanakkan. Dan tidak ada sesuatu pun yang setara dengan-Nya.\nAl-Falaq: Katakanlah, aku berlindung kepada Rabb yang menguasai subuh, dari kejahatan makhluk-Nya, dari kejahatan malam apabila telah gelap gulita, dari kejahatan para penyihir yang meniup pada buhul-buhul, dan dari kejahatan orang yang dengki apabila ia dengki.\nAn-Nas: Katakanlah, aku berlindung kepada Rabb manusia, Raja manusia, Sembahan manusia, dari kejahatan bisikan setan yang bersembunyi, yang membisikkan kejahatan ke dalam dada manusia, dari golongan jin dan manusia.",
+    sumber: "HR. Abu Dawud & At-Tirmidzi", ket: "Masing-masing surat 3×, mencukupi dari segala sesuatu"
+  },
+  {
+    id: "ashbahna", judul: "Memasuki Waktu Pagi/Petang", ulang: 1, waktu: "both",
+    arab: {
+      pagi: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلّٰهِ، وَالْحَمْدُ لِلّٰهِ، لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هٰذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هٰذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ",
+      petang: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلّٰهِ، وَالْحَمْدُ لِلّٰهِ، لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هٰذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هٰذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ"
+    },
+    arti: {
+      pagi: "Kami memasuki waktu pagi dan kerajaan hanya milik Allah. Segala puji bagi Allah. Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu. Wahai Rabbku, aku memohon kepada-Mu kebaikan hari ini dan kebaikan sesudahnya, dan aku berlindung kepada-Mu dari keburukan hari ini dan keburukan sesudahnya. Wahai Rabbku, aku berlindung kepada-Mu dari kemalasan dan keburukan masa tua. Wahai Rabbku, aku berlindung kepada-Mu dari azab neraka dan azab kubur.",
+      petang: "Kami memasuki waktu petang dan kerajaan hanya milik Allah. Segala puji bagi Allah. Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu. Wahai Rabbku, aku memohon kepada-Mu kebaikan malam ini dan kebaikan sesudahnya, dan aku berlindung kepada-Mu dari keburukan malam ini dan keburukan sesudahnya. Wahai Rabbku, aku berlindung kepada-Mu dari kemalasan dan keburukan masa tua. Wahai Rabbku, aku berlindung kepada-Mu dari azab neraka dan azab kubur."
+    },
+    sumber: "HR. Muslim", ket: ""
+  },
+  {
+    id: "bika", judul: "Dengan-Mu Kami Hidup", ulang: 1, waktu: "both",
+    arab: {
+      pagi: "اللّٰهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ",
+      petang: "اللّٰهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ"
+    },
+    arti: {
+      pagi: "Ya Allah, dengan-Mu kami memasuki waktu pagi dan dengan-Mu kami memasuki waktu petang. Dengan-Mu kami hidup, dengan-Mu kami mati, dan kepada-Mu kebangkitan.",
+      petang: "Ya Allah, dengan-Mu kami memasuki waktu petang dan dengan-Mu kami memasuki waktu pagi. Dengan-Mu kami hidup, dengan-Mu kami mati, dan kepada-Mu tempat kembali."
+    },
+    sumber: "HR. At-Tirmidzi", ket: ""
+  },
+  {
+    id: "sayyid", judul: "Sayyidul Istighfar", ulang: 1, waktu: "both",
+    arab: "اللّٰهُمَّ أَنْتَ رَبِّي لَا إِلٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+    arti: "Ya Allah, Engkau Rabbku, tidak ada ilah yang berhak disembah selain Engkau. Engkau yang menciptakanku dan aku adalah hamba-Mu. Aku berada di atas perjanjian dan janji-Mu semampuku. Aku berlindung kepada-Mu dari keburukan perbuatanku. Aku mengakui nikmat-Mu kepadaku dan aku mengakui dosaku, maka ampunilah aku. Sesungguhnya tidak ada yang mengampuni dosa selain Engkau.",
+    sumber: "HR. Al-Bukhari", ket: "Dibaca dengan yakin, lalu wafat di hari/malam itu, termasuk penghuni surga"
+  },
+  {
+    id: "afini", judul: "Memohon Kesehatan", ulang: 3, waktu: "both",
+    arab: "اللّٰهُمَّ عَافِنِي فِي بَدَنِي، اللّٰهُمَّ عَافِنِي فِي سَمْعِي، اللّٰهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلٰهَ إِلَّا أَنْتَ. اللّٰهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلٰهَ إِلَّا أَنْتَ",
+    arti: "Ya Allah, sehatkanlah badanku. Ya Allah, sehatkanlah pendengaranku. Ya Allah, sehatkanlah penglihatanku. Tidak ada ilah yang berhak disembah selain Engkau. Ya Allah, aku berlindung kepada-Mu dari kekufuran dan kefakiran, dan aku berlindung kepada-Mu dari azab kubur. Tidak ada ilah yang berhak disembah selain Engkau.",
+    sumber: "HR. Abu Dawud", ket: ""
+  },
+  {
+    id: "afwa", judul: "Memohon Ampunan & Perlindungan", ulang: 1, waktu: "both",
+    arab: "اللّٰهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللّٰهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللّٰهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللّٰهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي، وَعَنْ يَمِينِي وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي",
+    arti: "Ya Allah, aku memohon kepada-Mu ampunan dan keselamatan di dunia dan akhirat. Ya Allah, aku memohon kepada-Mu ampunan dan keselamatan dalam agamaku, duniaku, keluargaku, dan hartaku. Ya Allah, tutupilah aib-aibku dan tenteramkanlah aku dari rasa takut. Ya Allah, jagalah aku dari depan, belakang, kanan, kiri, dan atasku. Aku berlindung dengan keagungan-Mu agar tidak dicelakakan dari arah bawahku.",
+    sumber: "HR. Abu Dawud & Ibnu Majah", ket: ""
+  },
+  {
+    id: "ghaib", judul: "Berlindung dari Keburukan Diri", ulang: 1, waktu: "both",
+    arab: "اللّٰهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ",
+    arti: "Ya Allah, Yang Maha Mengetahui yang gaib dan yang nyata, Pencipta langit dan bumi, Rabb dan Penguasa segala sesuatu. Aku bersaksi bahwa tidak ada ilah yang berhak disembah selain Engkau. Aku berlindung kepada-Mu dari keburukan diriku, dari keburukan setan dan ajakan syiriknya, dan dari berbuat keburukan terhadap diriku atau menimpakannya kepada seorang muslim.",
+    sumber: "HR. Abu Dawud & At-Tirmidzi", ket: ""
+  },
+  {
+    id: "bismillah", judul: "Perlindungan dengan Nama Allah", ulang: 3, waktu: "both",
+    arab: "بِسْمِ اللّٰهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+    arti: "Dengan nama Allah, yang bersama nama-Nya tidak ada sesuatu pun di bumi maupun di langit yang dapat membahayakan. Dia Maha Mendengar lagi Maha Mengetahui.",
+    sumber: "HR. Abu Dawud & At-Tirmidzi", ket: "Tidak akan ditimpa bahaya secara tiba-tiba"
+  },
+  {
+    id: "radhitu", judul: "Rida kepada Allah, Islam, dan Nabi ﷺ", ulang: 3, waktu: "both",
+    arab: "رَضِيتُ بِاللّٰهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا",
+    arti: "Aku rida Allah sebagai Rabb, Islam sebagai agama, dan Muhammad ﷺ sebagai nabi.",
+    sumber: "HR. Abu Dawud & Ahmad", ket: ""
+  },
+  {
+    id: "hayyu", judul: "Ya Hayyu Ya Qayyum", ulang: 1, waktu: "both",
+    arab: "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ",
+    arti: "Wahai Yang Mahahidup, wahai Yang terus-menerus mengurus makhluk-Nya, dengan rahmat-Mu aku memohon pertolongan. Perbaikilah seluruh urusanku dan jangan Engkau serahkan aku kepada diriku sendiri walau sekejap mata.",
+    sumber: "HR. An-Nasa'i & Al-Hakim", ket: ""
+  },
+  {
+    id: "fitrah", judul: "Di Atas Fitrah Islam", ulang: 1, waktu: "both",
+    arab: {
+      pagi: "أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ",
+      petang: "أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ"
+    },
+    arti: {
+      pagi: "Kami memasuki waktu pagi di atas fitrah Islam, di atas kalimat ikhlas (tauhid), di atas agama nabi kami Muhammad ﷺ, dan di atas millah bapak kami Ibrahim yang lurus lagi berserah diri, dan dia bukan termasuk orang-orang musyrik.",
+      petang: "Kami memasuki waktu petang di atas fitrah Islam, di atas kalimat ikhlas (tauhid), di atas agama nabi kami Muhammad ﷺ, dan di atas millah bapak kami Ibrahim yang lurus lagi berserah diri, dan dia bukan termasuk orang-orang musyrik."
+    },
+    sumber: "HR. Ahmad", ket: ""
+  },
+  {
+    id: "adada", judul: "Tasbih Sebanyak Makhluk-Nya", ulang: 3, waktu: "pagi",
+    arab: "سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ",
+    arti: "Mahasuci Allah dan dengan memuji-Nya, sebanyak jumlah makhluk-Nya, seridha diri-Nya, seberat timbangan 'Arsy-Nya, dan sebanyak tinta kalimat-kalimat-Nya.",
+    sumber: "HR. Muslim", ket: ""
+  },
+  {
+    id: "ilman", judul: "Ilmu, Rezeki, dan Amal", ulang: 1, waktu: "pagi",
+    arab: "اللّٰهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا",
+    arti: "Ya Allah, aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima.",
+    sumber: "HR. Ibnu Majah", ket: "Dibaca setelah salam sholat Subuh"
+  },
+  {
+    id: "kalimat", judul: "Berlindung dengan Kalimat Allah", ulang: 3, waktu: "petang",
+    arab: "أَعُوذُ بِكَلِمَاتِ اللّٰهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+    arti: "Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan.",
+    sumber: "HR. Muslim", ket: ""
+  },
+  {
+    id: "tahlil", judul: "Tahlil", ulang: 10, waktu: "both",
+    arab: "لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    arti: "Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu.",
+    sumber: "HR. An-Nasa'i", ket: "Atau 100× dalam sehari (HR. Al-Bukhari & Muslim)"
+  },
+  {
+    id: "tasbih", judul: "Tasbih", ulang: 100, waktu: "both",
+    arab: "سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ",
+    arti: "Mahasuci Allah dan dengan memuji-Nya.",
+    sumber: "HR. Muslim", ket: "Tidak ada yang datang membawa amalan lebih utama pada hari kiamat, kecuali yang membaca semisalnya atau lebih"
+  }
+];
+
+const DOA = [
+  { id: "bangun", judul: "Bangun Tidur", arab: "الْحَمْدُ لِلّٰهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ", arti: "Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami, dan kepada-Nya kebangkitan.", sumber: "HR. Al-Bukhari" },
+  { id: "tidur", judul: "Sebelum Tidur", arab: "بِاسْمِكَ اللّٰهُمَّ أَمُوتُ وَأَحْيَا", arti: "Dengan nama-Mu ya Allah aku mati dan aku hidup.", sumber: "HR. Al-Bukhari" },
+  { id: "wc-masuk", judul: "Masuk Kamar Mandi/WC", arab: "اللّٰهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ", arti: "Ya Allah, aku berlindung kepada-Mu dari setan laki-laki dan setan perempuan.", sumber: "HR. Al-Bukhari & Muslim" },
+  { id: "wc-keluar", judul: "Keluar Kamar Mandi/WC", arab: "غُفْرَانَكَ", arti: "Aku memohon ampunan-Mu.", sumber: "HR. Abu Dawud & At-Tirmidzi" },
+  { id: "makan", judul: "Sebelum Makan", arab: "بِسْمِ اللّٰهِ", arti: "Dengan nama Allah. (Jika lupa di awal, ucapkan: بِسْمِ اللّٰهِ أَوَّلَهُ وَآخِرَهُ — Dengan nama Allah di awal dan akhirnya.)", sumber: "HR. Abu Dawud & At-Tirmidzi" },
+  { id: "makan-selesai", judul: "Setelah Makan", arab: "الْحَمْدُ لِلّٰهِ الَّذِي أَطْعَمَنِي هٰذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ", arti: "Segala puji bagi Allah yang memberiku makanan ini dan merezekikannya kepadaku tanpa daya dan kekuatan dariku.", sumber: "HR. Abu Dawud & At-Tirmidzi" },
+  { id: "pakaian", judul: "Memakai Pakaian", arab: "الْحَمْدُ لِلّٰهِ الَّذِي كَسَانِي هٰذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ", arti: "Segala puji bagi Allah yang memberiku pakaian ini dan merezekikannya kepadaku tanpa daya dan kekuatan dariku.", sumber: "HR. Abu Dawud" },
+  { id: "keluar-rumah", judul: "Keluar Rumah", arab: "بِسْمِ اللّٰهِ، تَوَكَّلْتُ عَلَى اللّٰهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ", arti: "Dengan nama Allah, aku bertawakal kepada Allah, dan tidak ada daya serta kekuatan kecuali dengan pertolongan Allah.", sumber: "HR. Abu Dawud & At-Tirmidzi" },
+  { id: "masuk-rumah", judul: "Masuk Rumah", arab: "بِسْمِ اللّٰهِ وَلَجْنَا، وَبِسْمِ اللّٰهِ خَرَجْنَا، وَعَلَى اللّٰهِ رَبِّنَا تَوَكَّلْنَا", arti: "Dengan nama Allah kami masuk, dengan nama Allah kami keluar, dan kepada Allah Rabb kami, kami bertawakal. (Lalu ucapkan salam kepada keluarga.)", sumber: "HR. Abu Dawud" },
+  { id: "kendaraan", judul: "Naik Kendaraan", arab: "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ", arti: "Mahasuci Allah yang telah menundukkan kendaraan ini untuk kami, padahal sebelumnya kami tidak mampu menguasainya. Dan sesungguhnya kami akan kembali kepada Rabb kami.", sumber: "QS. Az-Zukhruf: 13–14" },
+  { id: "masjid-masuk", judul: "Masuk Masjid", arab: "اللّٰهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ", arti: "Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu.", sumber: "HR. Muslim" },
+  { id: "masjid-keluar", judul: "Keluar Masjid", arab: "اللّٰهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ", arti: "Ya Allah, aku memohon kepada-Mu sebagian dari karunia-Mu.", sumber: "HR. Muslim" },
+  { id: "hujan", judul: "Ketika Turun Hujan", arab: "اللّٰهُمَّ صَيِّبًا نَافِعًا", arti: "Ya Allah, turunkanlah hujan yang bermanfaat.", sumber: "HR. Al-Bukhari" },
+  { id: "bersin", judul: "Ketika Bersin", arab: "الْحَمْدُ لِلّٰهِ\nيَرْحَمُكَ اللّٰهُ\nيَهْدِيكُمُ اللّٰهُ وَيُصْلِحُ بَالَكُمْ", arti: "Yang bersin: Segala puji bagi Allah. Yang mendengar: Semoga Allah merahmatimu. Yang bersin membalas: Semoga Allah memberimu petunjuk dan memperbaiki keadaanmu.", sumber: "HR. Al-Bukhari" },
+  { id: "ilmu", judul: "Memohon Tambahan Ilmu", arab: "رَبِّ زِدْنِي عِلْمًا", arti: "Wahai Rabbku, tambahkanlah ilmu kepadaku.", sumber: "QS. Thaha: 114" },
+  { id: "ortu", judul: "Untuk Kedua Orang Tua", arab: "رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا", arti: "Wahai Rabbku, sayangilah keduanya sebagaimana mereka berdua telah mendidikku waktu kecil.", sumber: "QS. Al-Isra': 24" },
+  { id: "sapu-jagat", judul: "Kebaikan Dunia & Akhirat", arab: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", arti: "Wahai Rabb kami, berilah kami kebaikan di dunia dan kebaikan di akhirat, dan lindungilah kami dari azab neraka.", sumber: "QS. Al-Baqarah: 201" }
+];
+
+/* ===== TES LEVEL BAHASA ARAB =====
+   tingkat 1–4 (5 soal per tingkat). kunci = nomor urut opsi yang benar (mulai 0).
+   Urutan opsi diacak otomatis saat tes. */
+const TINGKAT = ["Mengenal Huruf & Kosakata", "Kalimat Sederhana", "Fi'il & Susunan Kata", "Nahwu & Pemahaman Teks"];
+
+const SOAL = [
+  { tingkat: 1, q: "Huruf ini dibaca…", ar: "ب", opsi: ["Ba", "Ta", "Tsa", "Nun"], kunci: 0, bahas: "ب (ba) bertitik satu di bawah. ت (ta) titik dua di atas, ث (tsa) titik tiga di atas, ن (nun) titik satu di atas." },
+  { tingkat: 1, q: "Arti kata ini adalah…", ar: "كِتَابٌ", opsi: ["Pena", "Buku", "Meja", "Pintu"], kunci: 1, bahas: "كِتَابٌ = buku. Pena = قَلَمٌ, meja = مَكْتَبٌ, pintu = بَابٌ." },
+  { tingkat: 1, q: "Manakah yang artinya «masjid»?", opsi: ["مَدْرَسَةٌ", "بَيْتٌ", "مَسْجِدٌ", "سُوقٌ"], kunci: 2, bahas: "مَسْجِدٌ = masjid. مَدْرَسَةٌ = sekolah, بَيْتٌ = rumah, سُوقٌ = pasar." },
+  { tingkat: 1, q: "Arti kata ini adalah…", ar: "أَنَا", opsi: ["Kamu", "Dia (laki-laki)", "Kami", "Saya"], kunci: 3, bahas: "أَنَا = saya. أَنْتَ = kamu, هُوَ = dia (lk), نَحْنُ = kami." },
+  { tingkat: 1, q: "Angka ini bernilai…", ar: "ثَلَاثَةٌ", opsi: ["2", "3", "4", "5"], kunci: 1, bahas: "ثَلَاثَةٌ = tiga. اِثْنَانِ = 2, أَرْبَعَةٌ = 4, خَمْسَةٌ = 5." },
+
+  { tingkat: 2, q: "Bahasa Arab dari «Ini sebuah sekolah» adalah…", opsi: ["هٰذَا مَدْرَسَةٌ", "ذٰلِكَ مَدْرَسَةٌ", "هٰذِهِ مَدْرَسَةٌ", "هٰؤُلَاءِ مَدْرَسَةٌ"], kunci: 2, bahas: "مَدْرَسَةٌ berjenis muannats (berakhiran ة), maka kata tunjuk dekatnya هٰذِهِ." },
+  { tingkat: 2, q: "Bentuk muannats tunggal dari طَالِبٌ adalah…", opsi: ["طُلَّابٌ", "طَالِبَانِ", "طَالِبَاتٌ", "طَالِبَةٌ"], kunci: 3, bahas: "Muannats tunggal dibentuk dengan menambah ة: طَالِبَةٌ. طُلَّابٌ dan طَالِبَاتٌ bentuk jamak, طَالِبَانِ bentuk dua (mutsanna)." },
+  { tingkat: 2, q: "Arti kalimat ini adalah…", ar: "أَيْنَ الْكِتَابُ؟", opsi: ["Di mana buku itu?", "Apa ini?", "Milik siapa buku itu?", "Berapa harga buku itu?"], kunci: 0, bahas: "أَيْنَ = di mana. مَا = apa, لِمَنْ = milik siapa, كَمْ = berapa." },
+  { tingkat: 2, q: "Lengkapi: ___ مُدَرِّسٌ  (Dia [laki-laki] seorang guru)", opsi: ["هِيَ", "أَنْتِ", "هُوَ", "نَحْنُ"], kunci: 2, bahas: "هُوَ = dia laki-laki. هِيَ = dia perempuan, أَنْتِ = kamu (pr), نَحْنُ = kami." },
+  { tingkat: 2, q: "Arti susunan ini adalah…", ar: "بَيْتٌ كَبِيرٌ", opsi: ["Rumah itu besar", "Sebuah rumah besar", "Rumah kecil", "Rumah baru"], kunci: 1, bahas: "Dua kata nakirah berurutan membentuk sifat–mausuf: «sebuah rumah besar». Kalau «rumah itu besar» = اَلْبَيْتُ كَبِيرٌ." },
+
+  { tingkat: 3, q: "Fi'il madhi (bentuk lampau) dari يَكْتُبُ adalah…", opsi: ["اُكْتُبْ", "كَتَبَ", "كَاتِبٌ", "مَكْتُوبٌ"], kunci: 1, bahas: "كَتَبَ = telah menulis. اُكْتُبْ fi'il amr (perintah), كَاتِبٌ isim fa'il (penulis), مَكْتُوبٌ isim maf'ul (yang ditulis)." },
+  { tingkat: 3, q: "Arti kalimat ini adalah…", ar: "ذَهَبَ الطُّلَّابُ إِلَى الْمَسْجِدِ", opsi: ["Para siswa sedang pergi ke masjid", "Siswa itu pergi ke masjid", "Para siswa akan pergi ke masjid", "Para siswa telah pergi ke masjid"], kunci: 3, bahas: "ذَهَبَ fi'il madhi (sudah terjadi), dan الطُّلَّابُ bentuk jamak (para siswa)." },
+  { tingkat: 3, q: "Bahasa Arab yang benar untuk «buku siswa» (idhafah) adalah…", opsi: ["الْكِتَابُ الطَّالِبِ", "كِتَابٌ الطَّالِبُ", "كِتَابُ الطَّالِبِ", "الْكِتَابُ طَالِبٌ"], kunci: 2, bahas: "Mudhaf tidak memakai ال dan tanwin (كِتَابُ), mudhaf ilaih majrur (الطَّالِبِ)." },
+  { tingkat: 3, q: "Bentuk jamak dari قَلَمٌ adalah…", opsi: ["أَقْلَامٌ", "قَلَمَاتٌ", "قُلُومٌ", "مَقَالِمُ"], kunci: 0, bahas: "Jamak taksir dari قَلَمٌ adalah أَقْلَامٌ. مَقَالِمُ adalah jamak dari مِقْلَمَةٌ (kotak pensil)." },
+  { tingkat: 3, q: "Lengkapi: الطَّالِبَةُ ___ الدَّرْسَ  (Siswi itu sedang menulis pelajaran)", opsi: ["يَكْتُبُ", "كَتَبْتُ", "اُكْتُبْ", "تَكْتُبُ"], kunci: 3, bahas: "Pelaku muannats (الطَّالِبَةُ) dan waktu sekarang, maka fi'il mudhari' diawali ت: تَكْتُبُ." },
+
+  { tingkat: 4, q: "Kedudukan (i'rab) kata الْمُدَرِّسُ dalam kalimat ini adalah…", ar: "جَاءَ الْمُدَرِّسُ", opsi: ["Mubtada' marfu'", "Fa'il marfu'", "Maf'ul bih manshub", "Majrur karena huruf jar"], kunci: 1, bahas: "Kata الْمُدَرِّسُ adalah pelaku dari fi'il جَاءَ, maka ia fa'il dan dibaca marfu' (dhammah)." },
+  { tingkat: 4, q: "Kalimat yang benar harakat akhirnya adalah…", opsi: ["إِنَّ اللّٰهُ غَفُورٌ رَحِيمٌ", "إِنَّ اللّٰهَ غَفُورًا رَحِيمًا", "إِنَّ اللّٰهِ غَفُورٌ رَحِيمٌ", "إِنَّ اللّٰهَ غَفُورٌ رَحِيمٌ"], kunci: 3, bahas: "إِنَّ menashabkan isimnya (اللّٰهَ) dan merafa'kan khabarnya (غَفُورٌ رَحِيمٌ)." },
+  { tingkat: 4, q: "Lengkapi: كَانَ الْجَوُّ ___  (Cuaca tadi indah)", opsi: ["جَمِيلًا", "جَمِيلٌ", "جَمِيلٍ", "الْجَمِيلُ"], kunci: 0, bahas: "كَانَ merafa'kan isimnya (الْجَوُّ) dan menashabkan khabarnya, maka جَمِيلًا." },
+  { tingkat: 4, q: "Baca teks berikut, lalu jawab: مَاذَا اشْتَرَى أَحْمَدُ؟", ar: "ذَهَبَ أَحْمَدُ مَعَ أَبِيهِ إِلَى السُّوقِ يَوْمَ الْجُمُعَةِ، فَاشْتَرَى كِتَابًا وَقَلَمًا.", opsi: ["حَقِيبَةً وَكِتَابًا", "قَلَمًا وَدَفْتَرًا", "كِتَابًا وَقَلَمًا", "لَمْ يَشْتَرِ شَيْئًا"], kunci: 2, bahas: "Dalam teks: فَاشْتَرَى كِتَابًا وَقَلَمًا (ia membeli buku dan pena)." },
+  { tingkat: 4, q: "Dari teks yang sama: مَتَى ذَهَبَ أَحْمَدُ إِلَى السُّوقِ؟", ar: "ذَهَبَ أَحْمَدُ مَعَ أَبِيهِ إِلَى السُّوقِ يَوْمَ الْجُمُعَةِ، فَاشْتَرَى كِتَابًا وَقَلَمًا.", opsi: ["يَوْمَ الْخَمِيسِ", "يَوْمَ الْجُمُعَةِ", "يَوْمَ السَّبْتِ", "يَوْمَ الْأَحَدِ"], kunci: 1, bahas: "مَتَى = kapan. Dalam teks: يَوْمَ الْجُمُعَةِ (hari Jumat)." }
+];
+
+/* Level hasil tes: index 0 = belum lulus tingkat 1, index 4 = lulus semua tingkat.
+   Silakan sesuaikan nama kelas dengan program Al-Fahmu. */
+const LEVEL = [
+  { nama: "Pemula Awal", desc: "Mulai dari mengenal huruf hijaiyah dan kosakata sehari-hari.", kelas: "Kelas Bahasa Arab Dasar (mulai dari nol)" },
+  { nama: "Pemula", desc: "Sudah kenal huruf dan kosakata dasar. Saatnya belajar menyusun kalimat sederhana.", kelas: "Kelas Bahasa Arab Level 1" },
+  { nama: "Dasar", desc: "Sudah bisa memahami kalimat sederhana. Lanjutkan ke fi'il dan susunan kata.", kelas: "Kelas Bahasa Arab Level 2 (Nahwu & Sharaf dasar)" },
+  { nama: "Menengah", desc: "Paham fi'il dan susunan kata. Perkuat nahwu dan pemahaman teks.", kelas: "Kelas Bahasa Arab Level 3 (Qira'ah & Nahwu lanjutan)" },
+  { nama: "Lanjut", desc: "Dasar bahasa Arab sudah kuat. Siap untuk target yang lebih tinggi.", kelas: "Program Persiapan LIPIA & Timur Tengah" }
+];
+
+/* ===== DAFTAR TOPIK KAIDAH (tombol cepat di menu Kaidah) =====
+   Boleh ditambah/diubah. Saat diketuk, topik dikirim ke AI lalu tersimpan di sheet KAIDAH. */
+const KAIDAH_TOPIK = [
+  { grup: "Nahwu Dasar", ikon: "🧱", topik: [
+    "Pembagian kalimah: isim, fi'il, harf", "Tanda-tanda isim", "Isim nakirah dan ma'rifah",
+    "Dhamir (kata ganti)", "Isim isyarah (kata tunjuk)", "Isim maushul (kata sambung)",
+    "Mubtada' dan khabar", "Fa'il", "Maf'ul bih", "Idhafah (mudhaf dan mudhaf ilaih)",
+    "Na'at dan man'ut (sifat)", "Huruf jar dan majrur"
+  ]},
+  { grup: "Nahwu Lanjut", ikon: "🏛️", topik: [
+    "Tanda i'rab asli dan cabang", "Kana dan saudara-saudaranya", "Inna dan saudara-saudaranya",
+    "Isim ghairu munsharif", "Fi'il mudhari' manshub dan majzum", "Hal", "Tamyiz",
+    "Maf'ul muthlaq, li ajlih, dan fih", "Badal", "'Adad dan ma'dud (bilangan)"
+  ]},
+  { grup: "Sharaf", ikon: "🔁", topik: [
+    "Fi'il madhi, mudhari', dan amr", "Tashrif lughawi (perubahan sesuai dhamir)", "Tashrif istilahi",
+    "Enam bab fi'il tsulatsi mujarrad", "Fi'il tsulatsi mazid", "Isim fa'il dan isim maf'ul",
+    "Masdar", "Jamak taksir dan polanya", "Mudzakkar dan muannats", "Fi'il shahih dan mu'tal"
+  ]},
+  { grup: "Imla & Penulisan", ikon: "✍️", topik: [
+    "Hamzah washal dan hamzah qatha'", "Ta marbuthah dan ta maftuhah",
+    "Alif lam syamsiyah dan qamariyah", "Penulisan hamzah di tengah kata", "Alif maqshurah dan alif mamdudah"
+  ]}
+];
+
+/* Contoh pencarian yang ditampilkan saat kotak masih kosong */
+const CONTOH_KAMUS = ["كِتَابٌ", "belajar", "مَدْرَسَةٌ", "sabar", "ذَهَبَ", "rumah"];
+const CONTOH_KAIDAH = ["Kapan isim dibaca nashab?", "I'rab: ذَهَبَ الطَّالِبُ إِلَى الْمَسْجِدِ", "Tashrif kata نَصَرَ", "Beda هٰذَا dan ذٰلِكَ"];
+</script>
+
+
+<script>
+/* ===================== UMUM ===================== */
+/* ===================== PENGATURAN ===================== */
+// Link /exec Apps Script "Sahabat Al-Fahmu" (Deploy → Manage deployments → salin Web app URL)
+const API_URL = 'https://script.google.com/macros/s/AKfycbxUtJeOlLSuFF3nCoIsmDCW7lJhaznR8QyfJdCGNNJhDG9phGKNFsLeEil0vybvg_U8/exec';
+
+const _P = new URLSearchParams(location.search);
+const DALAM_PORTAL = (function(){ try { return window.self !== window.top; } catch(e) { return true; } })();
+const CFG = {
+  NAMA_APP: 'Sahabat Al-Fahmu',
+  WA_ADMIN: '6281213911301',
+  HIJRI_OFFSET: 0,                          // -1 / 1 bila beda dengan kalender Kemenag
+  LINK_PORTAL: DALAM_PORTAL ? '' : '../',   // tombol "← Portal" (disembunyikan bila dibuka dari dalam portal)
+  URL_APP: location.origin + location.pathname,
+  Q: (_P.get('q') || '').slice(0, 200)
+};
+const START = ['kamus','kaidah','dzikir','kalender','tes'].indexOf(_P.get('fitur')) > -1 ? _P.get('fitur') : 'home';
+
+/* Penghubung ke Apps Script (menggantikan google.script.run) */
+function apiPanggil(fn, arg){
+  if (!API_URL || API_URL.indexOf('/exec') < 0) return Promise.reject(new Error('API_URL belum diisi admin.'));
+  const ctrl = window.AbortController ? new AbortController() : null;
+  const batas = setTimeout(() => ctrl && ctrl.abort(), 45000);
+  return fetch(API_URL, {
+    method: 'POST', redirect: 'follow', signal: ctrl ? ctrl.signal : undefined,
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ fn: fn, arg: arg || {} })
+  }).then(r => r.text().then(t => {
+      try { return JSON.parse(t); } catch (x) {}
+      if (/doPost/.test(t)) throw new Error('Server Sahabat belum diperbarui. Admin perlu deploy versi baru Apps Script (fungsi doPost).');
+      throw new Error('Server sedang sibuk (' + r.status + '). Coba lagi sebentar.');
+    }))
+    .catch(e => { throw new Error(e && e.name === 'AbortError' ? 'Koneksi terlalu lama. Periksa sinyal lalu coba lagi.' : (e.message && /^Server/.test(e.message) ? e.message : (navigator.onLine === false ? 'Tidak ada koneksi internet.' : 'Koneksi bermasalah, coba lagi.'))); })
+    .finally(() => clearTimeout(batas));
+}
+window.google = { script: { run: (function buat(h){
+  return new Proxy({}, { get: (_, k) => {
+    if (k === 'withSuccessHandler') return f => buat(Object.assign({}, h, { ok: f }));
+    if (k === 'withFailureHandler') return f => buat(Object.assign({}, h, { gagal: f }));
+    return arg => { apiPanggil(k, arg).then(r => h.ok && h.ok(r), e => h.gagal && h.gagal(e)); };
+  }});
+})({}) } };
+
+const HARI = ['Ahad','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+const HARI_PENDEK = ['Ahd','Sen','Sel','Rab','Kam','Jum','Sab'];
+const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const BULAN_PENDEK = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const BULAN_H = ['Muharram','Safar','Rabiul Awal','Rabiul Akhir','Jumadil Awal','Jumadil Akhir','Rajab',"Sya'ban",'Ramadhan','Syawal',"Dzulqa'dah",'Dzulhijjah'];
+
+const BULAN_H_PENDEK = ['Muhrm','Safar','R.Awl','R.Akh','J.Awl','J.Akh','Rajab',"Sya'bn",'Rmdhn','Syawl',"Dz.Qa",'Dz.Hj'];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isAr = s => /[\u0600-\u06FF]/.test(s);
+const waOk = () => /^\d{10,15}$/.test(CFG.WA_ADMIN || '');
+
+const Simpan = {
+  get(k, d){ try { const v = localStorage.getItem('sa_' + k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem('sa_' + k, JSON.stringify(v)); } catch(e){} }
+};
+
+function hariIni(){ const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate(), 12); }
+function tglKey(d){ d = d || new Date(); return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
+function fmtMasehi(d){ return HARI[d.getDay()] + ', ' + d.getDate() + ' ' + BULAN[d.getMonth()] + ' ' + d.getFullYear(); }
+function bagikanWA(teks){ window.open('https://wa.me/?text=' + encodeURIComponent(teks), '_blank'); }
+function linkFitur(f){ return CFG.URL_APP ? CFG.URL_APP + '?fitur=' + f : ''; }
+
+/* ===================== NAVIGASI ===================== */
+function buka(id){
+  ['home','kamus','kaidah','dzikir','kalender','tes'].forEach(s => { $('#' + s).hidden = (s !== id); });
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('aktif', b.dataset.go === id));
+  window.scrollTo(0, 0);
+  if (id === 'home') renderHome();
+  if (id === 'kamus') renderKamus();
+  if (id === 'kaidah') renderKaidah();
+  if (id === 'dzikir') renderDzikir();
+  if (id === 'kalender') renderKalender();
+  if (id === 'tes' && !TES.jalan && !TES.hasil) tesIntro();
+}
+
+/* ===================== HIJRIAH ===================== */
+const HIJRI_FMT = (function(){
+  const kal = ['islamic-umalqura', 'islamic-civil', 'islamic'];
+  for (let i = 0; i < kal.length; i++) {
+    try {
+      const f = new Intl.DateTimeFormat('en-US-u-ca-' + kal[i], { day:'numeric', month:'numeric', year:'numeric' });
+      if (f.resolvedOptions().calendar.indexOf('islamic') === 0) return f;
+    } catch(e) {}
+  }
+  return null;
+})();
+
+function hijri(date){
+  if (!HIJRI_FMT) return { d:0, m:0, y:0 };
+  const t = new Date(date.getFullYear(), date.getMonth(), date.getDate() + (CFG.HIJRI_OFFSET || 0), 12);
+  const p = {};
+  HIJRI_FMT.formatToParts(t).forEach(x => { p[x.type] = x.value; });
+  return { d: parseInt(p.day, 10), m: parseInt(p.month, 10), y: parseInt(p.year || p.relatedYear, 10) };
+}
+function fmtHijri(h){ return h.m ? (h.d + ' ' + BULAN_H[h.m - 1] + ' ' + h.y + ' H') : '-'; }
+
+const URUTAN = { haram:4, wajib:3, utama:2, sunnah:1, info:0 };
+
+function infoHari(date){
+  const h = hijri(date), wd = date.getDay(), t = [];
+  const haram = (h.m === 10 && h.d === 1) || (h.m === 12 && h.d >= 10 && h.d <= 13);
+
+  if (h.m === 10 && h.d === 1) t.push({ k:'haram', n:'Idul Fitri', x:'Hari raya, haram berpuasa.' });
+  if (h.m === 12 && h.d === 10) t.push({ k:'haram', n:'Idul Adha', x:'Hari raya, haram berpuasa.' });
+  if (h.m === 12 && h.d >= 11 && h.d <= 13) t.push({ k:'haram', n:'Hari Tasyrik', x:'Haram berpuasa (kecuali jamaah haji yang tidak mendapat hewan hadyu).' });
+  if (h.m === 9) t.push({ k:'wajib', n: h.d === 1 ? 'Awal Ramadhan' : 'Puasa Ramadhan', x:'Puasa wajib bagi setiap muslim yang mukallaf.' });
+
+  if (!haram && h.m !== 9) {
+    if (h.m === 12 && h.d === 9) t.push({ k:'utama', n:'Puasa Arafah', x:'Menghapus dosa setahun yang lalu dan setahun yang akan datang (HR. Muslim).' });
+    if (h.m === 1 && h.d === 9) t.push({ k:'utama', n:"Puasa Tasu'a", x:'Dianjurkan menyertai puasa Asyura (HR. Muslim).' });
+    if (h.m === 1 && h.d === 10) t.push({ k:'utama', n:'Puasa Asyura', x:'Menghapus dosa setahun yang lalu (HR. Muslim).' });
+    if (h.d >= 13 && h.d <= 15) t.push({ k:'sunnah', n:'Ayyamul Bidh', x:"Puasa tiga hari setiap bulan Hijriah, tanggal 13, 14, 15 (HR. An-Nasa'i)." });
+    if (wd === 1) t.push({ k:'sunnah', n:'Puasa Senin', x:'Amal diperlihatkan kepada Allah setiap Senin dan Kamis (HR. At-Tirmidzi).' });
+    if (wd === 4) t.push({ k:'sunnah', n:'Puasa Kamis', x:'Amal diperlihatkan kepada Allah setiap Senin dan Kamis (HR. At-Tirmidzi).' });
+    if (h.m === 10 && h.d >= 2) t.push({ k:'sunnah', n:'Puasa 6 hari Syawal', x:'Boleh dipilih hari apa saja di bulan Syawal (HR. Muslim).' });
+  }
+  if (h.m === 1 && h.d === 1) t.push({ k:'info', n:'Tahun Baru Hijriah', x:'1 Muharram ' + h.y + ' H.' });
+
+  let kelas = '';
+  t.forEach(x => { if (x.k !== 'info' && (!kelas || URUTAN[x.k] > URUTAN[kelas])) kelas = x.k; });
+  return { h: h, t: t, kelas: kelas };
+}
+
+function puasaTerdekat(maks){
+  const target = {
+    'Puasa Senin':'Puasa Senin/Kamis', 'Puasa Kamis':'Puasa Senin/Kamis',
+    'Ayyamul Bidh':'Ayyamul Bidh', 'Puasa Arafah':'Puasa Arafah', 'Puasa Asyura':'Puasa Asyura',
+    'Awal Ramadhan':'Awal Ramadhan', 'Idul Fitri':'Idul Fitri', 'Idul Adha':'Idul Adha'
+  };
+  const hasil = {}, mulai = hariIni();
+  for (let i = 0; i < 400; i++) {
+    const d = new Date(mulai.getFullYear(), mulai.getMonth(), mulai.getDate() + i, 12);
+    infoHari(d).t.forEach(x => {
+      const nama = target[x.n];
+      if (nama && !hasil[nama]) hasil[nama] = { nama: nama, tgl: d, selisih: i, k: x.k };
+    });
+    if (Object.keys(hasil).length >= 7) break;
+  }
+  return Object.values(hasil).sort((a, b) => a.selisih - b.selisih).slice(0, maks || 5);
+}
+function teksSelisih(n){ return n === 0 ? 'Hari ini' : n === 1 ? 'Besok' : n + ' hari lagi'; }
+
+/* ===================== BERANDA ===================== */
+function renderHome(){
+  const d = hariIni(), info = infoHari(d), jam = new Date().getHours();
+  $('#homeTgl').textContent = fmtMasehi(d);
+  $('#homeHijri').textContent = fmtHijri(info.h);
+  const dzikir = jam >= 4 && jam < 15 ? '☀️ Waktunya <b>dzikir pagi</b>' : '🌇 Waktunya <b>dzikir petang</b>';
+  const dekat = puasaTerdekat(1)[0];
+  $('#homeInfo').innerHTML = dzikir + (dekat ? '<br>🌙 ' + esc(dekat.nama) + ': <b>' + teksSelisih(dekat.selisih) + '</b>' : '');
+}
+
+/* ===================== DZIKIR ===================== */
+const DZ = {
+  mode: (new Date().getHours() < 15 ? 'pagi' : 'petang'),
+  arti: Simpan.get('arti', true),
+  font: Simpan.get('font', 1.6),
+  resetSiap: false
+};
+function pilih(v){ return (v && typeof v === 'object') ? v[DZ.mode] : v; }
+function progresKey(){ return 'dz_' + DZ.mode + '_' + tglKey(); }
+function daftarDzikir(){ return DZIKIR.filter(z => z.waktu === 'both' || z.waktu === DZ.mode); }
+
+function gantiMode(m){ DZ.mode = m; DZ.resetSiap = false; renderDzikir(); window.scrollTo(0, 0); }
+function ubahFont(n){ DZ.font = Math.min(2.6, Math.max(1.1, +(DZ.font + n).toFixed(2))); Simpan.set('font', DZ.font); document.documentElement.style.setProperty('--ar', DZ.font + 'rem'); }
+function toggleArti(v){ DZ.arti = v; Simpan.set('arti', v); document.querySelectorAll('#dzList .arti').forEach(el => el.hidden = !v); }
+
+function renderDzikir(){
+  document.documentElement.style.setProperty('--ar', DZ.font + 'rem');
+  document.querySelectorAll('#dzTab button').forEach(b => b.classList.toggle('aktif', b.dataset.m === DZ.mode));
+  $('#dzArti').checked = DZ.arti;
+  if (DZ.mode === 'doa') { $('#dzProgres').hidden = true; $('#doaCari').hidden = false; renderDoa(); return; }
+  $('#dzProgres').hidden = false; $('#doaCari').hidden = true;
+
+  const prog = Simpan.get(progresKey(), {});
+  $('#dzList').innerHTML = daftarDzikir().map(z => {
+    const n = prog[z.id] || 0, selesai = n >= z.ulang;
+    return '<article class="kartu dz' + (selesai ? ' selesai' : '') + '" id="dz-' + z.id + '">' +
+      '<div class="dz-head"><h3>' + esc(z.judul) + '</h3><span class="badge">' + z.ulang + '×</span></div>' +
+      '<p class="ar">' + esc(pilih(z.arab)) + '</p>' +
+      '<p class="arti"' + (DZ.arti ? '' : ' hidden') + '>' + esc(pilih(z.arti)) + '</p>' +
+      '<p class="sumber">' + esc(z.sumber) + (z.ket ? ' · ' + esc(z.ket) : '') + '</p>' +
+      '<div class="dz-aksi"><button class="hitung" onclick="hitung(\'' + z.id + '\')">' + labelHitung(n, z.ulang) + '</button>' +
+      '<button class="bagi" onclick="bagikanItem(\'dzikir\',\'' + z.id + '\')">Bagikan</button></div>' +
+    '</article>';
+  }).join('') + '<div id="dzSelamat"></div>';
+  updateProgres();
+}
+function labelHitung(n, u){ return n >= u ? '✓ Selesai' : (u === 1 ? 'Tandai sudah dibaca' : 'Ketuk · ' + n + ' / ' + u); }
+
+function hitung(id){
+  const z = DZIKIR.find(x => x.id === id); if (!z || !$('#dz-' + id)) return;
+  const key = progresKey(), prog = Simpan.get(key, {});
+  const n = prog[id] || 0;
+  if (n >= z.ulang) return;
+  prog[id] = n + 1; Simpan.set(key, prog);
+  const kartu = $('#dz-' + id);
+  kartu.querySelector('.hitung').textContent = labelHitung(prog[id], z.ulang);
+  if (prog[id] >= z.ulang) {
+    kartu.classList.add('selesai');
+    try { navigator.vibrate && navigator.vibrate(40); } catch(e) {}
+    const next = kartu.nextElementSibling;
+    if (next && next.classList.contains('dz') && !next.classList.contains('selesai')) setTimeout(() => next.scrollIntoView({ behavior:'smooth', block:'start' }), 250);
+  }
+  updateProgres();
+}
+
+function updateProgres(){
+  const list = daftarDzikir(), prog = Simpan.get(progresKey(), {});
+  const sel = list.filter(z => (prog[z.id] || 0) >= z.ulang).length;
+  $('#dzBar').style.width = (sel / list.length * 100) + '%';
+  $('#dzTeks').textContent = sel + ' dari ' + list.length + ' bacaan selesai';
+  const box = $('#dzSelamat');
+  if (box) box.innerHTML = sel === list.length ?
+    '<div class="kartu selamat"><b>Alhamdulillah, dzikir ' + DZ.mode + ' selesai! 🌿</b>' +
+    '<p style="font-size:.88rem;margin-bottom:10px">Ajak keluarga & teman ikut berdzikir, insyaAllah jadi pahala jariyah.</p>' +
+    '<button class="tombol kuning" onclick="ajakDzikir()">Ajak lewat WhatsApp</button></div>' : '';
+}
+function resetDzikir(){
+  if (!DZ.resetSiap) { DZ.resetSiap = true; $('#dzReset').textContent = 'Yakin? Ketuk lagi'; setTimeout(() => { DZ.resetSiap = false; if ($('#dzReset')) $('#dzReset').textContent = 'Ulangi'; }, 3000); return; }
+  DZ.resetSiap = false; $('#dzReset').textContent = 'Ulangi';
+  Simpan.set(progresKey(), {}); renderDzikir();
+}
+function ajakDzikir(){
+  bagikanWA('Yuk dzikir ' + DZ.mode + ' bareng, lengkap dengan arti dan penghitungnya 📿\n' + linkFitur('dzikir') + '\n\n— Sahabat Al-Fahmu');
+}
+
+function renderDoa(){
+  const q = ($('#doaCari').value || '').toLowerCase().trim();
+  const list = DOA.filter(d => !q || (d.judul + ' ' + d.arti).toLowerCase().indexOf(q) > -1);
+  $('#dzList').innerHTML = list.length ? list.map(d =>
+    '<article class="kartu">' +
+      '<div class="dz-head"><h3>' + esc(d.judul) + '</h3></div>' +
+      '<p class="ar">' + esc(d.arab) + '</p>' +
+      '<p class="arti"' + (DZ.arti ? '' : ' hidden') + '>' + esc(d.arti) + '</p>' +
+      '<p class="sumber">' + esc(d.sumber) + '</p>' +
+      '<div class="dz-aksi"><button class="bagi" style="padding:10px 14px" onclick="bagikanItem(\'doa\',\'' + d.id + '\')">Bagikan ke WhatsApp</button></div>' +
+    '</article>').join('') : '<p class="sub" style="text-align:center">Doa tidak ditemukan.</p>';
+}
+
+function bagikanItem(jenis, id){
+  const z = (jenis === 'doa' ? DOA : DZIKIR).find(x => x.id === id); if (!z) return;
+  bagikanWA('*' + z.judul + '*\n\n' + pilih(z.arab) + '\n\nArtinya: ' + pilih(z.arti) + '\n(' + z.sumber + ')\n\n— Sahabat Al-Fahmu\n' + linkFitur('dzikir'));
+}
+
+/* ===================== KALENDER ===================== */
+const KAL = { th: hariIni().getFullYear(), bl: hariIni().getMonth(), pilih: null };
+
+function geserBulan(n){
+  const d = new Date(KAL.th, KAL.bl + n, 1);
+  KAL.th = d.getFullYear(); KAL.bl = d.getMonth(); KAL.pilih = null;
+  renderGrid(); renderBulanIni(); $('#kalDetail').innerHTML = '';
+}
+
+function renderKalender(){
+  const d = hariIni(), info = infoHari(d);
+  $('#kalTgl').textContent = fmtMasehi(d);
+  $('#kalHijri').textContent = fmtHijri(info.h);
+  const besok = infoHari(new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1, 12));
+  let h = '';
+  info.t.forEach(x => { h += '<div class="info" style="margin-top:6px">Hari ini: <b>' + esc(x.n) + '</b></div>'; });
+  besok.t.filter(x => x.k !== 'info').forEach(x => { h += '<div class="info" style="margin-top:6px">Besok: <b>' + esc(x.n) + '</b>, jangan lupa niat & sahur 🌙</div>'; });
+  $('#kalHariIni').innerHTML = h || '<div class="info">Tidak ada puasa khusus hari ini dan besok.</div>';
+
+  $('#kalDekat').innerHTML = puasaTerdekat(5).map(p =>
+    '<li><span><b>' + esc(p.nama) + '</b><br><small style="color:var(--abu)">' + HARI[p.tgl.getDay()] + ', ' + p.tgl.getDate() + ' ' + BULAN_PENDEK[p.tgl.getMonth()] + ' · ' + esc(fmtHijri(hijri(p.tgl))) + '</small></span>' +
+    '<span class="kanan"><b style="color:var(--navy)">' + teksSelisih(p.selisih) + '</b></span></li>').join('');
+
+  renderGrid(); renderBulanIni();
+}
+
+function renderGrid(){
+  const awal = new Date(KAL.th, KAL.bl, 1, 12), jumlah = new Date(KAL.th, KAL.bl + 1, 0).getDate();
+  const akhir = new Date(KAL.th, KAL.bl, jumlah, 12);
+  const ha = hijri(awal), hz = hijri(akhir);
+  $('#kalJudul').textContent = BULAN[KAL.bl] + ' ' + KAL.th;
+  $('#kalJudulH').textContent = ha.m === hz.m ? (BULAN_H[ha.m - 1] + ' ' + ha.y + ' H') :
+    (BULAN_H[ha.m - 1] + (ha.y !== hz.y ? ' ' + ha.y : '') + ' – ' + BULAN_H[hz.m - 1] + ' ' + hz.y + ' H');
+
+  const kini = tglKey(hariIni());
+  let html = HARI_PENDEK.map(n => '<div class="nh">' + n + '</div>').join('');
+  for (let i = 0; i < awal.getDay(); i++) html += '<div class="sel kosong"></div>';
+  for (let t = 1; t <= jumlah; t++) {
+    const d = new Date(KAL.th, KAL.bl, t, 12), info = infoHari(d), key = tglKey(d);
+    const kls = ['sel', info.kelas, key === kini ? 'hariini' : '', key === KAL.pilih ? 'dipilih' : ''].join(' ');
+    const label = info.h.d === 1 ? BULAN_H_PENDEK[info.h.m - 1] : info.h.d;
+    html += '<button class="' + kls + '" onclick="pilihTgl(' + t + ')">' + t + '<small>' + esc(label) + '</small></button>';
+  }
+  $('#kalGrid').innerHTML = html;
+}
+
+function pilihTgl(t){
+  const d = new Date(KAL.th, KAL.bl, t, 12), info = infoHari(d);
+  KAL.pilih = tglKey(d); renderGrid();
+  $('#kalDetail').innerHTML = '<div style="margin-top:12px"><b style="color:var(--navy)">' + fmtMasehi(d) + '</b><br><span style="color:var(--abu);font-size:.88rem">' + esc(fmtHijri(info.h)) + '</span>' +
+    (info.t.length ? info.t.map(x => '<div class="tag ' + x.k + '"><b>' + esc(x.n) + '</b>' + esc(x.x) + '</div>').join('') :
+      '<div class="tag info">Tidak ada puasa khusus di tanggal ini.</div>') + '</div>';
+}
+
+function renderBulanIni(){
+  const jumlah = new Date(KAL.th, KAL.bl + 1, 0).getDate(), item = [], bulanH = {};
+  for (let t = 1; t <= jumlah; t++) {
+    const d = new Date(KAL.th, KAL.bl, t, 12), info = infoHari(d);
+    bulanH[info.h.m] = true;
+    const tag = info.t.filter(x => x.n !== 'Puasa Senin' && x.n !== 'Puasa Kamis' && x.n !== 'Puasa 6 hari Syawal' && !(x.n === 'Puasa Ramadhan'));
+    if (tag.length) item.push('<li><span>' + tag.map(x => '<b' + (x.k === 'haram' ? ' style="color:var(--merah)"' : '') + '>' + esc(x.n) + '</b>').join(', ') +
+      '<br><small style="color:var(--abu)">' + esc(fmtHijri(info.h)) + '</small></span><span class="kanan">' + HARI_PENDEK[d.getDay()] + ', ' + t + ' ' + BULAN_PENDEK[KAL.bl] + '</span></li>');
+  }
+  const catat = [];
+  if (bulanH[1]) catat.push("<li><span>🌙 <b>Bulan Muharram</b>: puasa paling utama setelah Ramadhan adalah puasa di bulan Muharram (HR. Muslim).</span></li>");
+  if (bulanH[8]) catat.push("<li><span>🌙 <b>Bulan Sya'ban</b>: Nabi ﷺ banyak berpuasa di bulan ini (HR. Al-Bukhari & Muslim).</span></li>");
+  if (bulanH[10]) catat.push("<li><span>🌙 <b>Bulan Syawal</b>: puasa 6 hari, boleh berurutan atau terpisah (HR. Muslim).</span></li>");
+  if (bulanH[12]) catat.push("<li><span>🌙 <b>10 hari awal Dzulhijjah</b>: hari-hari terbaik untuk beramal saleh (HR. Al-Bukhari).</span></li>");
+  $('#kalBulanIni').innerHTML = (item.join('') + catat.join('')) || '<li><span>Tidak ada puasa khusus selain Senin & Kamis.</span></li>';
+}
+
+/* ===================== TES LEVEL ===================== */
+const TES = { jalan:false, idx:0, jawab:[], opsi:[], hasil:null };
+
+function acak(arr){ const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function tesIntro(){
+  const terakhir = Simpan.get('tes_terakhir', null);
+  $('#tesIsi').innerHTML = '<div class="kartu">' +
+    '<p style="font-weight:700;color:var(--navy);margin-bottom:8px">Apa yang akan diuji?</p>' +
+    TINGKAT.map((t, i) => '<p style="font-size:.9rem;margin:4px 0">' + (i + 1) + '. ' + esc(t) + '</p>').join('') +
+    '<p class="sub" style="margin:12px 0">' + SOAL.length + ' soal pilihan ganda · ±10 menit · hasil & rekomendasi kelas langsung keluar.</p>' +
+    (terakhir ? '<div class="tag info" style="margin-bottom:12px">Hasil terakhirmu: <b>' + esc(terakhir.level) + '</b> (' + terakhir.skor + '/' + SOAL.length + ')</div>' : '') +
+    '<button class="tombol" onclick="tesMulai()">Mulai Tes</button></div>';
+}
+
+function tesMulai(){
+  TES.jalan = true; TES.hasil = null; TES.idx = 0;
+  TES.jawab = SOAL.map(() => null);
+  TES.opsi = SOAL.map(s => acak(s.opsi.map((t, i) => ({ t: t, benar: i === s.kunci }))));
+  tesSoal();
+}
+
+function tesSoal(){
+  const s = SOAL[TES.idx], n = SOAL.length, terjawab = TES.jawab.filter(x => x !== null).length;
+  const terakhir = TES.idx === n - 1;
+  $('#tesIsi').innerHTML = '<div class="kartu">' +
+    '<div style="display:flex;justify-content:space-between;font-size:.82rem;color:var(--abu)"><span>Soal ' + (TES.idx + 1) + ' / ' + n + '</span><span class="badge">Tingkat ' + s.tingkat + '</span></div>' +
+    '<div class="langkah"><div style="width:' + (terjawab / n * 100) + '%"></div></div>' +
+    '<p class="soal-q">' + (isAr(s.q) ? formatCampur(s.q) : esc(s.q)) + '</p>' +
+    (s.ar ? '<div class="soal-ar"><p class="ar">' + esc(s.ar) + '</p></div>' : '') +
+    '<div class="opsi">' + TES.opsi[TES.idx].map((o, i) =>
+      '<button class="' + (isAr(o.t) ? 'ar-opsi ' : '') + (TES.jawab[TES.idx] === i ? 'dipilih' : '') + '" onclick="tesPilih(' + i + ')">' + esc(o.t) + '</button>').join('') + '</div>' +
+    '<div class="baris" style="margin-top:14px">' +
+      '<button class="tombol garis" onclick="tesGeser(-1)"' + (TES.idx === 0 ? ' disabled' : '') + '>‹ Kembali</button>' +
+      (terakhir ? '<button class="tombol kuning" onclick="tesSelesai()">Lihat Hasil</button>'
+                : '<button class="tombol" onclick="tesGeser(1)">Lanjut ›</button>') +
+    '</div><p class="pesan salah" id="tesPesan"></p></div>';
+}
+function formatCampur(teks){
+  return esc(teks).replace(/([\u0600-\u06FF][\u0600-\u06FF\s\u064B-\u065F\u0670؟،.]*[\u0600-\u06FF؟])/g, '<span style="font-family:Amiri,serif;font-size:1.3em;font-weight:400" dir="rtl">$1</span>');
+}
+function tesPilih(i){
+  TES.jawab[TES.idx] = i; tesSoal();
+  if (TES.idx < SOAL.length - 1) setTimeout(() => { TES.idx++; tesSoal(); window.scrollTo(0, 0); }, 280);
+}
+function tesGeser(n){ TES.idx = Math.max(0, Math.min(SOAL.length - 1, TES.idx + n)); tesSoal(); window.scrollTo(0, 0); }
+
+function tesSelesai(){
+  const kosong = TES.jawab.findIndex(x => x === null);
+  if (kosong > -1) { $('#tesPesan').textContent = 'Soal nomor ' + (kosong + 1) + ' belum dijawab.'; setTimeout(() => { TES.idx = kosong; tesSoal(); }, 900); return; }
+
+  const per = TINGKAT.map(() => ({ benar:0, total:0 }));
+  SOAL.forEach((s, i) => { per[s.tingkat - 1].total++; if (TES.opsi[i][TES.jawab[i]].benar) per[s.tingkat - 1].benar++; });
+  let lvl = 0;
+  for (let t = 0; t < per.length; t++) { if (per[t].benar >= Math.ceil(per[t].total * 0.6)) lvl = t + 1; else break; }
+  const skor = per.reduce((a, b) => a + b.benar, 0);
+  TES.jalan = false;
+  TES.hasil = { skor: skor, lvl: lvl, per: per };
+  Simpan.set('tes_terakhir', { skor: skor, level: LEVEL[lvl].nama });
+  tesHasil();
+}
+
+function tesHasil(){
+  const r = TES.hasil, L = LEVEL[r.lvl], n = SOAL.length;
+  $('#tesIsi').innerHTML = '<div class="kartu">' +
+    '<div class="skor" style="--p:' + (r.skor / n * 100) + '%"><b>' + r.skor + '/' + n + '</b></div>' +
+    '<p style="text-align:center;font-size:.82rem;color:var(--abu)">Level kamu</p>' +
+    '<p class="level-nama">' + esc(L.nama) + '</p>' +
+    '<p style="text-align:center;font-size:.9rem;margin-top:4px">' + esc(L.desc) + '</p>' +
+    '<div class="rek">📚 Rekomendasi kelas: <b>' + esc(L.kelas) + '</b></div>' +
+    r.per.map((p, i) => '<div class="tingkat-bar">' + (i + 1) + '. ' + esc(TINGKAT[i]) + ' <b style="float:right">' + p.benar + '/' + p.total + '</b><div class="bar"><div style="width:' + (p.benar / p.total * 100) + '%"></div></div></div>').join('') +
+  '</div>' +
+
+  '<div class="kartu form">' +
+    '<p style="font-weight:800;color:var(--navy)">🎁 Konsultasi kelas gratis</p>' +
+    '<p style="font-size:.86rem;color:var(--abu)">Tim Al-Fahmu akan membantu memilih kelas yang pas sesuai hasil tesmu.</p>' +
+    '<label for="fNama">Nama</label><input id="fNama" maxlength="100" placeholder="Nama lengkap">' +
+    '<label for="fWA">No. WhatsApp</label><input id="fWA" inputmode="tel" maxlength="16" placeholder="08xxxxxxxxxx">' +
+    '<label for="fDom">Domisili (opsional)</label><input id="fDom" maxlength="100" placeholder="Contoh: Cibinong">' +
+    '<button class="tombol" style="margin-top:14px" id="fKirim" onclick="kirimHasil()">Kirim & Chat Admin via WA</button>' +
+    '<p class="pesan" id="fPesan"></p>' +
+    '<p class="catatan">Data hanya dipakai Al-Fahmu untuk menghubungi Anda terkait kelas.</p>' +
+  '</div>' +
+
+  '<div class="baris" style="margin-bottom:12px">' +
+    '<button class="tombol kuning" onclick="bagikanHasil()">Bagikan Hasil</button>' +
+    '<button class="tombol garis" onclick="tesMulai()">Ulangi Tes</button>' +
+  '</div>' +
+  '<div class="kartu"><button class="tombol garis" onclick="lihatBahas(this)">Lihat Pembahasan</button><div id="tesBahas"></div></div>';
+}
+
+function lihatBahas(btn){
+  btn.hidden = true;
+  $('#tesBahas').innerHTML = SOAL.map((s, i) => {
+    const pilihan = TES.opsi[i][TES.jawab[i]], kunci = TES.opsi[i].find(o => o.benar);
+    const ok = pilihan.benar;
+    return '<div class="bahas"><p style="font-size:.8rem;color:var(--abu)">Soal ' + (i + 1) + ' · ' + (ok ? '<span class="benar">Benar ✓</span>' : '<span class="keliru">Kurang tepat ✗</span>') + '</p>' +
+      '<p style="font-weight:700;font-size:.9rem;margin:4px 0">' + (isAr(s.q) ? formatCampur(s.q) : esc(s.q)) + '</p>' +
+      (s.ar ? '<p class="ar" style="font-size:1.3rem">' + esc(s.ar) + '</p>' : '') +
+      (ok ? '' : '<p style="font-size:.86rem">Jawabanmu: <span class="keliru">' + esc(pilihan.t) + '</span></p>') +
+      '<p style="font-size:.86rem">Jawaban benar: <span class="benar">' + esc(kunci.t) + '</span></p>' +
+      '<p style="font-size:.84rem;color:var(--abu);margin-top:4px">' + esc(s.bahas) + '</p></div>';
+  }).join('');
+}
+
+function kirimHasil(){
+  const nama = $('#fNama').value.trim(), wa = $('#fWA').value.replace(/\D/g, ''), dom = $('#fDom').value.trim();
+  const pesan = $('#fPesan');
+  if (!nama) { pesan.className = 'pesan salah'; pesan.textContent = 'Nama wajib diisi.'; return; }
+  if (wa.length < 10) { pesan.className = 'pesan salah'; pesan.textContent = 'Nomor WhatsApp belum benar.'; return; }
+
+  const r = TES.hasil, L = LEVEL[r.lvl];
+  const rincian = r.per.map((p, i) => 'T' + (i + 1) + ':' + p.benar + '/' + p.total).join(' ');
+
+  // Buka WA admin dulu (harus langsung setelah ketukan agar tidak diblokir browser)
+  if (waOk()) {
+    const teks = "Assalamu'alaikum, saya " + nama + (dom ? ' dari ' + dom : '') + '.\n' +
+      'Saya baru ikut Tes Level Bahasa Arab di Sahabat Al-Fahmu.\n' +
+      'Skor: ' + r.skor + '/' + SOAL.length + '\nLevel: ' + L.nama + '\nRekomendasi: ' + L.kelas + '\n\n' +
+      'Saya ingin konsultasi kelas yang cocok.';
+    window.open('https://wa.me/' + CFG.WA_ADMIN + '?text=' + encodeURIComponent(teks), '_blank');
+  }
+
+  const btn = $('#fKirim'); btn.disabled = true; btn.textContent = 'Menyimpan…';
+  const data = { nama: nama, wa: wa, domisili: dom, skor: r.skor, level: L.nama, rincian: rincian };
+  if (typeof google === 'undefined' || !google.script) { btn.textContent = 'Terkirim ✓'; return; }
+  google.script.run
+    .withSuccessHandler(res => {
+      if (res && res.ok) { btn.textContent = 'Terkirim ✓'; pesan.className = 'pesan ok'; pesan.textContent = 'Jazakumullahu khairan, admin akan segera menghubungi Anda.'; }
+      else { btn.disabled = false; btn.textContent = 'Kirim & Chat Admin via WA'; pesan.className = 'pesan salah'; pesan.textContent = (res && res.pesan) || 'Gagal menyimpan, coba lagi.'; }
+    })
+    .withFailureHandler(() => { btn.disabled = false; btn.textContent = 'Kirim & Chat Admin via WA'; pesan.className = 'pesan salah'; pesan.textContent = 'Koneksi bermasalah, coba lagi.'; })
+    .simpanHasilTes(data);
+}
+
+function bagikanHasil(){
+  const r = TES.hasil;
+  bagikanWA('Alhamdulillah, saya dapat level *' + LEVEL[r.lvl].nama + '* (' + r.skor + '/' + SOAL.length + ') di Tes Level Bahasa Arab gratis dari Sahabat Al-Fahmu 📝\n\nCoba juga, cuma ±10 menit 👉 ' + linkFitur('tes'));
+}
+
+/* ===================== AI: ALAT BERSAMA ===================== */
+const CID = (function(){
+  let id = Simpan.get('cid', '');
+  if (!id) { id = Math.random().toString(36).slice(2) + Date.now().toString(36); Simpan.set('cid', id); }
+  return id;
+})();
+
+function panggil(fn, arg){
+  return new Promise((ok, gagal) => {
+    if (typeof google === 'undefined' || !google.script || !google.script.run) return gagal(new Error('Fitur AI aktif setelah aplikasi di-deploy sebagai Web App.'));
+    google.script.run.withSuccessHandler(ok).withFailureHandler(gagal)[fn](arg);
+  });
+}
+function toast(t){
+  const el = $('#toast'); el.textContent = t; el.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => { el.hidden = true; }, 2800);
+}
+function suara(teks){
+  try {
+    const s = window.speechSynthesis; if (!s) throw 0;
+    const voices = s.getVoices(), v = voices.find(x => /^ar/i.test(x.lang));
+    if (!v && voices.length) { toast('Suara bahasa Arab belum tersedia di perangkat ini.'); return; }
+    s.cancel();
+    const u = new SpeechSynthesisUtterance(teks);
+    u.lang = v ? v.lang : 'ar-SA'; if (v) u.voice = v; u.rate = 0.8;
+    s.speak(u);
+  } catch(e) { toast('Perangkat ini belum mendukung fitur suara.'); }
+}
+function memuat(teks){
+  return '<div class="kartu muat"><div class="sk w60"></div><div class="sk w90"></div><div class="sk w40"></div><p class="sub" style="margin:10px 0 0">' + teks + '</p></div>';
+}
+function kotakSalah(p){ return '<div class="kartu galat">⚠️ ' + esc(p) + '</div>'; }
+function lencana(res){
+  return res.verified ? '<span class="lencana ok">✅ Diperiksa Ustadz Al-Fahmu</span>'
+                      : '<span class="lencana ai">🤖 Dijawab AI · mohon dicek kembali</span>';
+}
+function chipAr(t, attr){ return '<button class="chip ar-chip" ' + (attr || 'data-cari') + '="' + esc(t) + '">' + esc(t) + '</button>'; }
+function chipTeks(t, attr){ return '<button class="chip' + (isAr(t) && !/[a-z]/i.test(t) ? ' ar-chip' : '') + '" ' + attr + '="' + esc(t) + '">' + (isAr(t) ? formatCampur(t) : esc(t)) + '</button>'; }
+function ctaKelas(){
+  return '<div class="kartu cta"><b>Ingin paham bahasa Arab lebih dalam?</b>' +
+    '<p>Belajar terarah bersama ustadz Al-Fahmu. Cek dulu levelmu, gratis ±10 menit.</p>' +
+    '<button class="tombol kuning" onclick="buka(\'tes\')">Ikut Tes Level Gratis</button></div>';
+}
+function formLapor(fitur, input){
+  return '<div class="lapor"><button class="link-kecil" onclick="this.nextElementSibling.hidden=false;this.hidden=true">⚑ Laporkan kesalahan</button>' +
+    '<div hidden><textarea maxlength="500" placeholder="Contoh: harakat jamaknya kurang tepat, seharusnya …"></textarea>' +
+    '<button class="tombol garis kecil" data-lapor="' + fitur + '" data-input="' + esc(input) + '">Kirim laporan</button></div></div>';
+}
+function kirimLapor(btn){
+  const ta = btn.previousElementSibling, v = ta.value.trim();
+  if (!v) { toast('Tulis dulu kesalahannya ya.'); ta.focus(); return; }
+  btn.disabled = true; btn.textContent = 'Mengirim…';
+  panggil('laporKesalahan', { fitur: btn.dataset.lapor, input: btn.dataset.input, pesan: v })
+    .then(r => {
+      if (r && r.ok) btn.parentElement.innerHTML = '<p class="pesan ok">Jazakumullahu khairan, laporan diterima dan akan diperiksa ustadz.</p>';
+      else { btn.disabled = false; btn.textContent = 'Kirim laporan'; toast((r && r.pesan) || 'Gagal mengirim.'); }
+    })
+    .catch(e => { btn.disabled = false; btn.textContent = 'Kirim laporan'; toast(e.message || 'Gagal mengirim.'); });
+}
+/* Cache di HP pengguna: kata/topik yang pernah dibuka tampil instan */
+const normalQ = s => String(s || '').normalize('NFC').toLowerCase().replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/[?؟!.,،;:"'()]/g, ' ').replace(/\s+/g, ' ').trim();
+const CacheHP = {
+  HARI: 7, MAKS: 80,
+  get(jenis, q){
+    const c = Simpan.get('c_' + jenis, {}), e = c[normalQ(q)];
+    return e && (Date.now() - e.t) < this.HARI * 864e5 ? e.r : null;
+  },
+  set(jenis, q, r){
+    const c = Simpan.get('c_' + jenis, {});
+    c[normalQ(q)] = { t: Date.now(), r: r };
+    const k = Object.keys(c);
+    if (k.length > this.MAKS) k.sort((a, b) => c[a].t - c[b].t).slice(0, k.length - this.MAKS).forEach(x => delete c[x]);
+    Simpan.set('c_' + jenis, c);
+  }
+};
+function pesanTunggu(el, tk, ambilToken, teksLama){
+  setTimeout(() => { if (ambilToken() === tk && el.querySelector('.muat')) el.querySelector('.muat .sub').innerHTML = teksLama; }, 2500);
+}
+
+function simpanRiwayat(kunci, v){
+  const r = Simpan.get(kunci, []).filter(x => x !== v); r.unshift(v); Simpan.set(kunci, r.slice(0, 10));
+}
+function dariHome(){
+  const v = $('#homeCari').value.trim(); if (!v) { buka('kamus'); return; }
+  $('#homeCari').value = '';
+  if (v.split(/\s+/).length > 4 || /[?؟]|kapan|bagaimana|apa itu|i'rab|irab|tashrif|kaidah|beda/i.test(v)) { buka('kaidah'); tanyaKaidah(v); }
+  else { buka('kamus'); cariKata(v); }
+}
+
+/* ===================== KAMUS ===================== */
+const KM = { token: 0, hasil: null, q: '', muat: false };
+
+function arahLabel(){
+  const v = $('#kmInput').value.trim();
+  $('#kmArah').textContent = !v ? '' : (isAr(v) ? '↔ Arab → Indonesia' : '↔ Indonesia → Arab');
+}
+function renderKamus(){ arahLabel(); if (!KM.hasil && !KM.muat) renderBantuKamus(); }
+
+function renderBantuKamus(){
+  const r = Simpan.get('km_riwayat', []), fav = Simpan.get('km_fav', []);
+  let h = '';
+  if (fav.length) h += '<div class="kartu"><h3 class="h3">⭐ Kata Favorit</h3><div class="chips">' +
+    fav.map(f => '<button class="chip" data-cari="' + esc(f.q) + '"><span class="ar-in">' + esc(f.arab) + '</span> · ' + esc(f.arti) + '</button>').join('') + '</div></div>';
+  h += '<div class="kartu"><h3 class="h3">' + (r.length ? '🕘 Terakhir dicari' : '💡 Coba cari') + '</h3><div class="chips">' +
+    (r.length ? r : CONTOH_KAMUS).map(x => chipTeks(x, 'data-cari')).join('') + '</div>' +
+    (r.length ? '<button class="link-kecil" onclick="Simpan.set(\'km_riwayat\',[]);renderBantuKamus()">Hapus riwayat</button>' : '') + '</div>';
+  $('#kmBantu').innerHTML = h; $('#kmBantu').hidden = false; $('#kmHasil').innerHTML = '';
+}
+
+function cariKata(q){
+  q = String(q || '').trim().replace(/\s+/g, ' '); if (!q) return;
+  if ($('#kamus').hidden) buka('kamus');
+  $('#kmInput').value = q; arahLabel(); $('#kmInput').blur();
+  const tk = ++KM.token; KM.q = q; KM.hasil = null; KM.muat = true;
+  $('#kmBantu').hidden = true;
+  const lokal = CacheHP.get('km', q);
+  if (lokal) { KM.muat = false; KM.hasil = lokal; simpanRiwayat('km_riwayat', q); renderHasilKamus(); return; }
+  $('#kmHasil').innerHTML = memuat('Mencari arti <b>' + esc(q) + '</b>…');
+  pesanTunggu($('#kmHasil'), tk, () => KM.token, 'Kata baru, sedang ditanyakan ke AI… biasanya 3–8 detik.<br>Setelah ini kata tersebut tampil instan.');
+  panggil('cariKamus', { q: q, cid: CID }).then(res => {
+    if (tk !== KM.token) return; KM.muat = false;
+    if (!res || !res.ok) { $('#kmHasil').innerHTML = kotakSalah((res && res.pesan) || 'Gagal mencari.') + tombolKembali('kamus'); return; }
+    KM.hasil = res; CacheHP.set('km', q, res); simpanRiwayat('km_riwayat', q); renderHasilKamus();
+  }).catch(e => { if (tk !== KM.token) return; KM.muat = false; $('#kmHasil').innerHTML = kotakSalah(e.message || 'Koneksi bermasalah, coba lagi.') + tombolKembali('kamus'); });
+}
+
+function tombolKembali(f){ return '<p style="text-align:center"><button class="link-kecil" onclick="kosongkan(\'' + f + '\')">← Cari yang lain</button></p>'; }
+function kosongkan(f){
+  if (f === 'kamus') { KM.token++; KM.hasil = null; KM.muat = false; $('#kmInput').value = ''; arahLabel(); renderBantuKamus(); }
+  else { KD.token++; KD.hasil = null; KD.muat = false; $('#kdInput').value = ''; renderTopik(); }
+  window.scrollTo(0, 0);
+}
+
+function kartuEntri(en){
+  const baris = [];
+  const tambah = (label, v, arab) => {
+    if (!v || v === '-') return;
+    baris.push('<dt>' + label + '</dt><dd' + (arab ? ' class="ar-dd"' : '') + '>' +
+      (arab ? '<span data-cari="' + esc(v) + '">' + esc(v) + '</span>' : formatCampur(v)) + '</dd>');
+  };
+  if (en.isim) { const i = en.isim; tambah('Jenis', i.gender); tambah('Mutsanna', i.mutsanna, true); tambah('Jamak', i.jamak, true); tambah('Pola jamak', i.jenis_jamak); }
+  if (en.fil) { const f = en.fil; tambah('Madhi', f.madhi, true); tambah("Mudhari'", f.mudhari, true); tambah('Amr', f.amr, true); tambah('Masdar', f.masdar, true); tambah('Wazan', f.wazan); tambah('Sifat', f.sifat); tambah('Pasangan huruf', f.shilah); }
+  const contoh = (en.contoh || []).filter(c => c && c.ar);
+  const sin = (en.sinonim || []).filter(Boolean), law = (en.lawan || []).filter(Boolean);
+  return '<article class="kartu entri">' +
+    '<div class="entri-atas"><p class="ar arab-besar">' + esc(en.arab) + '</p><button class="bunyi" data-suara="' + esc(en.arab) + '" aria-label="Dengarkan">🔊</button></div>' +
+    '<div class="entri-meta">' + (en.jenis ? '<span class="badge">' + esc(en.jenis) + '</span>' : '') +
+      (en.akar ? '<span class="akar">Akar kata: <span dir="rtl">' + esc(en.akar) + '</span></span>' : '') + '</div>' +
+    '<p class="arti-utama">' + (en.arti || []).map(esc).join(', ') + '</p>' +
+    (baris.length ? '<dl class="bentuk">' + baris.join('') + '</dl>' : '') +
+    (contoh.length ? '<h4>Contoh kalimat</h4>' + contoh.map(c =>
+      '<div class="ck"><p class="ar"><button class="bunyi kecil" data-suara="' + esc(c.ar) + '" aria-label="Dengarkan">🔊</button>' + esc(c.ar) + '</p><p>' + esc(c.id) + '</p></div>').join('') : '') +
+    (sin.length ? '<div class="chips" style="margin-top:8px"><span class="lbl">Sinonim</span>' + sin.map(x => chipAr(x)).join('') + '</div>' : '') +
+    (law.length ? '<div class="chips" style="margin-top:6px"><span class="lbl">Lawan kata</span>' + law.map(x => chipAr(x)).join('') + '</div>' : '') +
+  '</article>';
+}
+
+function renderHasilKamus(){
+  const res = KM.hasil, d = res.data || {};
+  if (d.tolak) { $('#kmHasil').innerHTML = '<div class="kartu galat">🙏 ' + esc(d.alasan || 'Kata tidak dikenali.') + '</div>' + tombolKembali('kamus'); return; }
+  const isFav = Simpan.get('km_fav', []).some(f => f.q === KM.q);
+  $('#kmHasil').innerHTML =
+    '<div class="hasil-atas"><span class="badge">' + (d.arah === 'id-ar' ? 'Indonesia → Arab' : 'Arab → Indonesia') + '</span>' + lencana(res) + '</div>' +
+    (d.entri || []).map(kartuEntri).join('') +
+    (d.catatan ? '<div class="kartu catatan-ai">📝 ' + formatCampur(d.catatan) + '</div>' : '') +
+    '<div class="baris aksi"><button class="tombol garis" onclick="favKata()">' + (isFav ? '★ Tersimpan' : '☆ Simpan') + '</button>' +
+    '<button class="tombol garis" onclick="bagikanKata()">Bagikan</button></div>' +
+    formLapor('kamus', KM.q) + ctaKelas() + tombolKembali('kamus');
+}
+
+function favKata(){
+  const d = KM.hasil && KM.hasil.data; if (!d || !d.entri || !d.entri[0]) return;
+  let fav = Simpan.get('km_fav', []);
+  if (fav.some(f => f.q === KM.q)) { fav = fav.filter(f => f.q !== KM.q); toast('Dihapus dari favorit'); }
+  else { fav.unshift({ q: KM.q, arab: d.entri[0].arab, arti: (d.entri[0].arti || [])[0] || '' }); toast('Disimpan ke favorit ⭐'); }
+  Simpan.set('km_fav', fav.slice(0, 40)); renderHasilKamus();
+}
+function bagikanKata(){
+  const d = KM.hasil.data, e = d.entri[0];
+  let t = '*' + e.arab + '* = ' + (e.arti || []).join(', ');
+  if (e.isim && e.isim.jamak && e.isim.jamak !== '-') t += '\nJamak: ' + e.isim.jamak;
+  if (e.fil) t += '\n' + [e.fil.madhi, e.fil.mudhari, e.fil.masdar].filter(Boolean).join(' – ');
+  if (e.contoh && e.contoh[0]) t += '\n\nContoh: ' + e.contoh[0].ar + '\n(' + e.contoh[0].id + ')';
+  bagikanWA(t + '\n\n📖 Kamus Sahabat Al-Fahmu 👉 ' + linkFitur('kamus') + '&q=' + encodeURIComponent(KM.q));
+}
+
+/* ===================== KAIDAH ===================== */
+const KD = { token: 0, hasil: null, q: '', muat: false };
+
+function renderKaidah(){ if (!KD.hasil && !KD.muat) renderTopik(); }
+
+function renderTopik(){
+  const r = Simpan.get('kd_riwayat', []);
+  let h = '<div class="kartu"><h3 class="h3">💡 Contoh pertanyaan</h3><div class="chips">' + CONTOH_KAIDAH.map(x => chipTeks(x, 'data-kaidah')).join('') + '</div></div>';
+  if (r.length) h += '<div class="kartu"><h3 class="h3">🕘 Terakhir dibuka</h3><div class="chips">' + r.map(x => chipTeks(x, 'data-kaidah')).join('') + '</div></div>';
+  h += KAIDAH_TOPIK.map((g, i) => '<details class="kartu grup"' + (i === 0 ? ' open' : '') + '><summary><span>' + g.ikon + ' ' + esc(g.grup) + '</span><small>' + g.topik.length + ' topik ▾</small></summary>' +
+    '<div class="topik">' + g.topik.map(t => '<button data-kaidah="' + esc(t) + '">' + esc(t) + '<span>›</span></button>').join('') + '</div></details>').join('');
+  $('#kdBantu').innerHTML = h; $('#kdBantu').hidden = false; $('#kdHasil').innerHTML = '';
+}
+
+function tanyaKaidah(q){
+  q = String(q || '').trim().replace(/\s+/g, ' '); if (!q) return;
+  if ($('#kaidah').hidden) buka('kaidah');
+  $('#kdInput').value = q; $('#kdInput').blur();
+  const tk = ++KD.token; KD.q = q; KD.hasil = null; KD.muat = true;
+  $('#kdBantu').hidden = true; window.scrollTo(0, 0);
+  const lokal = CacheHP.get('kd', q);
+  if (lokal) { KD.muat = false; KD.hasil = lokal; simpanRiwayat('kd_riwayat', q); renderHasilKaidah(); return; }
+  $('#kdHasil').innerHTML = memuat('Membuka penjelasan <b>' + esc(q) + '</b>…');
+  pesanTunggu($('#kdHasil'), tk, () => KD.token, 'Topik baru, sedang disusun AI… biasanya 5–12 detik.<br>Setelah ini topik tersebut tampil instan.');
+  panggil('cariKaidah', { q: q, cid: CID }).then(res => {
+    if (tk !== KD.token) return; KD.muat = false;
+    if (!res || !res.ok) { $('#kdHasil').innerHTML = kotakSalah((res && res.pesan) || 'Gagal memuat.') + tombolKembali('kaidah'); return; }
+    KD.hasil = res; CacheHP.set('kd', q, res); simpanRiwayat('kd_riwayat', q); renderHasilKaidah();
+  }).catch(e => { if (tk !== KD.token) return; KD.muat = false; $('#kdHasil').innerHTML = kotakSalah(e.message || 'Koneksi bermasalah, coba lagi.') + tombolKembali('kaidah'); });
+}
+
+function selTabel(c, tag){
+  c = String(c == null ? '' : c);
+  const murniAr = isAr(c) && !/[a-z]/i.test(c);
+  return '<' + tag + (murniAr && tag === 'td' ? ' class="ar-td"' : '') + '>' + (murniAr ? esc(c) : formatCampur(c)) + '</' + tag + '>';
+}
+
+function renderHasilKaidah(){
+  const res = KD.hasil, d = res.data || {};
+  if (d.tolak) { $('#kdHasil').innerHTML = '<div class="kartu galat">🙏 ' + esc(d.alasan || 'Pertanyaan di luar bahasa Arab.') + '</div>' + tombolKembali('kaidah'); return; }
+  const arr = v => Array.isArray(v) ? v.filter(Boolean) : [];
+  const tb = d.tabel && Array.isArray(d.tabel.baris) && d.tabel.baris.length ? d.tabel : null;
+  const contoh = arr(d.contoh).filter(c => c.ar), lat = arr(d.latihan).filter(l => l.soal);
+  $('#kdHasil').innerHTML =
+    '<article class="kartu">' +
+      '<div class="hasil-atas"><span class="badge">' + esc(d.bidang || 'kaidah') + '</span>' + lencana(res) + '</div>' +
+      '<h3 class="kd-judul">' + formatCampur(d.judul || KD.q) + '</h3>' +
+      (d.judul_ar ? '<p class="ar kd-ar">' + esc(d.judul_ar) + '</p>' : '') +
+      (d.ringkasan ? '<p class="ringkas">' + formatCampur(d.ringkasan) + '</p>' : '') +
+      (arr(d.kaidah).length ? '<h4>📌 Kaidah</h4><ol class="poin">' + arr(d.kaidah).map(k => '<li>' + formatCampur(k) + '</li>').join('') + '</ol>' : '') +
+      (tb ? '<div class="tabel-wrap"><table>' + (arr(tb.kolom).length ? '<thead><tr>' + tb.kolom.map(c => selTabel(c, 'th')).join('') + '</tr></thead>' : '') +
+        '<tbody>' + tb.baris.map(b => '<tr>' + (Array.isArray(b) ? b : [b]).map(c => selTabel(c, 'td')).join('') + '</tr>').join('') + '</tbody></table></div>' : '') +
+      (contoh.length ? '<h4>📝 Contoh</h4>' + contoh.map(c =>
+        '<div class="ck"><p class="ar"><button class="bunyi kecil" data-suara="' + esc(c.ar) + '" aria-label="Dengarkan">🔊</button>' + esc(c.ar) + '</p>' +
+        (c.id ? '<p>' + esc(c.id) + '</p>' : '') + (c.ket ? '<p class="ket">' + formatCampur(c.ket) + '</p>' : '') + '</div>').join('') : '') +
+      (arr(d.catatan).length ? '<div class="peringatan"><b>⚠️ Perhatikan</b><ul>' + arr(d.catatan).map(c => '<li>' + formatCampur(c) + '</li>').join('') + '</ul></div>' : '') +
+      (lat.length ? '<h4>✏️ Latihan singkat</h4>' + lat.map((l, i) =>
+        '<details class="latihan"><summary>' + (i + 1) + '. ' + formatCampur(l.soal) + '</summary><p>✅ ' + formatCampur(l.jawaban || '') + '</p></details>').join('') : '') +
+      (arr(d.terkait).length ? '<h4>🔗 Topik terkait</h4><div class="chips">' + arr(d.terkait).map(t => chipTeks(t, 'data-kaidah')).join('') + '</div>' : '') +
+    '</article>' +
+    '<div class="baris aksi"><button class="tombol garis" onclick="bagikanKaidah()">Bagikan ke WhatsApp</button></div>' +
+    formLapor('kaidah', KD.q) + ctaKelas() + tombolKembali('kaidah');
+}
+
+function bagikanKaidah(){
+  const d = KD.hasil.data;
+  let t = '*' + (d.judul || KD.q) + '*' + (d.judul_ar ? ' (' + d.judul_ar + ')' : '') + '\n\n' + (d.ringkasan || '');
+  if (Array.isArray(d.kaidah)) t += '\n\n' + d.kaidah.slice(0, 4).map((k, i) => (i + 1) + '. ' + k).join('\n');
+  bagikanWA(t + '\n\n🧩 Pelajari lengkapnya di Sahabat Al-Fahmu 👉 ' + linkFitur('kaidah') + '&q=' + encodeURIComponent(KD.q));
+}
+
+/* Klik di mana pun pada elemen ber-data-* */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-suara],[data-cari],[data-kaidah],[data-lapor]'); if (!t) return;
+  if (t.hasAttribute('data-suara')) return suara(t.getAttribute('data-suara'));
+  if (t.hasAttribute('data-lapor')) return kirimLapor(t);
+  if (t.hasAttribute('data-cari')) return cariKata(t.getAttribute('data-cari'));
+  if (t.hasAttribute('data-kaidah')) return tanyaKaidah(t.getAttribute('data-kaidah'));
+});
+try { window.speechSynthesis && window.speechSynthesis.getVoices(); } catch(e) {}
+
+/* ===================== MULAI ===================== */
+(function init(){
+  if (CFG.NAMA_APP) $('#namaApp').textContent = CFG.NAMA_APP;
+  if (CFG.LINK_PORTAL) { const a = $('#linkPortal'); a.href = CFG.LINK_PORTAL; a.hidden = false; }
+  const f = $('#footWA');
+  if (waOk()) f.href = 'https://wa.me/' + CFG.WA_ADMIN + '?text=' + encodeURIComponent("Assalamu'alaikum, saya ingin info kelas di Al-Fahmu.");
+  else f.hidden = true;
+  buka(START || 'home');
+  if (CFG.Q && START === 'kamus') cariKata(CFG.Q);
+  if (CFG.Q && START === 'kaidah') tanyaKaidah(CFG.Q);
+})();
+
+/* Bisa dipasang di HP (PWA) */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>

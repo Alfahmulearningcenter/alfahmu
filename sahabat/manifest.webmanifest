@@ -4,7 +4,7 @@
   "short_name": "Sahabat Al-Fahmu",
   "description": "Kamus Arab–Indonesia, kamus kaidah bahasa Arab, dzikir pagi-petang, kalender Hijriah, dan tes level bahasa Arab dari Al-Fahmu.",
   "lang": "id",
-  "start_url": "./",
+  "start_url": "./?sumber=app",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -33,7 +33,7 @@
   "shortcuts": [
     {
       "name": "Kamus",
-      "url": "./?fitur=kamus",
+      "url": "./?fitur=kamus&sumber=app",
       "icons": [
         {
           "src": "icon-192.png",
@@ -43,7 +43,7 @@
     },
     {
       "name": "Kaidah",
-      "url": "./?fitur=kaidah",
+      "url": "./?fitur=kaidah&sumber=app",
       "icons": [
         {
           "src": "icon-192.png",
@@ -53,7 +53,7 @@
     },
     {
       "name": "Dzikir",
-      "url": "./?fitur=dzikir",
+      "url": "./?fitur=dzikir&sumber=app",
       "icons": [
         {
           "src": "icon-192.png",

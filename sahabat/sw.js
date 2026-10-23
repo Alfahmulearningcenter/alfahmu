@@ -4,7 +4,7 @@
  * - Jawaban kamus/kaidah dari Apps Script TIDAK lewat sini (disimpan di HP oleh halaman itu sendiri).
  * Naikkan VERSI bila mengganti ikon.
  */
-const VERSI = 'sahabat-v2';
+const VERSI = 'sahabat-v3';
 const FILE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

@@ -1379,15 +1379,32 @@ let tawaran = window.__bip || null;
 window.addEventListener('beforeinstallprompt', ev => { ev.preventDefault(); tawaran = ev; tampilPasang(); });
 window.addEventListener('appinstalled', () => { Simpan.set('terpasang', 1); tampilPasang(); toast('Alhamdulillah, aplikasi Sahabat terpasang 🎉'); });
 
+// Aplikasi Sahabat sendiri dibuka dengan ?sumber=app (lihat manifest). Selain itu = browser biasa atau di dalam portal.
+const APP_SAHABAT = MODE_APLIKASI && !DALAM_PORTAL && (_P.get('sumber') === 'app' || (function(){ try { return sessionStorage.getItem('sahabat_app') === '1'; } catch(e) { return false; } })());
+try { if (APP_SAHABAT) sessionStorage.setItem('sahabat_app', '1'); } catch(e) {}
+const DARI_PORTAL = DALAM_PORTAL || (MODE_APLIKASI && !APP_SAHABAT);
+
 function tampilPasang(){
   const el = $('#pasangKartu'); if (!el) return;
-  const sembunyi = MODE_APLIKASI || DALAM_PORTAL || Simpan.get('terpasang', 0) || Simpan.get('pasang_nanti', 0) > Date.now();
+  const sembunyi = APP_SAHABAT || Simpan.get('pasang_nanti', 0) > Date.now() || (!DARI_PORTAL && Simpan.get('terpasang', 0));
+  if (DARI_PORTAL) el.querySelector('b').textContent = 'Jadikan Aplikasi Sendiri';
   el.hidden = !!sembunyi;
 }
 function nantiPasang(){ Simpan.set('pasang_nanti', Date.now() + 7 * 864e5); $('#pasangKartu').hidden = true; $('#pasangPetunjuk').hidden = true; }
 
 function pasangApp(){
   if (!tawaran && window.__bip) tawaran = window.__bip;
+  const ua0 = navigator.userAgent || '';
+  // Dari dalam portal: pemasangan harus dari browser → buka Sahabat di Chrome
+  if (DARI_PORTAL && !tawaran) {
+    if (/Android/i.test(ua0)) {
+      const intent = 'intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(LINK_APP) + ';end';
+      try { window.top.location.href = intent; } catch (e) { location.href = intent; }
+      setTimeout(() => toast('Di Chrome, ketuk tombol Pasang sekali lagi.'), 800);
+      return;
+    }
+    if (!/iphone|ipad|ipod/i.test(ua0)) { window.open(LINK_APP, '_blank', 'noopener'); return; }
+  }
   if (tawaran) {
     tawaran.prompt();
     tawaran.userChoice.then(r => { if (r && r.outcome === 'accepted') Simpan.set('terpasang', 1); tawaran = null; window.__bip = null; tampilPasang(); });
@@ -1398,7 +1415,7 @@ function pasangApp(){
   const dalamApp = /FBAN|FBAV|Instagram|Line\/|WhatsApp|; wv\)/i.test(ua);
   let l;
   if (dalamApp) l = '<li>Ketuk <b>⋮</b> atau <b>···</b> di pojok kanan atas.</li><li>Pilih <b>Buka di Chrome</b> / <b>Buka di browser</b>' + (ios ? ' (Safari)' : '') + '.</li><li>Setelah terbuka, ketuk lagi tombol <b>Pasang</b>.</li>';
-  else if (ios) l = '<li>Buka link ini di <b>Safari</b>.</li><li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas).</li><li>Pilih <b>Tambahkan ke Layar Utama</b>, lalu <b>Tambah</b>.</li>';
+  else if (ios) l = '<li>Salin link di bawah, lalu buka di <b>Safari</b>' + (DARI_PORTAL ? ' (bukan dari portal)' : '') + '.</li><li>Ketuk tombol <b>Bagikan</b> (kotak dengan panah ke atas).</li><li>Pilih <b>Tambahkan ke Layar Utama</b>, lalu <b>Tambah</b>.</li>';
   else if (!/Android|Mobile/i.test(ua)) l = '<li>Klik ikon <b>Instal</b> di ujung kanan kolom alamat Chrome/Edge.</li><li>Bila tidak ada: klik <b>⋮</b> → <b>Simpan dan bagikan</b> → <b>Instal halaman sebagai aplikasi</b>.</li>';
   else l = '<li>Ketuk <b>⋮</b> (titik tiga) di pojok kanan atas Chrome.</li><li>Pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.</li><li>Ketuk <b>Instal</b>. Ikon <b>Sahabat</b> muncul di layar HP.</li>';
   const p = $('#pasangPetunjuk');
